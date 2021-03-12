@@ -1,0 +1,6 @@
+.ipynb_checkpoints/
+books/
+venv/
+*.ipynb
+data/
+
