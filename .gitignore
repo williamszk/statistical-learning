@@ -4,3 +4,5 @@ venv/
 *.ipynb
 data/
 
+.Rproj.user
+.Rproj
