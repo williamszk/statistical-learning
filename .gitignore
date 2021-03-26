@@ -1,7 +1,7 @@
 .ipynb_checkpoints/
 books/
 venv/
-*.ipynb
+virtualenv/
 data/
 
 .Rproj.user
