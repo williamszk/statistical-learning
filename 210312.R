@@ -7,12 +7,16 @@
 # 1. Check basic table metadata
 # Checar por nomes da colunas.
 # Qual o significado de cada linha?
-# Existe alguma dimensão de tempo? Ou de espaço?
-# Quais são as variáveis numéricas?
-# Quais as variáveis categóricas?
+# Existe alguma dimensoes de tempo? Ou de espaco?
+# Quais sao as variaveis numericas?
+# Quais as variveis categricas?
 
 # 2. Check your assumptions
-# Deixe de forma explicita suas hipóteses.
+# Deixe de forma explicita suas hipoteses.
 #
+
+
+
+
 
 
