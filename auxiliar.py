@@ -19,3 +19,7 @@ def grad_optim(func,gradFunc):
         x1,x2 = x1-alfa*g[0], x2-alfa*g[1]
 
     return x1,x2
+
+
+
+
