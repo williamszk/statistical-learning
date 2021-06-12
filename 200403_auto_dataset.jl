@@ -1,5 +1,12 @@
 #https://www.youtube.com/watch?v=8981sTtV3bI
+
+# maybe you need to install CSV package
+# import Pkg
+# Pkg.add("CSV")
 using CSV
+
+# Pkg.add("DataFrames")
+using DataFrames
 
 pwd()
 
