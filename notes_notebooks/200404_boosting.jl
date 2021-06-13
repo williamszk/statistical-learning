@@ -10,6 +10,7 @@ auto = CSV.read("Auto.csv")
 first(auto,5)
 
 
+
 #transform all string variables into numeric
 
 #lets predict horsepower based on all other variables
