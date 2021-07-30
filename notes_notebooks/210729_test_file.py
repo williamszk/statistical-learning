@@ -6,3 +6,7 @@ import numpy as np
 # these are more lines
 for i in range(10):
     print(i)
+
+
+# these are new ideas
+print("Here is my new idea!")
