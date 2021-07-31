@@ -9,5 +9,9 @@ data/
 
 .pytest_cache/
 .vscode
+*.Rproj.user
+*.Rproj
+*.RData
+*.Rhistory
 .Rproj.user
-.Rproj
+*.pdf
