@@ -1,0 +1,15 @@
+artifact_uri: file:///home/william/Documents/statistical-learning/mlflow/mlruns/0/324b9adc4129428cb46d7db8325679d3/artifacts
+end_time: 1627851632885
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+name: ''
+run_id: 324b9adc4129428cb46d7db8325679d3
+run_uuid: 324b9adc4129428cb46d7db8325679d3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1627851632867
+status: 3
+tags: []
+user_id: william
