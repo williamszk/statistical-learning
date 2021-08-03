@@ -5,8 +5,9 @@ venv37/
 virtualenv/
 data/
 
-
-
+*__pycache__/
+*.pytest_cache/
+.vscode/
 .pytest_cache/
 .vscode
 *.Rproj.user
