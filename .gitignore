@@ -4,6 +4,7 @@ venv/
 venv37/
 virtualenv/
 data/
+models/
 
 *__pycache__/
 *.pytest_cache/
@@ -17,3 +18,4 @@ data/
 *.Rhistory
 .Rproj.user
 *.pdf
+spark-3.1.2-bin-hadoop3.2/
