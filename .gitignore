@@ -19,3 +19,4 @@ models/
 .Rproj.user
 *.pdf
 spark-3.1.2-bin-hadoop3.2/
+secret/

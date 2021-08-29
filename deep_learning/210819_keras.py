@@ -5,7 +5,6 @@ from tensorflow.python.ops.gen_array_ops import pad_eager_fallback
 sns.set()
 
 
-
 df = pd.read_csv("../data/fake_reg.csv")
 
 sns.pairplot(df)
