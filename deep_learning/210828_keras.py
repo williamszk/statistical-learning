@@ -100,5 +100,82 @@ df.head()
 
 df["sqft_basement"].value_counts()
 # df["basement"] = df["sqft_basement"].apply(lambda x: 1 if x>0 else 0)
+
 #%%
 
+df = df.drop("price_sqm", axis=1)
+
+#%%
+X = df.drop("price", axis=1).values
+y = df["price"].values
+
+#%%
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = \
+    train_test_split(X, y, test_size=0.33, random_state=101)
+# %%
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+X_train = scaler.fit_transform(X_train)
+
+# %%
+X_test = scaler.transform(X_test)
+
+#%%
+
+X_train.shape
+
+#%%
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+
+model = Sequential()
+model.add(Dense(19, activation="relu"))
+model.add(Dense(19, activation="relu"))
+model.add(Dense(19, activation="relu"))
+model.add(Dense(19, activation="relu"))
+model.add(Dense(1))
+model.compile(optimizer="adam", loss="mse")
+
+model.fit(x=X_train, y=y_train, 
+          validation_data=(X_test, y_test), 
+          batch_size=128, epochs=400)
+
+# %%
+# save the model to be used later
+from tensorflow.keras.models import load_model
+model.save('../models/my_house_pricing_model_keras.hdf5')
+
+# %%
+# load the the saved model
+later_model = load_model('../models/my_house_pricing_model_keras.hdf5')
+# later_model.predict(new_gem)
+
+# %%
+losses = pd.DataFrame(model.history.history)
+losses.plot()
+# %%
+from sklearn.metrics import mean_squared_error, mean_absolute_error, explained_variance_score
+
+predictions = model.predict(X_test)
+
+mean_squared_error(y_test, predictions)**.5
+
+mean_absolute_error(y_test, predictions) 
+
+np.mean(np.abs((y_test - predictions.reshape(-1,))/y_test))
+
+explained_variance_score(y_test, predictions)
+
+
+
+# %%
+plt.figure(figsize=(10,8))
+plt.scatter(y_test, predictions)
+plt.plot(y_test, y_test, 'r')
+# %%
+single_house = df.drop("price", axis=1).iloc[0]
+single_house = scaler.transform(single_house.values.reshape(-1,19))
+model.predict(single_house)
+df.iloc[0]

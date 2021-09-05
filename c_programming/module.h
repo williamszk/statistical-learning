@@ -1,7 +1,7 @@
 // This is a module, it contains some functions
 // that are used in other programs
 
-void printArrayInt(int *array, int lenArray){
+void print_array_int(int *array, int lenArray){
     printf("{");
     for (int j; j < lenArray; j++){
         if (j < lenArray-1){
