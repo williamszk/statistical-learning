@@ -1,6 +1,5 @@
 #%%
 import findspark
-from numpy.lib.twodim_base import triu_indices_from
 findspark.init("/home/william/Documents/statistical-learning/spark-3.1.2-bin-hadoop3.2")
 
 from pyspark.sql import SparkSession
