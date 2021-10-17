@@ -98,6 +98,13 @@
 
     ;; Lists, they are collections
 
+    (def myList (list "Dog" 1 2.4 true))
+    ;; functions that apply for lists
+    (first myList)
+    (type myList) ;; clojure.lang.PersistentList
+    ;; there are some datatypes that come from Java
+    ;; and others como from clojure itself
+
 
 
 )

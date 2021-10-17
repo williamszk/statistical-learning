@@ -1,3 +1,6 @@
+# interactive ruby
+# irb
+
 print "Hello World\n"
 
 puts "Hello Puts"
@@ -30,8 +33,6 @@ puts ("There was once a man named " + character_name +".")
 puts ("he was " + character_age + " years old")
 puts ("he liked the name " + character_name)
 puts ("but didn't like being " + character_age)
-
-
 
 character_name = "John"
 character_age = "35"
