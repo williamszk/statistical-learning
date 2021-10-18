@@ -94,7 +94,24 @@ sudo docker container stop b353609e4848
 sudo docker container start 8f6ed16e40a1
 
 
+# how to create a docker container and specify a name
+sudo docker container run --publish 8080:80 --detach --name mr_bob nginx
 
+# how to see logs from a container?
+sudo docker container logs mr_bob
+
+# we can see the top or htop inside the container
+# to see the processes that are running inside the container
+sudo docker container top mr_bob
+
+# how to delete a container?
+sudo docker container rm 8f6ed16e40a1
+
+# how to delete all containers?
+# how to use awk to pass as arguments to the command?
+sudo docker container rm <containerid1> <containerid2> <containerid3>
+
+# you cant delete a running container
 
 
 
