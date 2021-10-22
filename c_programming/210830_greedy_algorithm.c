@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <module.h>
+#include "module.h"
 
 int main() {
     // build a greedy algorithm for the following problem:

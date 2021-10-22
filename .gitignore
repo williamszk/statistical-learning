@@ -21,3 +21,4 @@ models/
 spark-3.1.2-bin-hadoop3.2/
 secret/
 *.out
+*/*.out
