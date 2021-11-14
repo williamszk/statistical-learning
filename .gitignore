@@ -29,4 +29,6 @@ secret/
 *.o
 
 *rust_project/target/
-
+*.db
+scala_study/null/
+scala_study/.metals/
