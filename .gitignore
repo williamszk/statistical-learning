@@ -26,3 +26,7 @@ secret/
 *.idea/
 *out/
 *.iml
+*.o
+
+*rust_project/target/
+
