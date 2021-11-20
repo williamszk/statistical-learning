@@ -1,0 +1,21 @@
+
+# some codes for the course
+https://github.com/tecladocode/rest-apis-flask-python/tree/master/section3
+
+
+request from the browser
+response
+
+# udemy course for flask and api
+# https://www.udemy.com/course/rest-api-flask-and-python/learn/lecture/5960110#overview
+
+# another source for studying flask on youtube
+# https://www.youtube.com/watch?v=BUmUV8YOzgM&list=PLF2JzgCW6-YY_TZCmBrbOpgx5pSNBD0_L&ab_channel=JulianNash
+# uilding your first Flask app - Python on the web - Learning Flask series Pt. 1
+
+
+
+
+
+
+
