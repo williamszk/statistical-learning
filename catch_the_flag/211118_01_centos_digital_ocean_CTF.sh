@@ -1,6 +1,7 @@
 # Digital Ocean
 # droplet = VM instance
 # 
+# This project is being done using the job's laptop, the key is also in there.
 # https://cloud.digitalocean.com/welcome?i=7605f9
 # https://ctfchallenge.com/onboarding#
 
