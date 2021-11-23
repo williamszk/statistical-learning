@@ -32,3 +32,4 @@ secret/
 *.db
 scala_study/null/
 scala_study/.metals/
+models/
