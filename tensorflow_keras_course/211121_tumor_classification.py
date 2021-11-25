@@ -7,6 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from tensorflow.python.keras import callbacks
+from tensorflow.keras.models import load_model
 sns.set()
 # %%
 df_00 = pd.read_csv("../data/cancer_classification.csv")
@@ -31,6 +32,7 @@ len(y_target)
 X_features.shape
 #%%
 from sklearn.model_selection import train_test_split
+
 X_features_train, X_features_test, y_target_train, y_target_test = \
     train_test_split(X_features, y_target, test_size=0.25, random_state=101)
 
@@ -73,20 +75,20 @@ model_history = model.history.history
 with open("../models/model_history_tumor_211121.json", "w") as file:
     json.dump(model_history, file, indent=4)
 
-# %%
+#%%
 with open("../models/model_history_tumor_211121.json", "r") as file:
     model_history_2 = json.load(file)
 
-#%%
-pd.DataFrame(model_history).plot()
 pd.DataFrame(model_history_2).plot()
 # examples of overfitting
 #%%
 from tensorflow.keras.models import load_model
 model_tumor = load_model("../models/tumor_prediction_211121.hdf5")
 
+
+
 #%%
-# use early stopping
+# using early stopping
 
 model_early_stop = Sequential()
 
@@ -124,7 +126,7 @@ with open("../models/model_history_tumor_211121_early_stop.json", "r") as file:
 
 pd.DataFrame(model_history_early_stop_2).plot()
 #%%
-
+# using drop out
 from tensorflow.keras.layers import Dropout
 
 # drop out layers
@@ -158,7 +160,7 @@ model_history_drop_out = model_drop_out.history.history
 
 with open("../models/model_history_tumor_211121_drop_out.json", "w") as file:
     json.dump(model_history_drop_out, file, indent=4)
-# %%
+
 # %%
 with open("../models/model_history_tumor_211121_drop_out.json", "r") as file:
     model_history_drop_out_2 = json.load(file)
@@ -168,6 +170,8 @@ pd.DataFrame(model_history_drop_out_2).plot()
 model_drop_out_2 = load_model("../models/tumor_prediction_211121_drop_out.hdf5")
 
 from sklearn.metrics import classification_report, confusion_matrix
+
+pd.Series(model_drop_out_2.predict(X_features_test_scaled).reshape(-1,)).hist(bins=60)
 
 # I need a threshold 
 y_target_predicted = (model_drop_out_2.predict(X_features_test_scaled) > 0.5).astype(int)
