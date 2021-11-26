@@ -253,12 +253,16 @@ my-number-char
 (def my-number-char ["C" "B" "B"])
 (convert-charlist-decnumber my-number-char)
 
+(def my-number-char ["U"])
+(convert-charlist-decnumber my-number-char)
+
+
+(def my-number-char ["W" "H"])
+(convert-charlist-decnumber my-number-char)
 
 
 
-
-
-
+(* 22 26)
 
 
 

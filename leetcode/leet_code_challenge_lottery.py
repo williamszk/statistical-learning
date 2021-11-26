@@ -40,7 +40,8 @@ list_languages = [
     "JavaScript",
     "PHP",
     "Kotlin",
-    "Fortran"
+    "Fortran",
+    "Ruby"
 ]
 
 
