@@ -1,5 +1,5 @@
 ;; To start the Clojure REPL use the command below in the terminal:
-;; clj
+;; $ /usr/local/bin/clj
 
 (ns clojure_study
   (:require [clojure.string :as str]))
