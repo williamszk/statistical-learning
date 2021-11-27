@@ -87,10 +87,8 @@ df_00["issue_d"].hist()
 
 # In[8]:
 
-
 # How to convert string into year-month?
 issue_date = pd.to_datetime(df_00["issue_d"], exact=False)
-
 
 # Remeber that this step is used just for the train test split  according to year-month of loan issue. 
 # 
