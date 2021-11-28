@@ -32,27 +32,19 @@ reload(hs)
 
 
 # In[3]:
-
-
 # the dataset with metadata about the dataset
-# pd.read_csv("../data/lending_club_info.csv", index_col="LoanStatNew")
+df_metadata = pd.read_csv("../data/lending_club_info.csv", index_col="LoanStatNew")
 df_00 = pd.read_csv("../data/lending_club_loan_two.csv")
 df_00
 
-
 # In[4]:
-
-
 # which is the target variable?
 target_variable = "loan_status"
 # this is one of the most important things to determine
 # when we are working with a supervised learning problem
 
-
-# In this dataset we have a variable that tells when the loan was issued: `issue_d`. 
-# 
+# In this dataset we have a variable that tells when the loan was issued: `issue_d`.  
 # To simulate a scenario of new loans coming we should split according to time. 
-# 
 # We do this we do this with the intent to simulate a deployment scenario.
 
 # In[5]:
@@ -173,65 +165,55 @@ df_target_test.shape
 
 
 # What is more important?
-# 
 # The production ready of the model?
-# 
 # Or the most performatic model?
-# 
-# We should first try to build a pipeline, production ready code with focus on deployment.
-# 
+# We should first try to build a pipeline, production ready code with focus on 
+# deployment.
 # In most scenarios this is the priority order.
-# 
-# But for research of the most performatic model is more relevant, and this priority level can be more flexible.
-# 
-# Even in more flexible situations we should focus on trying  to give importance on how to serve the model.
+# But for research of the most performatic model is more relevant, and 
+# this priority level can be more flexible.
+# Even in more flexible situations we should focus on trying  to give 
+# importance on how to serve the model.
 
 # After building a production ready code we can  dedicate time for exploring the most performatic model.
-# 
 # And new data will come and we'll need to observe the model drift and adapt the model for new scenarios.
 
 # In[20]:
-
-
 # join the features and the target variable again
 df_train = pd.concat([df_features_train, df_target_train], axis=1)
 df_train.head()
 
-
-# For the EDA and the building of the feature engineering programs we should use the whole dataset as it is, with target and features together in a single data frame.
-# 
-# In the deployment simulation construction we can imagine that the data is coming as dictionaries/json, this is not a  strong assumption. 
-# 
-# Most probably the data will arrive in this format, but this depends on the backend of the firm and how the get request responds.
+# For the EDA and the building of the feature engineering programs we should use the whole dataset as it is, with target 
+# and features together in a single data frame.
+# In the deployment simulation construction we can imagine that the data is 
+# coming as dictionaries/json, this is not a  strong assumption. 
+# Most probably the data will arrive in this format, but this depends on 
+# the backend of the firm and how the get request responds.
 
 # On the real deployment, we use absolutely all data that we have.
-# 
-# But for studying and understanding the phonemenon we should make the separation of data into training and test, and we should do this in a most similar way to the deployment scenario as possible.
+# But for studying and understanding the phonemenon we should make 
+# the separation of data into training and test, and we should do 
+# this in a most similar way to the deployment scenario as possible.
 
 # What are the types of features that we have?
-# 
 # Or even that exist?
-# 
 # 1. We have numeric, which have an order.
 # 2. We have categorical with some natural order.
 # 3. And we have categorical without an order.
 # 
 # Are there any time/space features?
-# 
-# Are there other types of information that can be considered like time and space?
+# Are there other types of information that can be 
+# considered like time and space?
 
 # In[21]:
 # loan_amnt: amount applied by the borrower
 df_train["loan_amnt"].hist(bins=60)
-
 # In[22]:
 # term, the amount of payments to be made in months
 df_train["term"].hist()
-
 # In[23]:
 # int_rate: interest rates of the loan
 df_train["int_rate"].hist(bins=60)
-
 # In[24]:
 # installment: the monthly value of the loan
 df_train["installment"].hist(bins=60)
@@ -257,7 +239,6 @@ loan_status_numeric = np.array([
     hs.convert_loan_status_into_numeric(x) for x in df_train[target_variable]])
 
 loan_status_numeric
-
 # All the functions that make some transformation of the data should take 
 # individual values instead of for example using function that transform 
 # the whole data frame. 
@@ -289,7 +270,6 @@ df_train["sub_grade"].hist(bins=70)
 # emp_title: the job title that the borrower told when applying for the loan
 plt.figure(figsize=(12, 6))
 df_train["emp_title"].value_counts()
-
 #%%
 # We have 143_694 different employee titles.
 # This number is too high.
@@ -315,7 +295,6 @@ df_train["emp_title"].value_counts()
 # I can think of two options when using this type of features:
 # 1. Transform into integer; or 
 # 2. Do one-hot enconding.
-
 
 # But we also need to remember that the data that we see here are 
 # for problems that are for tabular data. 
@@ -375,11 +354,9 @@ df_train["emp_length"].value_counts()
 # e.g. < 1 year => 0 and 1 year => we can just build a function
 # sklearn have a function that can concatenate this preprocessing
 # step.
-# 
 
 # https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html
 # Search more about sklearn pipeline, and do some tutorials
-
 #%%
 plt.figure(figsize=(14, 6))
 df_train["emp_length"].hist(bins=23)
@@ -487,11 +464,8 @@ df_train["annual_inc"].describe()
 # Dropping the outlier may depend on the type of model that we are using
 # If the model is a linear regression, this is more compeling.
 # But what if the model is a random forest? Or an ANN?
-#
-
 
 # In[ ]:
-
 df_train["verification_status"].value_counts()
 # verification_status: is the status if the income source was verified
 # This is a categorical non-ordered feature.
@@ -524,14 +498,12 @@ df_train["purpose"].value_counts()
 df_train["purpose"].hist(bins=40)
 # On the two-dimensional analysis we see how the 
 # feature and the target variable behave
-
 # In[ ]:
 df_train["title"].value_counts()
 # There are 48,815 different titles
 # This is another case of categorical variable 
 # with too many categories. 
 # And that doesn't have a natural order.
-
 # In[ ]:
 # dti: is an index that ponders the monthly debt payment divided by total income
 # So the lower the value the better I imagine
@@ -570,23 +542,117 @@ df_train["earliest_cr_line"].value_counts()
 # For example Keras only accepts np.array, but sklearn also accepts
 # pd.Series or pd.DataFrame
 # But for universality it is better to us just np.array.
-#
-
 
 # In[ ]:
 
+# to see the meaning of the variable
+# df_metadata.loc["open_acc",:][0]
 
-
+# "The number of open credit lines in the borrower's credit file."
+df_train.head()
+df_train["open_acc"].value_counts()
+df_train["open_acc"].hist(bins=60)
+# This is a numeric continuous variable 
+# (it can be considered categorical with order)
+# There are some values have too few of them
+# 
+# We have two options here, we can treat this variable
+# (1) as a continuous variable, or treat the variable
+# (2) as a order categorical variable
+# 
+# We can have different approaches for treatment for those two cases.
+# If we adopt "open_acc" as a continuous variable we just leave the variable
+# as it is. Later on we'll need to pass it onto a standardization step.
+# For example, MinMaxScaler or StandardScaler.
+# The variable "open_acc" have the ratio property
+# if this property is very important we'll need to use the variable 
+# as in approach (1) a continuous variable.
+# The justification for using scalers is that it is better for convergence. 
+# A more fundamental question is: how can we convert the values of the 
+# parameters into interpretable values?
+# By how much can we increase the speed of convergence or even the 
+# probability of convergence by using scalers?
+# For example, 80 for the variable "open_acc" is an outlier.
+# What happens if we keep the outlier?
+# How this can affect the model performance? Or convergence speed?
+# When we adopt approach (2), we can groupe the outliers into 
+# larger groups. That way we are kind of getting reed of outliers.
+# But approach (2) seems to destroy information by deleting more
+# detailed information about the variable.
+# If the variable is considered a ordered categorical, we have two options:
+# (a) use one-hot enconding, or (b) we can give integer numerical values
+# to the groups. Using approaches (a) or (b) we'll need to apply a scaler.
+# That is if we are adopting a model that needs scalers, for example ANN or 
+# Linear Regressions. 
+# Actually for linear regression or even GAM/GLM we can opt to do scaling 
+# because one the advantages of using the features variables as they are 
+# is that we can interpret the values of the beta coefficients 
+# (excluding some types of GAMs).
+# 
+# Maybe in the case of a categorical ordered variable
+# we should do the following steps:
+# apply index int to the groups then apply a scaler.
+# 
+# Questions that can arise in thise settings: Which one is better to use
+# Option (1) or option (2)?
+# Better in the sense of model performance, and convergence speed.
+# 
+# 
+df_train["open_acc"].value_counts().sort_index()
 
 # In[ ]:
-
-
-
+# pub_rec: 'Number of derogatory public records'
+df_train.head()
+df_train["pub_rec"].hist(bins=60)
+df_train["pub_rec"].value_counts()
+# df_metadata.loc["pub_rec",:][0]
+# this is another variable that we can thing more if we can treat as a 
+# a continuous numeric variable or we adopt the approach of a ordered 
+# categorical variable.
+# Maybe given that the great majority of cases are of value 0
+# and just a few of them are greater than 4 we could use this variable
+# as a categorical ordered variable.
+# The variable "pub_rec" is a ratio numeric variable that is
+# the distance between the values contain some information about the 
+# phenomenon.
+# For example to transform this variable into a categorical ordered one
+# where we use integers to represent the categories 
+# may not be appropriate for the case
+# where the model been used is e.g. a linear regression model. 
+# Because in linear regression the distance in the feature is relevant.
+# But if we transform this variable into a categorical one with one-hot enconding
+# I think it is ok to use linear regression.
+# For example if we use this variable as an ordered categorical variable with 
+# ordered integers. We could use random forests or any other tree based model.
 
 # In[ ]:
+# revol_bal: 'Total credit revolving balance'
+df_train.head()
+df_train["revol_bal"].hist(bins=60)
+# this variable is skewed to the right.
+# df_metadata.loc["revol_bal",:][0]
+df_train["revol_bal"].value_counts()
+# there are 49424 different types of values in this variable
+# This is clearly a continuous numeric variable.
+# What are the possible scalers that we can use?
+# - MinMaxScaler
+# - StandardScaler
+# - RobustScaler
+# - QuantileTransformer
+# - Normalizer
+# For this type of data which is the most appropriate?
+# I would use some type of scaler for this variable, in principle I'd
+# the MinMaxScaler for a starter, but I'd try to experiment 
+# with other scaler functions.
 
-
-
+# We can see patterns for feature engineering in tabular data.
+# But can we automate it?
+# Can we build a program that can make suggestions to what are the most
+# interesting things to look at?
+# This could take some work to do.
+# The types of decision making for feature engineering follow
+# I think a pattern, that maybe we can enconde in a software that
+# can make suggestions to the user.
 
 # In[ ]:
 
