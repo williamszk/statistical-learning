@@ -1,5 +1,5 @@
 # https://www.youtube.com/watch?v=ELE2_Mftqoc&ab_channel=freeCodeCamp.org
-# this video is really bad
+# this video is really bad !
 
 # q learning
 # Deep Q Learning
