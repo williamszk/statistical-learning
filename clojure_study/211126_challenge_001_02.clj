@@ -31,34 +31,32 @@
 
 ;; the hash-map to be used to convert chars to numbers
 (def map-translator-str
-  {
-    "A" 0,
-    "B" 1,
-    "C" 2,
-    "D" 3,
-    "E" 4,
-    "F" 5,
-    "G" 6,
-    "H" 7,
-    "I" 8,
-    "J" 9,
-    "K" 10,
-    "L" 11,
-    "M" 12,
-    "N" 13,
-    "O" 14,
-    "P" 15,
-    "Q" 16,
-    "R" 17,
-    "S" 18,
-    "T" 19,
-    "U" 20,
-    "V" 21,
-    "W" 22,
-    "X" 23,
-    "Y" 24,
-    "Z" 25,
-  })
+  {"A" 0
+   "B" 1
+   "C" 2
+   "D" 3
+   "E" 4
+   "F" 5
+   "G" 6
+   "H" 7
+   "I" 8
+   "J" 9
+   "K" 10
+   "L" 11
+   "M" 12
+   "N" 13
+   "O" 14
+   "P" 15
+   "Q" 16
+   "R" 17
+   "S" 18
+   "T" 19
+   "U" 20
+   "V" 21
+   "W" 22
+   "X" 23
+   "Y" 24
+   "Z" 25})
 
 ;; convert a letter for example "AB" to a list: ("A" "B")
 (defn convert-twentysix-to-listchar [string-twentysix]
@@ -68,7 +66,7 @@
 ;; (convert-twentysix-to-listchar my-char-number)
 
 ;; a function to just get the value when you supply the key
-(defn get-number-map [key] 
+(defn get-number-map [key]
   (get map-translator-str key))
 
 ;; (get-number-map "B")
@@ -79,7 +77,7 @@
 ;; define a general exponetiation function
 (defn exp [x n]
   (if (zero? n) 1
-    (* x (exp x (dec n)))))
+      (* x (exp x (dec n)))))
 
 ;; set a more specific use for exponentiation
 ;; where the base is always 26
@@ -142,10 +140,10 @@
 ;; function to convert a list of chars into a list of numbers
 ;; and make the sum to find the decimal number that is equivalent
 (defn convert-charlist-decnumber [my-number-char]
-  (reduce + 
-    (map * 
-      (map get-number-map my-number-char)
-      (map exp26 (reverse-range (count my-number-char))))))
+  (reduce +
+          (map *
+               (map get-number-map my-number-char)
+               (map exp26 (reverse-range (count my-number-char))))))
 
 ;; (def my-number-char ["C" "B"])
 ;; (convert-charlist-decnumber my-number-char)
@@ -162,8 +160,8 @@
 ;; function that receives an string of as 26-based number
 ;; and finds the equivalent of this number in 10-based number
 (defn convert-26based-to-10based-number [the-26based-number]
-  (convert-charlist-decnumber 
-    (convert-twentysix-to-listchar the-26based-number)))
+  (convert-charlist-decnumber
+   (convert-twentysix-to-listchar the-26based-number)))
 ;; Examples 1
 ;; (def my-char-number "BA")
 ;; this should be 26
@@ -203,7 +201,7 @@
 ;; we can change the base of the log, we can look at google to find out
 
 ;; build a function that finds the log of a number in base 26
-(defn get-log-base26 [number] 
+(defn get-log-base26 [number]
   (/ (Math/log number) (Math/log 26)))
 ;; Example 1
 ;; this should give 2
@@ -218,13 +216,141 @@
 ;; The function above will be important to find the number of 26-base number 
 ;; slots the number will occupy
 
+;; return the integer value of the log_26 from a number to know in which case the number is
+(defn get-int-log-base26 [number]
+  (int (get-log-base26 number)))
+;; (get-log-base26 879)
+;; gives: 2.0805966976662007
+;; (get-int-log-base26 879)
+;; gives: 2
+
+;; clojure have double and float
+;; float = single precision 32 bits
+;; double = double precision 64 bits
+
+;; how to revert a hash-map in clojure?
+(ns user
+  (:require [clojure.set]))
+
+;; define the inverted dictionary that is used to hash-map 
+;; letters to numbers
+(def map-translator-int
+  (clojure.set/map-invert map-translator-str))
+
+
+(def number 987)
+
+(map-translator-int
+ (int
+  (/ number
+     (exp26
+      (get-int-log-base26 number)))))
+
+
+;; clojure how to take modulus?
+;; (mod number 26)
+
+(reverse-range (+ 1 (get-int-log-base26 number)))
+
+(map exp26
+     (reverse-range
+      (+ 1 (get-int-log-base26 number))))
 
 
 
+(defn divide-by-number [x]
+  (/ number x))
 
 
 
+(map int
+   (map divide-by-number
+        (map exp26
+             (reverse-range
+              (+ 1
+                 (get-int-log-base26
+                  number))))))
+
+(map exp26 
+  (range
+  (+ 1
+  (get-int-log-base26
+    number))))
+
+;; (type 
+;;  (map exp26
+;;       (range
+;;        (+ 1
+;;           (get-int-log-base26
+;;            number)))))
+;; clojure.lang.LazySeq
+
+
+(def int-division-from-input-number
+  (map int
+       (map divide-by-number
+            (map exp26
+                 (reverse-range
+                  (+ 1
+                     (get-int-log-base26
+                      number)))))))
+
+(def auxiliar-exponential-26
+  (map exp26
+       (range
+        (+ 1
+           (get-int-log-base26
+            number)))))
+
+(map int
+     (map /
+          int-division-from-input-number
+          auxiliar-exponential-26))
+
+
+(def number-holder-0 987)
+;; (def number-holder-0 15000)
+(def power-holder-0 
+  (get-int-log-base26 number-holder-0))
+(def check-0
+  (exp26 power-holder-0))
+
+(def number-holder-1
+  (mod number-holder-0 check-0))
+(def power-holder-1
+  (get-int-log-base26 number-holder-1))
+(def check-1
+  (exp26 power-holder-1))
+
+(def number-holder-2
+  (mod number-holder-1 check-1))
+(def power-holder-2
+  (get-int-log-base26 number-holder-2))
+(def check-2
+  (exp26 power-holder-2))
+
+(def number 128)
+(defn my-recursion-func [number]
+  (if (< number 26) ;; the last step, no need to take the rest
+    number
+    ((def power-holder (get-int-log-base26 number))
+     (def check (exp26 power-holder))
+     (def rest (mod number check))
+     (my-recursion-func rest) 
+     )))
 
 
 
+(def number 128)
+
+(defn my-recursion-func [number]
+  (if (< number 26) ;; the last step, no need to take the rest
+    number
+    (my-recursion-func (
+      (mod number 
+      (exp26 
+      (get-int-log-base26 (mod number 26))))))))
+
+    
+(my-recursion-func 128)
 

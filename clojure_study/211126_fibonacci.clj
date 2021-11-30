@@ -4,7 +4,7 @@
 ;; /usr/local/bin/clj
 
 (defn fibonacci [n]
-  (if (= n 1) 1 
+  (if (= n 1) 1
     (if (= n 2) 1
       (+ (fibonacci (- n 2)) (fibonacci (- n 1))))))
 

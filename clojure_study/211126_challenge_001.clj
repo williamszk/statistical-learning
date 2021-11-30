@@ -40,11 +40,11 @@
 
 {"A" 1, "B" 2}
 
-{:key1 1, :key1 1}
+{:key1 1 :key1 1}
 ;; Syntax error reading source at (REPL:7:19).
 ;; Duplicate key: :key1
 
-(def )
+
 
 
 ;; What are clojure's syntax convetions?
@@ -263,6 +263,41 @@ my-number-char
 
 
 (* 22 26)
+
+
+;; what is the difference between Long and int and Integer in Java?
+;; clojure uses Java types in many situations
+;; in java there is the difference between primitive types and objects
+;; what is the difference?
+
+;; An int is a 32-bit integer; a long is a 64-bit integer. 
+;; Which one to use depends on how large the numbers are that you expect to work with.
+
+;; int and long are primitive types, while Integer and Long are objects. 
+;; Primitive types are more efficient, but sometimes you need to use objects; 
+;; for example, Java's collection classes can only work with objects, so if 
+;; you need a list of integers you have to make it a List<Integer>, for example 
+;; (you can't use int in a List directly).
+
+(type 98.9)
+;; java.lang.Double
+
+(type (float 8))
+;; java.lang.Float
+
+;; float function in clojure transforms a number in float type
+(float 9)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
