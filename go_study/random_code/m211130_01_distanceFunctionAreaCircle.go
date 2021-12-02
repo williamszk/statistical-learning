@@ -9,7 +9,7 @@ import (
 
 // what is the syntax convention in Go?
 // https://betterprogramming.pub/naming-conventions-in-go-short-but-descriptive-1fa7c6d2f32a#:~:text=The%20convention%20in%20Go%20is,can%20safely%20stick%20to%20mixedCaps%20.
-// pacakges should have just one word and be lower case, much line in python
+// pacakges should have just one word and be lower case, much like in python
 // For functions that can be called outside we use the Pascal Case (MixedCaps)
 // but if the function is to be used just internally we use camelCase.
 
