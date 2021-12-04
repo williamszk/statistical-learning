@@ -173,12 +173,98 @@ table_describe4.printSchema()
 # for printing purposes this is ok.
 # And we should use format_number for printing purposes only... (?)
 #%%
+df_00.columns
+df_00.withColumn("HV Ratio", df_00["High"]/df_00["Volume"]).show()
 
+#%%
+# #### What day had the Peak High in Price?
+df_00.select("High").describe().show()
 
+df_00.filter(df_00["High"] == 90.970001).show()
 
+# +----------+---------+---------+-----+---------+-------+---------+
+# |      Date|     Open|     High|  Low|    Close| Volume|Adj Close|
+# +----------+---------+---------+-----+---------+-------+---------+
+# |2015-01-13|90.800003|90.970001|88.93|89.309998|8215400|83.825448|
+# +----------+---------+---------+-----+---------+-------+---------+
+
+#%%
+#### What is the mean of the Close column?
+from pyspark.sql.functions import avg, max, min
+df_00.select(avg("Close")).show()
+# +-----------------+
+# |       avg(Close)|
+# +-----------------+
+# |72.38844998012726|
+# +-----------------+
+#%%
+#### What is the max and min of the Volume column?
+df_00.select(max("Volume"), min("Volume")).show()
+# +-----------+-----------+
+# |max(Volume)|min(Volume)|
+# +-----------+-----------+
+# |   80898100|    2094900|
+# +-----------+-----------+
+# %%
+#### How many days was the Close lower than 60 dollars?
+df_00["Close"] < 60
+# pyspark column how to convert to list
+df_00.filter(df_00["Close"]<60).count()
+# pyspark how to know the number of lines in data frame?
+# 81
+#%%
+#### What percentage of the time was the High greater than 80 dollars ?
+#### In other words, (Number of Days High>80)/(Total Days in the dataset)
+df_00["High"].count()
+df_00.select("High").filter(df_00["High"] > 80).count()/df_00.select("High").count()
+# 0.09141494435612083
+#%%
+#### What is the Pearson correlation between High and Volume?
+#### [Hint](http://spark.apache.org/docs/latest/api/python/pyspark.sql.html#pyspark.sql.DataFrameStatFunctions.corr)
+# pyspark correlation stats
+from pyspark.ml.stat import Correlation
+
+Correlation.corr(df_00, ["High", "Volume"], "pearson")
+# What is the difference between the "pearson" and "spearman" correlation?
+
+#%%
+#### What is the max High per year?
+df_00.columns
+df_00.printSchema()
+# how to convert string to datetime
+from pyspark.sql.functions import year
+df_00.select(year(df_00["Date"])).show()
+df_01 = df_00.withColumn("Year", year(df_00["Date"]))
+df_01.show()
+
+df_01.select(["Year", "High"]).groupBy("Year").max("High").orderBy("Year").show()
+
+# +----+---------+
+# |Year|max(High)|
+# +----+---------+
+# |2012|77.599998|
+# |2013|81.370003|
+# |2014|88.089996|
+# |2015|90.970001|
+# |2016|75.190002|
+# +----+---------+
 
 #%%
 
+# What is the average Close for each Calendar Month?
+# In other words, across all the years, what is the average Close price for 
+# Jan,Feb, Mar, etc... Your result will have a value for each of these months. 
 
+from pyspark.sql.functions import month
+
+df_01 = df_00.withColumn("Month", month(df_00["Date"]))
+
+df_01.cube("Month").count().orderBy("Month").show()
+
+df_01.groupBy("Month").count().orderBy("Month").show()
+
+df_01.show()
+
+df_01.groupBy("Month").mean("Close").orderBy("Month").show()
 
 
