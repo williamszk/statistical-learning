@@ -49,14 +49,27 @@ cat /etc/centos-release
 
 
 
+# There's two tools that we think you'll find beneficial to hack on our labs but alternatives are readily available
+# The following instructions and assuming you're installing these tools on an ubuntu/debian 
+# based linux system although with a quick google search you'll find easy instalation instructions for other operating systems
+# The two tools you'll be installing are ffuf and dnsecon
 
+# ffuf
+# dnsecon
 
+# ffuf is a tool designed to rapidly automate web requests it can be used tasks such as discovering content, 
+# directories, subdomains, virtual hosts, brute forcing account password and much more
 
+# sudo add-apt-repository -y ppa:longsleep/golang-backports
+# sudo apt update
+# sudo apt install -y golang-go
+# cd ~
+# go get github.com/ffuf/ffuf
+# sudo ln -s ~/go/bin/ffuf /usr/sbin/ffuf
 
-
-
-
-
+# connect with digital ocean droplet
+# 198.199.122.147
+ssh -i "C:\Users\william.suzuki\.ssh\id_rsa" root@198.199.122.147
 
 
 
