@@ -1,0 +1,168 @@
+###############################
+# My notes on web development #
+###############################
+
+img {
+    right: 20px;
+}
+
+# options are: right, left, top, bottom
+
+img {
+    position: relative;
+    left: 30px;
+}
+
+
+# Types of positions in CSS:
+# Static (default)
+# Relative
+# Absolute
+
+
+## In Relative positioning the point of reference is where the 
+# object should be in Static positioning
+
+# - Static positioning is the default
+
+.red {
+    height: 100px;
+    width: 100px;
+    background-color: red;
+    position: relative;
+    left: 20px;
+}
+
+
+<body>
+    <div class="red">
+    </div>
+</body>
+
+
+# CSS tag selector
+# CSS class selector
+# CSS id selector
+
+# hierarchy of CSS selectors:
+# 1. id selector
+# 2. class selector
+# 3. tag selector
+
+
+# img tag are inline elements
+# in oposition to block elements for exemple span
+
+# inline-block will make an inline element become a block element
+.blue {
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+  display: inline-block;   # <========
+}
+
+
+# CSS
+# Absolute Position 
+# we put an image in relation to a div then we 
+https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12287766?start=15#overview
+
+
+
+
+# how to center elements?
+# https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12287780#overview
+
+# how margin order works:
+https://developer.mozilla.org/en-US/docs/Web/CSS/margin#more_examples
+
+
+# about fonts in CSS
+# https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12287794#overview
+body {
+  text-align: center;
+  background-color: #E4F9F5;
+  font-family: sans-serif;
+}
+
+font-family: [monospace, sans-serif, serif, inherit]
+
+# in the example below:
+# we tell the browser that we want first to find the verdana
+# font, if it did not find, then use the sans-serif
+font-family: verdana, sans-serif;
+
+# there are the called web safe fonts
+# https://www.w3schools.com/cssref/css_websafe_fonts.asp
+
+# the site below list the fonts and the percentage of users that have the font installed
+# https://www.cssfontstack.com/
+# the lecture about fonts
+# https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12287794#overview
+
+
+# about font embeding
+# we do not use fonts that are pre installed in the user's computer
+https://fonts.google.com/
+
+# in font embeding we impor the fonts from google
+# we need to put a link in the head section of the html
+
+# articles about the what fonts go well with what style of site
+
+https://fonts.google.com/
+# you can find icons (icon) too.
+
+
+# Digital Design and Typography
+# https://www.udemy.com/course/the-complete-web-development-bootcamp/learn/lecture/12399742#overview
+
+
+# A good place to find icons on the web is:
+# https://www.flaticon.com/
+# we can use it, given the adequate attribution
+
+# where to find color palletes that are beautiful
+# https://colorhunt.co/
+
+# to find awesome images
+# https://unsplash.com/
+
+# to find gifs
+# https://giphy.com/
+
+
+# -------------------------
+
+I think that paragraphs <p> are block elements.
+That is they occupy the whole line.
+
+We have block elements and inline elements.
+Inline elements occupy just the space they need in the line.
+But block elements occupy the whole width of the page.
+
+There are some things that I still don't understand.
+What is 
+inline-block?
+And all the other options?
+What does
+display: inline-block mean?
+
+# -------------------------
+
+Bootstrap is called a front-end library.
+
+
+
+Wireframe: 
+https://balsamiq.com/
+A crue quick and easy way to design the main features of you website.
+It's for designing user interfaces.
+
+Mockup is a more elaborate plan for the web design.
+
+Prototype is an implemented website without the backend but with the animation.
+
+
+
+

@@ -1,0 +1,68 @@
+body {
+  text-align: center;
+  font-family: 'Merriweather', serif;
+}
+
+h1 {
+  color: #66BFBF;
+  font-size: 5.625em;
+  font-family: 'Sacramento', cursive;
+  margin: 3.1rem auto 0rem auto;
+}
+
+h2 {
+  color: #66BFBF;
+  font-size: 2.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+}
+
+h3 {
+  color: #11999E;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  color: #11999E;
+}
+
+.top-container {
+  background-color: #E4F9F5;
+}
+
+.middle-container {}
+
+.bottom-container {}
+
+.skill-row {
+  width: 50%;
+  margin: 100px auto 100px auto;
+  text-align: left;
+  line-height: 2;
+}
+
+.technical-img {
+  width: 20%;
+  float: left;
+  margin: 30px;
+}
+
+.pipelines-img {
+  width: 20%;
+  float: right;
+  margin: 30px;
+}
+
+.footer-link {
+  color: #11999E;
+}
+
+.footer-part {
+  background-color: #66BFBF;
+  padding: 40px;
+  line-height: 2;
+}
+
+.contact-me {
+  margin: 30px;
+}

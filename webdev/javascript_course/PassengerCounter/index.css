@@ -1,0 +1,22 @@
+body {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/5/5f/London_Train_Station.jpg");
+    background-size: cover;
+    font-family: Roboto;
+    font-weight: bold;
+    text-align: center;
+}
+
+h1 {
+    font-size: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 50px;
+}
+
+button{
+    padding: 10px;
+    margin: 10px;
+}

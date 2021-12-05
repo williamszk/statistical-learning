@@ -1,0 +1,78 @@
+/* tag selectors --------------------------- */
+
+h1 {
+  color: red;
+  font-size: 200px;
+}
+
+
+/* this is a tag selector  */
+
+img {
+  background-color: red;
+}
+
+img:hover {
+  background-color: gold;
+}
+
+
+/* class selectors --------------------------- */
+
+.bacon {
+  background-color: green;
+}
+
+.broccoli {
+  background-color: red;
+}
+
+.circular {
+  border-radius: 100%;
+}
+
+
+/* id selectors --------------------------- */
+
+#heading {
+  color: blue;
+}
+
+
+/* selector {property: value}  
+
+class selector
+
+tag selectors
+
+what is the hierarchy of css selectors?
+
+
+there is a hierarchy for css:
+inline css
+internal css
+external css
+
+
+css ids
+
+different levels of css selectors
+
+css: 
+- tag
+- class
+- id
+
+
+There is a case in which the tag selector overwrites another
+specifiction for css selectors.
+It is the default styles defined by the browser.
+Those are called: "user agent stylesheet"
+
+What are pseudo classes in css?
+HTML have different states. e.g. when hover.
+:hover
+a:hover {
+  color: orange;
+}
+*/
