@@ -33,5 +33,5 @@ secret/
 scala_study/null/
 scala_study/.metals/
 models/
-.clj-kondo
-.lsp
+.clj-kondo/
+.lsp/
