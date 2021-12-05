@@ -264,18 +264,18 @@
 
 
 (map int
-   (map divide-by-number
-        (map exp26
-             (reverse-range
-              (+ 1
-                 (get-int-log-base26
-                  number))))))
+     (map divide-by-number
+          (map exp26
+               (reverse-range
+                (+ 1
+                   (get-int-log-base26
+                    number))))))
 
-(map exp26 
-  (range
-  (+ 1
-  (get-int-log-base26
-    number))))
+(map exp26
+     (range
+      (+ 1
+         (get-int-log-base26
+          number))))
 
 ;; (type 
 ;;  (map exp26
@@ -284,7 +284,6 @@
 ;;           (get-int-log-base26
 ;;            number)))))
 ;; clojure.lang.LazySeq
-
 
 (def int-division-from-input-number
   (map int
@@ -308,9 +307,11 @@
           auxiliar-exponential-26))
 
 
+;; ---------------------------------------------------------------- ;;
+
 (def number-holder-0 987)
 ;; (def number-holder-0 15000)
-(def power-holder-0 
+(def power-holder-0
   (get-int-log-base26 number-holder-0))
 (def check-0
   (exp26 power-holder-0))
@@ -336,9 +337,7 @@
     ((def power-holder (get-int-log-base26 number))
      (def check (exp26 power-holder))
      (def rest (mod number check))
-     (my-recursion-func rest) 
-     )))
-
+     (my-recursion-func rest))))
 
 
 (def number 128)
@@ -346,11 +345,108 @@
 (defn my-recursion-func [number]
   (if (< number 26) ;; the last step, no need to take the rest
     number
-    (my-recursion-func (
-      (mod number 
-      (exp26 
-      (get-int-log-base26 (mod number 26))))))))
+    (my-recursion-func ((mod number
+                             (exp26
+                              (get-int-log-base26 (mod number 26))))))))
 
-    
+
 (my-recursion-func 128)
+
+
+;; ---------------------------------------------------------------- ;;
+
+(def number 1289)
+
+
+
+
+(map exp26 (reverse-range (+ 1 (get-int-log-base26 number))))
+
+
+
+;; https://stackoverflow.com/a/33726087/15875971
+;; we want to take 1289 and divide by all values in the array above
+
+
+(map (fn [i] (/ number i)) (map exp26 (reverse-range (+ 1 (get-int-log-base26 number)))))
+
+(map float (map (fn [i] (/ number i)) (map exp26 (reverse-range (+ 1 (get-int-log-base26 number))))))
+
+(map (fn [i] (mod number i)) (map exp26 (reverse-range (+ 1 (get-int-log-base26 number)))))
+
+
+;; -------------------------------------------------- ;;
+
+;; (def fundamental-base 26)
+;; (def base10-number 1289)
+
+
+;; (reverse-range (+ 1 (get-int-log-base26 base10-number)))
+
+;; (defn formula-find-numeric-equivalent [n] 
+;;   (int (/ (mod base10-number (exp fundamental-base n)) (exp fundamental-base n))))
+
+;; (map formula-find-numeric-equivalent (reverse-range (+ 1 (get-int-log-base26 base10-number))))
+
+
+;; -------------------------------------------------- ;;
+;; second try
+
+(def fundamental-base 26)
+;; (def base10-number 9877)
+(def base10-number 1289)
+
+(map 
+  (fn [n] 
+  (int 
+  (/ 
+  (mod base10-number 
+  (exp fundamental-base (+ 1 n)))
+  (exp fundamental-base n))))
+  (reverse-range (+ 1 (get-int-log-base26 number))))
+
+;; got the right vector of numbers!
+;; (1 23 15)
+
+;; -------------------------------------------------- ;;
+;; build the part that takes the vector of numbers and than translate them
+;; into base26 "numbers"
+
+(apply str 
+     (map (fn [i] (get map-translator-int i))
+     (map (fn [n] (int (/(mod base10-number
+     (exp fundamental-base (+ 1 n)))
+     (exp fundamental-base n))))
+     (reverse-range (+ 1 (get-int-log-base26 number))))))
+
+;; "BXP"
+
+;; -------------------------------------------------- ;;
+
+(defn convert-10based-to-26based-number [base10-number]
+  (apply str
+         (map (fn [i] (get map-translator-int i))
+              (map (fn [n] (int (/ (mod base10-number
+                                        (exp fundamental-base (+ 1 n)))
+                                   (exp fundamental-base n))))
+                   (reverse-range (+ 1 (get-int-log-base26 number)))))))
+
+
+(convert-10based-to-26based-number 1289)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
