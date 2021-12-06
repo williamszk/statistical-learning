@@ -23,25 +23,31 @@ from random import sample
 
 list_languages = [
     "Python",
-    "C",
     "Go",
-    "Java",
-    "C++",
-    "R",
-    "Julia",
-    "Haskell",
-    "Clojure",
-    "Common Lisp",
-    "Scala",
-    "bash",
-    "awk",
-    "Rust",
-    "Nim",
     "JavaScript",
-    "PHP",
-    "Kotlin",
-    "Fortran",
-    "Ruby"
+    "C",
+    "Java",
+    # The languages below are interesting
+    # but I'll try to get more profecient on the above languages first
+    # before trying to tackel the other languages below
+    # the langunguages selected above are useful and interesting
+    
+    # "Scala",
+    # "bash",
+    # "C++",
+
+    # "Clojure",
+    # "R",
+    # "Julia",
+    # "Haskell",    
+    # "awk",
+    # "Rust",
+    # "Nim",
+    # "PHP",
+    # "Kotlin",
+    # "Fortran",
+    # "Ruby"
+    # "Common Lisp",
 ]
 
 
