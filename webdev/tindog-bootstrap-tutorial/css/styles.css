@@ -1,0 +1,37 @@
+/* 
+#FF4C68
+
+class selector
+
+tag selector 
+
+id selector: 
+  in here we can change the CSS properties of a certain id in a html tag
+  this is the same id that is used by javascript
+  the id selector uses # as in
+  #title {
+    background-color: #FF4C68;
+  }
+
+
+
+font-family: 'Montserrat', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+
+*/
+
+#title {
+  background-color: #FF4C68;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.container-fluid {
+  padding: 3% 15%;
+}
+
+h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  size: 3rem;
+  line-height: 1.5;
+}
