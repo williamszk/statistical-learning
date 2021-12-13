@@ -9,6 +9,51 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+  <style>
+    .carousel-item {
+      height: 500px;
+    }
+    
+    .div-z-index {
+      height: 100px;
+      width: 100px;
+      border: 1px solid;
+      position: absolute;
+    }
+    
+    .red {
+      background-color: red;
+      left: 0px;
+      top: 0px;
+      z-index: 2;
+    }
+    
+    .yellow {
+      background-color: yellow;
+      left: 20px;
+      top: 20px;
+      z-index: 1;
+    }
+    
+    .blue {
+      background-color: blue;
+      left: 40px;
+      top: 40px;
+      z-index: 0;
+    }
+    
+    .media-query-h1 {
+      font-size: 30px;
+    }
+    /* This is a media query break point */
+    
+    @media (min-width: 900px) and (max-width: 1000px) {
+      .media-query-h1 {
+        font-size: 60px;
+      }
+    }
+  </style>
+
   <title>Hello, world!</title>
 </head>
 
@@ -17,7 +62,7 @@
 
 <body>
 
-  <!-- The difference between a contaier and a fluid container is that the latter changes its width as we change the size of the screen 
+  <!-- The difference between a contaier and a fluid container is that the latter changes its width as we change the size of the screen
     it always takes 100% of the width.
   -->
   <div class="container-fluid" style="background-color: blue;">
@@ -142,6 +187,121 @@
     </div>
   </div>
 
+  <!-- An example of Carousel -->
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <div class="carousel-inner">
+      <div class="carousel-item active" style="background-color: red;">
+        <img class="d-block w-100" src="..." alt="First slide">
+      </div>
+      <div class="carousel-item" style="background-color: blue;">
+        <img class="d-block w-100" src="..." alt="Second slide">
+      </div>
+      <div class="carousel-item" style="background-color: green;">
+        <img class="d-block w-100" src="..." alt="Third slide">
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+
+  <!-- An example of Card for Pricing -->
+  <div class="container">
+    <div class="card-deck mb-3 text-center">
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4>Free</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">
+            $0
+            <small class="text-muted">/ mo</small>
+          </h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>10 users included</li>
+            <li>2 GB of storage</li>
+            <li>Email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up for free</button>
+        </div>
+      </div>
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4>Free</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">
+            $0
+            <small class="text-muted">/ mo</small>
+          </h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>10 users included</li>
+            <li>2 GB of storage</li>
+            <li>Email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Sign up for free</button>
+        </div>
+      </div>
+      <div class="card mb-4 box-shadow">
+        <div class="card-header">
+          <h4>Free</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">
+            $0
+            <small class="text-muted">/ mo</small>
+          </h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>10 users included</li>
+            <li>2 GB of storage</li>
+            <li>Email support</li>
+            <li>Help center access</li>
+          </ul>
+          <button type="button" class="btn btn-lg btn-block btn-primary">Sign up for free</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Some experiments with Cards -->
+  <div class="card">
+    <div class="card-header">
+      Card Header
+    </div>
+    <div class="card-body">
+      Card Body
+    </div>
+    <div class="card-footer">
+      Card Footer
+    </div>
+  </div>
+
+
+  <!-- About the z index in css -->
+
+  <div class="red div-z-index">
+    red
+  </div>
+
+  <div class="yellow div-z-index">
+    yellow
+  </div>
+
+  <div class="blue div-z-index">
+    blue
+  </div>
+
+  <!-- Media Query notes and experiments -->
+
+  <h1 class="media-query-h1">Hello World</h1>
 
 
 

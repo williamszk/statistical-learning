@@ -1,11 +1,11 @@
-/* 
+/*
 #FF4C68
 
 class selector
 
-tag selector 
+tag selector
 
-id selector: 
+id selector:
   in here we can change the CSS properties of a certain id in a html tag
   this is the same id that is used by javascript
   the id selector uses # as in
@@ -31,10 +31,33 @@ font-family: 'Ubuntu', sans-serif;
 
 #features {
   padding: 7% 15%;
+  background-color: #FFF;
+  position: relative;
+}
+
+#testimonials {
+  text-align: center;
+  background-color: #EF8172;
+  color: #FFF;
+}
+
+#press {
+  text-align: center;
+  background-color: #EF8172;
+  padding-bottom: 3%;
+}
+
+#pricing {
+  padding: 100px;
 }
 
 
 /* ---------------------- Class Selectors ---------------------- */
+
+.pricing-column {
+  padding: 3% 2%;
+  text-align: center;
+}
 
 .feature-box {
   text-align: center;
@@ -42,7 +65,7 @@ font-family: 'Ubuntu', sans-serif;
 }
 
 .container-fluid {
-  padding: 3% 15%;
+  padding: 3% 15% 7%;
 }
 
 
@@ -80,6 +103,8 @@ font-family: 'Ubuntu', sans-serif;
 .title-image {
   width: 60%;
   transform: rotate(25deg);
+  position: absolute;
+  right: 30%;
 }
 
 .icon {
@@ -92,6 +117,21 @@ font-family: 'Ubuntu', sans-serif;
 
 .icon:hover {
   color: #ff4c68;
+}
+
+.testimonial-image {
+  width: 10%;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+.press-image {
+  width: 15%;
+  margin: 20px 20px 50px;
+}
+
+.carousel-item {
+  padding: 7% 15%;
 }
 
 
@@ -108,6 +148,13 @@ h1 {
   line-height: 1.5;
 }
 
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
 h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
@@ -116,4 +163,17 @@ h3 {
 
 p {
   color: #8F8F8F;
+}
+
+
+/* Media Query */
+
+@media (max-width: 977px) {
+  #title {
+    text-align: center;
+  }
+  .title-image {
+    position: static;
+    transform: rotate(0);
+  }
 }
