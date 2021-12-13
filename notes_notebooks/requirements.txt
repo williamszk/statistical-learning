@@ -41,7 +41,7 @@ ipyvuetify==1.5.1
 ipywebrtc==0.5.0
 ipywidgets==7.5.1
 jedi==0.17.2
-Jinja2==2.11.2
+Jinja2==2.11.3
 jmespath==0.10.0
 joblib==1.0.1
 json5==0.9.5
