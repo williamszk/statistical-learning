@@ -21,51 +21,65 @@ font-family: 'Ubuntu', sans-serif;
 */
 
 
-/* ---------------------- Id Selectors ---------------------- */
+/* ---------------------- Tag Selectors ---------------------- */
 
-#title {
-  background-color: #FF4C68;
-  font-family: 'Ubuntu', sans-serif;
-  color: #fff;
-}
-
-#features {
-  padding: 7% 15%;
-  background-color: #FFF;
-  position: relative;
-}
-
-#testimonials {
+body {
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
-  background-color: #EF8172;
-  color: #FFF;
 }
 
-#press {
-  text-align: center;
-  background-color: #EF8172;
-  padding-bottom: 3%;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
-#pricing {
-  padding: 100px;
+p {
+  color: #8F8F8F;
 }
 
 
 /* ---------------------- Class Selectors ---------------------- */
 
+.feature-title {
+  font-size: 1.3rem;
+}
+
+.big-heading {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 3.4rem;
+  line-height: 1.5;
+}
+
+.section-heading {
+  font-size: 3rem;
+  line-height: 1.5;
+}
+
+.social-icon {
+  margin: 20px 10px;
+}
+
 .pricing-column {
   padding: 3% 2%;
-  text-align: center;
+}
+
+.price-text {
+  font-size: 3rem;
+  line-height: 1.5;
 }
 
 .feature-box {
-  text-align: center;
   padding: 5%;
 }
 
 .container-fluid {
-  padding: 3% 15% 7%;
+  padding: 7% 15%;
 }
 
 
@@ -115,8 +129,16 @@ font-family: 'Ubuntu', sans-serif;
 
 /* pseudo-states, like hover */
 
+
+/* Below the :hover is an example of a pseudo-class */
+
 .icon:hover {
   color: #ff4c68;
+}
+
+.testimonial-text {
+  font-size: 3rem;
+  line-height: 1.5;
 }
 
 .testimonial-image {
@@ -130,43 +152,52 @@ font-family: 'Ubuntu', sans-serif;
   margin: 20px 20px 50px;
 }
 
-.carousel-item {
-  padding: 7% 15%;
+.colored-section {
+  background-color: #FF4C68;
+  color: #fff;
+}
+
+.white-section {
+  background-color: #FFF;
 }
 
 
-/* ---------------------- Tag Selectors ---------------------- */
+/* ---------------------- Id Selectors ---------------------- */
 
-body {
-  font-family: 'Montserrat', sans-serif;
-}
-
-h1 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 3.4rem;
-  line-height: 1.5;
-}
-
-h2 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 3rem;
-  line-height: 1.5;
-}
-
-h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  font-size: 1.3rem;
-}
-
-p {
-  color: #8F8F8F;
+#title {
+  font-family: 'Ubuntu', sans-serif;
+  text-align: left;
 }
 
 
-/* Media Query */
+/* There is also something called a combined selector */
+
+
+/* Example of hierachical selector */
+
+#title .container-fluid {
+  padding: 3% 15% 7%;
+}
+
+#features {
+  position: relative;
+}
+
+#testimonials {
+  background-color: #EF8172;
+}
+
+#press {
+  background-color: #EF8172;
+  padding-bottom: 3%;
+}
+
+#pricing {
+  padding: 100px;
+}
+
+
+/* ---------------------- Media Query ---------------------- */
 
 @media (max-width: 977px) {
   #title {
