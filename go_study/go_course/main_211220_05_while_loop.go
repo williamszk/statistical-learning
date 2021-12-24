@@ -27,4 +27,3 @@ func main() {
 }
 
 // next class
-// https://www.youtube.com/watch?v=QDaiqhTq3TA&list=PLCKpcjBB_VlBsxJ9IseNxFllf-UFEXOdg&index=41&ab_channel=AprendaGo
