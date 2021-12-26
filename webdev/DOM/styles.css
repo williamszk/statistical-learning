@@ -1,0 +1,9 @@
+.huge {
+  font-size: 10rem;
+  color: red;
+  font-weight: bold;
+}
+
+.invisible {
+  visibility: hidden;
+}
