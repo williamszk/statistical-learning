@@ -1,0 +1,127 @@
+/* ----------- Tag Selectors -----------  */
+
+body {
+  background-color: #35353f;
+  text-align: center;
+}
+
+h1 {
+  color: #45c396;
+  font-family: 'Yellowtail', cursive;
+}
+
+p {}
+
+
+/* ----------- Class Selectors -----------  */
+
+.dice-place {
+  position: relative;
+  height: 10rem;
+  width: 100%;
+  /* background-color: red; */
+}
+
+.player-1-place {
+  position: absolute;
+  width: 50%;
+  height: 10rem;
+  left: 0rem;
+  /* background-color: red; */
+}
+
+.player-2-place {
+  position: absolute;
+  width: 50%;
+  height: 10rem;
+  right: 0rem;
+  /* background-color: yellow; */
+}
+
+.player-name {
+  color: #45c396;
+  font-family: 'Gochi Hand', cursive;
+}
+
+.flag-result {
+  color: #d7000c;
+  font-family: 'Yellowtail', cursive;
+}
+
+.footer-site {
+  color: #ccc8cf;
+  font-family: 'Gochi Hand', cursive;
+  position: relative;
+  width: 100%;
+  height: 5%;
+}
+
+.dice-body {
+  /* https://stackoverflow.com/questions/10487292/position-absolute-but-relative-to-parent */
+  position: absolute;
+  /* We need to put this as position relative because the child elements need to use position absolute */
+  height: 5rem;
+  width: 5rem;
+  border-radius: 10%;
+  background-color: #940212;
+}
+
+.dice-point {
+  height: 1rem;
+  width: 1rem;
+  border-radius: 100%;
+  background-color: aliceblue;
+}
+
+.position-upper-left {
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5rem;
+}
+
+.position-bottom-left {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.position-center {
+  position: absolute;
+  left: 2rem;
+  top: 2rem;
+}
+
+.position-upper-right {
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+}
+
+.position-bottom-right {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.position-center-right {
+  position: absolute;
+  right: 0.5rem;
+  top: 2rem;
+}
+
+.position-center-left {
+  position: absolute;
+  left: 0.5rem;
+  top: 2rem;
+}
+
+
+/* ----------- Id Selectors -----------  */
+
+#dice-player-1 {
+  right: 45%;
+}
+
+#dice-player-2 {
+  left: 45%;
+}
