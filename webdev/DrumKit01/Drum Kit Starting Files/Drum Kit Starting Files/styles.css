@@ -32,12 +32,16 @@ footer {
 }
 
 .j {
-  background-image: url("images/");
+  background-image: url("images/snare.png");
 }
 
-.k {}
+.k {
+  background-image: url("images/crash.png");
+}
 
-.l {}
+.l {
+  background-image: url("images/kick.png");
+}
 
 .set {
   margin: 10% auto;
