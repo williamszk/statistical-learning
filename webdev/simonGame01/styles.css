@@ -1,0 +1,133 @@
+body {
+  background-color: #333333;
+  text-align: center;
+}
+
+.game-body {
+  position: relative;
+  height: 600px;
+  margin: auto;
+  width: 600px;
+  background-color: #212122;
+  border-radius: 100%;
+}
+
+.simon-button {
+  height: 270px;
+  width: 270px;
+}
+
+.blue-button {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  background-color: #2659aa;
+  border-top-left-radius: 100%;
+}
+
+.blue-button-pressed {
+  background-color: #1b3e77;
+}
+
+.blue-button-lighted {
+  background-color: #d4deee;
+}
+
+.red-button {
+  background-color: #d62626;
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  border-top-right-radius: 100%;
+}
+
+.red-button-pressed {
+  background-color: #801717;
+}
+
+.red-button-lighted {
+  background-color: #f7d4d4;
+}
+
+.yellow-button {
+  background-color: #eec025;
+  position: absolute;
+  right: 30px;
+  bottom: 30px;
+  border-bottom-right-radius: 100%;
+}
+
+.yellow-button-pressed {
+  background-color: #776013;
+}
+
+.yellow-button-lighted {
+  background-color: #fcf2d3;
+}
+
+.green-button {
+  background-color: #26b644;
+  position: absolute;
+  left: 30px;
+  bottom: 30px;
+  border-bottom-left-radius: 100%;
+}
+
+.green-button-pressed {
+  background-color: #176d29;
+}
+
+.green-button-lighted {
+  background-color: #bee9c7;
+}
+
+.horizontal-line {
+  position: absolute;
+  width: 540px;
+  height: 30px;
+  background-color: #212122;
+  top: 285px;
+  left: 30px;
+}
+
+.vertical-line {
+  position: absolute;
+  height: 540px;
+  width: 30px;
+  background-color: #212122;
+  top: 30px;
+  left: 285px;
+}
+
+.internal-body {
+  background-color: #212122;
+  height: 250px;
+  width: 250px;
+  border-radius: 100%;
+  position: absolute;
+  left: 175px;
+  top: 175px;
+}
+
+.white-body {
+  background-color: #ffffff;
+  height: 200px;
+  width: 200px;
+  border-radius: 100%;
+  position: absolute;
+  left: 200px;
+  top: 200px;
+}
+
+
+/* 
+
+detail 
+#232222
+
+
+
+
+#030303
+
+*/

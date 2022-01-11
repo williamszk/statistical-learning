@@ -45,7 +45,6 @@ function buttonAnimation(currentKey) {
     },
     100
   );
-
 }
 
 var numDrumButtons = document.querySelectorAll(".drum").length;
