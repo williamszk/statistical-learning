@@ -5,6 +5,7 @@ using namespace std;
 
 int main()
 {
+    // below we are using a casting operator
     cout << (int)'a' << endl;
     // 97
     // in ascii 'a' is equivalent to 97
@@ -12,4 +13,7 @@ int main()
     // note that we use a different way of type conversion in here
     // 65
     // in ascci 'A' is equivalent to 65
+
+    // we can also convert an int into an ASCII character
+    cout << char('A') << endl;
 }
