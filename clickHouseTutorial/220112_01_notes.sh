@@ -1,4 +1,5 @@
 # https://clickhouse.com/docs/en/getting-started/tutorial/
+# https://github.com/ClickHouse/ClickHouse
 # we are following this tutorial
 # I'm going to try to set a container to install the clickHouse stuff
 
@@ -237,7 +238,8 @@ clickhouse-client
 
 # 2becc6d8ccd6 :) 
 
-
+# I've stoped here
+# https://clickhouse.com/docs/en/getting-started/tutorial/#download-and-extract-table-data
 
 
 
