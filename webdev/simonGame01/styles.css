@@ -49,7 +49,6 @@ body {
   border-bottom-right-radius: 100%;
 }
 
-
 .yellow-button-lighted {
   background-color: #fcf2d3;
 }
@@ -61,7 +60,6 @@ body {
   bottom: 30px;
   border-bottom-left-radius: 100%;
 }
-
 
 .green-button-lighted {
   background-color: #bee9c7;
@@ -122,17 +120,17 @@ body {
 
 .start-text {
   left: 20px;
-  top: 80px;
+  top: 65px;
 }
 
 .strict-text {
   left: 75px;
-  top: 80px;
+  top: 65px;
 }
 
 .reset-text {
   left: 135px;
-  top: 80px;
+  top: 65px;
 }
 
 .button-in-white-body {
@@ -143,23 +141,39 @@ body {
   border: 3px solid;
 }
 
-
 .green-body-button {
   background-color: #26b644;
   left: 26px;
-  top: 110px;
+  top: 95px;
 }
 
 .red-body-button {
   background-color: #d62626;
   left: 85px;
-  top: 110px;
+  top: 95px;
 }
 
 .yellow-body-button {
   background-color: #eec025;
   left: 147px;
-  top: 110px;
+  top: 95px;
+}
+
+.points-counter-white-body {
+  background-color: #212122;
+  position: absolute;
+  height: 45px;
+  width: 70px;
+  left: 65px;
+  top: 135px;
+  border-radius: 20%;
+}
+
+.text-counter-white-body {
+  color: #bee9c7;
+  padding: 0.3rem 0rem;
+  font-size: 2.3rem;
+  font-family: monospace;
 }
 
 .blue-button-pressed {
@@ -177,7 +191,6 @@ body {
 .green-button-pressed {
   background-color: #176d29;
 }
-
 
 
 /* 
