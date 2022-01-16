@@ -37,7 +37,7 @@ cd ~
 
 git clone https://github.com/williamszk/statistical-learning.git
 
-
+# this is a test inside the docker container
 
 
 
