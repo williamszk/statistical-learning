@@ -1,0 +1,38 @@
+/* 
+mario colors
+red: #eb3d07
+
+
+
+*/
+
+body {
+  position: absolute;
+}
+
+.mario-div {
+  position: absolute;
+  background-color: aqua;
+  height: auto;
+  width: 40px;
+}
+
+.mario-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.ground-terrain-div {
+  position: absolute;
+  background-color: aqua;
+  height: auto;
+  width: 40px;
+  top: 100px;
+}
+
+.terrain-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}

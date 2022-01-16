@@ -1,0 +1,3 @@
+// I want to build this game using JavaScript vanilla
+// I think that I need to use global variables to keep the state...
+// Maybe with this exercise I'll be able to find out how to build a game without global variables
