@@ -1,4 +1,4 @@
-
+#%%
 import pandas as pd
 import pandas_datareader as pdr
 import seaborn as sns
@@ -14,6 +14,7 @@ df_00
 # reset index, make date a field of the table
 df_00 = df_00.reset_index()
 
+#%%
 # we'll try to predict the Open value of the time series
 # first we'll try to use a simple linear regression with 1 to 5 lags
 # in time
@@ -32,6 +33,7 @@ df_00
 # It is more feasible to predict volatility but the value prediction
 # is by the nature of the problem a hard task.
 
+#%%
 # Use only variables: ["Date", "Open"] for the analysis
 df_01 = df_00.loc[:,["Date", "Open"]].copy()
 df_01
