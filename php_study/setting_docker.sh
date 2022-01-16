@@ -28,6 +28,14 @@ ls -la
 # -rw-r--r-- 1 root root 3106 Dec  5  2019 .bashrc
 # -rw-r--r-- 1 root root  161 Dec  5  2019 .profile
 
+# inside the the docker container:
+apt update
+
+apt install git -y
+
+cd ~
+
+git clone https://github.com/williamszk/statistical-learning.git
 
 
 
