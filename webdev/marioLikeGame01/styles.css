@@ -8,11 +8,16 @@ red: #eb3d07
 
 body {
   position: absolute;
+  background-color: #49b5fe;
 }
 
 .mario-div {
+  /* 
+  What is the dimension in pixels of the mario image? 
+  26 x 16
+  */
   position: absolute;
-  background-color: aqua;
+  /* background-color: red; */
   height: auto;
   width: 40px;
 }
@@ -24,8 +29,11 @@ body {
 }
 
 .ground-terrain-div {
+  /* What is the dimenstion in pixels of the ground terrain?
+  22 x 16
+   */
   position: absolute;
-  background-color: aqua;
+  /* background-color: red; */
   height: auto;
   width: 40px;
   top: 100px;
