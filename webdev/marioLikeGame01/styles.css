@@ -7,8 +7,9 @@ red: #eb3d07
 */
 
 body {
-  position: absolute;
   background-color: #49b5fe;
+  margin: 0px;
+  padding: 0px;
 }
 
 .mario-div {
@@ -20,11 +21,13 @@ body {
   /* background-color: red; */
   height: auto;
   width: 40px;
+  bottom: 90px;
+  left: 0px;
 }
 
 .mario-img {
   max-width: 100%;
-  height: auto;
+  max-height: 100%;
   object-fit: contain;
 }
 
@@ -36,7 +39,8 @@ body {
   /* background-color: red; */
   height: auto;
   width: 40px;
-  top: 100px;
+  bottom: 0px;
+  left: 0px;
 }
 
 .terrain-img {
