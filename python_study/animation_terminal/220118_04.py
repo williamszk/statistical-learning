@@ -60,7 +60,7 @@ while True:
         print(f"| {list_strings_image[i]}{' '*list_n_space[i]} |\n", end="")
     print(f"{HORIZONTAL_BAR}", end="")
 
-    time.sleep(0.01)
+    time.sleep(0.5)
     print(UP*(VERTICAL_DIM+3))
     counter += 1
 
