@@ -9,5 +9,7 @@ cargo new hello-world-cargo --bin
 cd /root/statistical-learning/rust_study/220122_02/hello-world-cargo
 
 cargo run
+# this will compile and run the program
+
 
 
