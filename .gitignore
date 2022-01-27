@@ -5,6 +5,7 @@ venv37/
 virtualenv/
 data/
 models/
+node_modules/
 
 *__pycache__/
 *.pytest_cache/
@@ -27,6 +28,7 @@ secret/
 *out/
 *.iml
 *.o
+
 
 *rust_project/target/
 *.db
