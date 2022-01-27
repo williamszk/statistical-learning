@@ -5,7 +5,12 @@ venv37/
 virtualenv/
 data/
 models/
+<<<<<<< HEAD
 node_modules/
+=======
+target/
+
+>>>>>>> 87ad67fda4bfcfa185d00a48e61e92944fe382c8
 
 *__pycache__/
 *.pytest_cache/
@@ -37,3 +42,4 @@ scala_study/.metals/
 models/
 .clj-kondo/
 .lsp/
+*.lock
