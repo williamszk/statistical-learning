@@ -4,8 +4,6 @@ const supervillains = require("supervillains");
 
 
 // fs.copyFileSync("./file1.txt", "file1-copy.txt");
-
-
 let mySuperHero = superheroes.random();
 let mySuperVillain = supervillains.random();
 
