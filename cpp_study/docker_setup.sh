@@ -7,7 +7,7 @@
 
 docker run --name cpp_study -it ubuntu /bin/bash
 apt update
-apt install git vim neovim tmux -y
+apt install git vim neovim tmux build-essential -y
 
 cd ~
 git clone https://github.com/williamszk/statistical-learning.git
