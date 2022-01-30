@@ -1,6 +1,5 @@
-# 
+# pip3 install mysql-connector-python
 # https://dev.mysql.com/doc/connector-python/en/connector-python-example-connecting.html
-
 
 # python3
 import mysql.connector
@@ -10,6 +9,11 @@ connection = mysql.connector.connect(
                             password='pass123',
                             host='127.0.0.1',
                             database='stellar_classification')
+
+# from inside the same container as the database I can connect with
+# mysql...
+# the problem is to expose the container to connections from the host or other containers
+
 
 connection.close()
 

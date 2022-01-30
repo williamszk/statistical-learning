@@ -29,6 +29,7 @@ secret/
 *out/
 *.iml
 *.o
+*secret.json
 
 
 *rust_project/target/
