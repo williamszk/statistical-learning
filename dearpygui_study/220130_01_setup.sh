@@ -21,7 +21,7 @@ docker run -p 3306:3306 --name mysql_study_dear -it ubuntu /bin/bash
 
 # (inside the container)
 apt update
-apt install mysql-server build-essential -y
+apt install mysql-server build-essential git python3 python3-pip python3-venv -y
 
 service mysql status
 service mysql start
@@ -70,6 +70,20 @@ docker exec mysql_study_dear service mysql status
 # docker exec -it mysql_study_dear /bin/bash
 # cd
 # apt install build-essential -y
+
+
+docker ps
+
+docker exec -it mysql_study_dear /bin/bash
+cd ~
+git clone https://github.com/williamszk/statistical-learning.git
+cd statistical-learning
+python3 -m venv venv
+source venv/bin/activate
+pip3 freeze
+
+
+
 
 
 
