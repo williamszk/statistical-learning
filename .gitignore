@@ -30,6 +30,7 @@ secret/
 *.iml
 *.o
 *secret.json
+*.prettierrc
 
 
 *rust_project/target/
