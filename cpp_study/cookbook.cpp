@@ -121,20 +121,19 @@ std::cin >> age1;
 
 std::cout << "Hello, " << name << ". You are " << age1 << " years old." << std::endl;
 
-
 std::string fullName;
 std::cout << "Please type your full name: " << std::endl;
 std::getline(std::cin, fullName);
 
 std::cout << "Hi from Mars, " << fullName << std::endl;
 
-
 // -------------------------------------------------------- //
-
-
-
-
-
+std::cout << "Enter two numbers:" << std::endl;
+int v1 = 0, v2 = 0;
+std::cin >> v1 >> v2;
+std::cout << "The sum of " << v1 << " and " << v2
+            << " is " << v1 + v2 << std::endl;
+return 0;
 
 // -------------------------------------------------------- //
 
