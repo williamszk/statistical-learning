@@ -4,7 +4,7 @@ argon2-cffi==20.1.0
 astropy==4.0.1.post1
 attrs==20.1.0
 backcall==0.2.0
-bleach==3.1.5
+bleach==3.3.0
 boto3==1.14.47
 botocore==1.17.47
 bqplot==0.12.16
