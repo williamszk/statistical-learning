@@ -20,7 +20,7 @@ numpy==1.21.5
 packaging==21.3
 parso==0.8.3
 pickleshare==0.7.5
-Pillow==8.4.0
+Pillow==9.0.0
 prompt-toolkit==3.0.24
 pyglet==1.5.21
 Pygments==2.10.0
