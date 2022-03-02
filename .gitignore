@@ -42,3 +42,6 @@ models/
 .lsp/
 *.lock
 *.swp
+
+minikube-linux-amd64
+kubectl
