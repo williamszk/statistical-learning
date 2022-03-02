@@ -35,22 +35,22 @@ unsigned int integer5;
 #include <cmath>
 int main(int argc, char * argv[])
 {
-    double x = 7.8, y = 1.65, u = -3.4, z;
-    z = fmod(x, y);
-    // remainder when x is divided by y
-    // z is 1.2 since 7.8 = 4*1.65 + 1.2
-    z = atan2(y, x); // inverse tangent (in radians) of
-    // angle between the vector
-    // (x, y) and the positive x-axis
-    // note the ordering of y and x in
-    // calling the function atan2
-    // z is 0.208465
-    z = fabs(u);
-    // Absolute value of u
-    // z is 3.4
-    // note fabs should not be confused
-    // with abs (the integer equivalent)
-    return 0;
+	double x = 7.8, y = 1.65, u = -3.4, z;
+	z = fmod(x, y);
+	// remainder when x is divided by y
+	// z is 1.2 since 7.8 = 4*1.65 + 1.2
+	z = atan2(y, x); // inverse tangent (in radians) of
+	// angle between the vector
+	// (x, y) and the positive x-axis
+	// note the ordering of y and x in
+	// calling the function atan2
+	// z is 0.208465
+	z = fabs(u);
+	// Absolute value of u
+	// z is 3.4
+	// note fabs should not be confused
+	// with abs (the integer equivalent)
+	return 0;
 }
 
 
@@ -59,24 +59,29 @@ int main(int argc, char * argv[])
 #include <cmath>
 int main(int argc,
 {
-    double x = 1.0,
-    z = x/y;
-    z = x*y;
-    z = sqrt(x);
-    z = exp(y);
-    z = pow(x, y);
-    z = M_PI;
-    char * argv[])
-    y = 2.0, z;
-    // division
-    // multiplication
-    // square root
-    // exponential function
-    // x to the power of y
-    // z stores the value of pi
+	double x = 1.0,
+	z = x/y;
+	z = x*y;
+	z = sqrt(x);
+	z = exp(y);
+	z = pow(x, y);
+	z = M_PI;
+	char * argv[])
+	y = 2.0, z;
+	// division
+	// multiplication
+	// square root
+	// exponential function
+	// x to the power of y
+	// z stores the value of pi
 
-    return 0;
+	return 0;
 }
+
+// -------------------------------------------------------- //
+// how to do power in C++?
+#include <cmath>
+z = pow(x, y);
 
 // -------------------------------------------------------- //
 
@@ -96,11 +101,17 @@ array1[0]++; // increments the value of this entry by 1
 array2[1][2] = array2[0][1] + array2[1][0];
 
 
+
+
+
 // -------------------------------------------------------- //
 // https://www.cpp.edu/~elab/ECE114/Array.html#:~:text=A%20typical%20declaration%20for%20an,the%20size%20of%20the%20array.
 int foo [5] = { 16, 2, 77, 40, 12071 }; 
 
 // -------------------------------------------------------- //
+#include <string>
+#include <iostream>
+
 
 std::cout << "Hello C++" << std::endl;
 
@@ -132,20 +143,38 @@ std::cout << "Enter two numbers:" << std::endl;
 int v1 = 0, v2 = 0;
 std::cin >> v1 >> v2;
 std::cout << "The sum of " << v1 << " and " << v2
-            << " is " << v1 + v2 << std::endl;
+			<< " is " << v1 + v2 << std::endl;
 return 0;
 
 // -------------------------------------------------------- //
 
+bool myBool = 42; // it becomes true
+std::cout << myBool << std::endl;
+int i = myBool; // i has value of 1
+std::cout << i << std::endl;
+i = 3.14; // i has value of 3
+std::cout << i << std::endl;
+double pi = i;
+std::cout << pi << std::endl;
 
-
-
+unsigned char c = -1;
+std::cout << c << std::endl;
+signed char c2 = 256;
+std::cout << c2 << std::endl;
 
 // -------------------------------------------------------- //
 
-
-
-
+void messageCheck(bool answer, std::string id)
+{
+	if (answer)
+	{
+		std::cout << id << " prediction correct" << std::endl;
+	}
+	else
+	{
+		std::cout << id << " prediction wrong" << std::endl;
+	}
+}
 
 // -------------------------------------------------------- //
 
