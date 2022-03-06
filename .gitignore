@@ -2,6 +2,7 @@
 books/
 venv/
 venv37/
+.venv/
 virtualenv/
 data/
 models/
