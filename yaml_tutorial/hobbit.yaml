@@ -1,0 +1,48 @@
+# Key / Value
+book_name: The Hobbit
+
+# Lists
+bad_guys: 
+  - goblins
+  - wargs
+  - Gollum
+  - Smaug
+
+# Nesting
+Bilbo:
+  role: Burglar
+  skills:
+    - sneakiness
+    - bravery
+
+# Anchor and Aliases
+Thorin:
+  role: King Under the Mountain
+  hood_color: sky_blue
+  skills:
+    - &lead leadership # Defines leadership to be used later. This is called an anchor.
+    - mining
+    - battle
+    - smithing
+
+Gandalf:
+  role: Guide
+  skills:
+    - magic
+    - *lead # Pulling the leadership defined above. Can be at any level // more or less embedded (This is called an aliases).
+    - smoke_rings
+
+# Anchors and Aliases: Merge Maps
+Gloin: &dwarf_basics
+  role: Member
+  hood_color: white
+  skills:
+    - battle
+    - mining
+    - smithing
+
+Oin:
+  <<: *dwarf_basics
+  hood_color: brown
+
+# https://jsonformatter.org/yaml-viewer
