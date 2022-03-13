@@ -32,7 +32,7 @@ secret/
 *.o
 *secret.json
 *.prettierrc
-
+*.pem
 
 *rust_project/target/
 *.db
