@@ -43,6 +43,7 @@ models/
 .lsp/
 *.lock
 *.swp
+*.exe
 
 minikube-linux-amd64
 kubectl
