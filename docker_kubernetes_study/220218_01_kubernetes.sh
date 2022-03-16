@@ -420,7 +420,6 @@ k describe pod mydeployment-84777db489-4cb8c
 #   Normal  Started    9m5s   kubelet            Started container nginx
 
 
-
 k scale deployment mydeployment --replicas=5
 # william@william-ThinkPad-T450:~/Documents/statistical-learning$ k scale deployment mydeployment --replicas=5
 # deployment.apps/mydeployment scaled
@@ -487,9 +486,180 @@ curl 172.17.0.6
 # Services
 # https://youtu.be/d6WC5n9G_sM?t=4167
 
+# there is a single public ip address for the entire deployment
 
-# next
-# https://youtu.be/d6WC5n9G_sM?t=4167
+# the most common solution for the problem of allocation of ip address
+# when the pods are spread in multiple pods is to use the service
+# of load balancer
+# which will have only one ip address, then it is the responsability of the
+# load balancer to send the requests to the pods
+# the pods that are live in multiple nodes in the kubernetes cluster
+
+# the load balancer knows that each deployment will have one ip address
+# and below the deploymnet we can have multiple pods
+# and the pods can exist in different nodes
+
+# cloud controller manager
+# is the service that will assign the public ip for the load balancer
+# and it is the cloud provider that will assign  the public ip address
+# the cloud controller manager runs in the controle plane (the master node)
+
+# 
+# https://youtu.be/d6WC5n9G_sM?t=4278
+
+minikube start
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ minikube start
+# 😄  minikube v1.25.1 on Ubuntu 21.04
+# 🎉  minikube 1.25.2 is available! Download it: https://github.com/kubernetes/minikube/releases/tag/v1.25.2
+# 💡  To disable this notice, run: 'minikube config set WantUpdateNotification false'
+
+# ✨  Using the docker driver based on existing profile
+# 👍  Starting control plane node minikube in cluster minikube
+# 🚜  Pulling base image ...
+# 🔄  Restarting existing docker container for "minikube" ...
+# 🐳  Preparing Kubernetes v1.23.1 on Docker 20.10.12 ...
+#     ▪ kubelet.housekeeping-interval=5m
+#     ▪ Generating certificates and keys ...
+#     ▪ Booting up control plane ...
+#     ▪ Configuring RBAC rules ...
+# 🔎  Verifying Kubernetes components...
+#     ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+# 🌟  Enabled addons: storage-provisioner, default-storageclass
+# 🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+
+alias k="kubectl"
+
+k get deployments
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k get deployments
+# No resources found in default namespace.
+
+k create deployment mydeployment --image=nginx
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k create deployment mydeployment --image=nginx
+# deployment.apps/mydeployment created
+
+k get deployments
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k get deployments
+# NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+# mydeployment   0/1     1            0           17s
+
+# increase the quantity of pods in deployment
+k scale deployment mydeployment --replicas=3
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k scale deployment mydeployment --replicas=3
+# deployment.apps/mydeployment scaled
+
+k get deployments
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k get deployments
+# NAME           READY   UP-TO-DATE   AVAILABLE   AGE
+# mydeployment   3/3     3            3           76s
+
+# create a "service" for this "deployment", then we can expose the port
+# pods are managed by "deployments"
+k expose deployment mydeployment --port=8080 --target-port=80
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k expose deployment mydeployment --port=8080 --target-port=80
+# service/mydeployment exposed
+
+# let's list the services
+k get services
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k get services
+# NAME           TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+# kubernetes     ClusterIP   10.96.0.1     <none>        443/TCP    21m
+# mydeployment   ClusterIP   10.98.86.90   <none>        8080/TCP   48s
+
+# a shorter version of the command above:
+k get svc
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k get svc
+# NAME           TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+# kubernetes     ClusterIP   10.96.0.1     <none>        443/TCP    25m
+# mydeployment   ClusterIP   10.98.86.90   <none>        8080/TCP   4m59s
+
+# ClusterIP type is only accessible inside the cluster
+# so it is not accessible to the outside world
+
+# https://youtu.be/d6WC5n9G_sM?t=4598
+# connecting to the deployment using ClusterIP service
+
+k get services
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k get services
+# NAME           TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+# kubernetes     ClusterIP   10.96.0.1     <none>        443/TCP    10d
+# mydeployment   ClusterIP   10.98.86.90   <none>        8080/TCP   10d
+
+# connect to the deployment with the exposed port
+curl 10.98.86.90:8080
+# this doesn't work, because the cluster ip address
+# is not available outside of the k8s cluster
+
+# but we can access the cluster ip from any node
+minikube ssh
+# [inside the minikube cluster]
+
+curl 10.98.86.90:8080
+# docker@minikube:~$ curl 10.98.86.90:8080
+# <!DOCTYPE html>
+# <html>
+# <head>
+# <title>Welcome to nginx!</title>
+# <style>
+# html { color-scheme: light dark; }
+# body { width: 35em; margin: 0 auto;
+# font-family: Tahoma, Verdana, Arial, sans-serif; }
+# </style>
+# </head>
+# <body>
+# <h1>Welcome to nginx!</h1>
+# <p>If you see this page, the nginx web server is successfully installed and
+# working. Further configuration is required.</p>
+
+# it returned with information
+
+# [exit the ssh]
+
+k get svc
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k get svc
+# NAME           TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE
+# kubernetes     ClusterIP   10.96.0.1     <none>        443/TCP    10d
+# mydeployment   ClusterIP   10.98.86.90   <none>        8080/TCP   10d
+
+k describe service mydeployment
+# william@william-ThinkPad-T450:~/Documents/statistical-learning$ k describe service mydeployment
+# Name:              mydeployment
+# Namespace:         default
+# Labels:            app=mydeployment
+# Annotations:       <none>
+# Selector:          app=mydeployment
+# Type:              ClusterIP
+# IP Family Policy:  SingleStack
+# IP Families:       IPv4
+# IP:                10.98.86.90   <- this is the cluster IP
+# IPs:               10.98.86.90
+# Port:              <unset>  8080/TCP
+# TargetPort:        80/TCP
+# Endpoints:         172.17.0.3:80,172.17.0.4:80,172.17.0.5:80  <- those are the ip of the pods that make the cluster
+# Session Affinity:  None
+# Events:            <none>
+
+# the request load with be balanced between the three pods indicate above
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
