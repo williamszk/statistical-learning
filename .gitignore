@@ -2,6 +2,7 @@
 books/
 venv/
 venv37/
+.venv/
 virtualenv/
 data/
 models/
@@ -31,7 +32,7 @@ secret/
 *.o
 *secret.json
 *.prettierrc
-
+*.pem
 
 *rust_project/target/
 *.db
@@ -42,6 +43,7 @@ models/
 .lsp/
 *.lock
 *.swp
+*.exe
 
 minikube-linux-amd64
 kubectl
