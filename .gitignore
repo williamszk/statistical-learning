@@ -33,6 +33,7 @@ secret/
 *secret.json
 *.prettierrc
 *.pem
+*.stackdump
 
 *rust_project/target/
 *.db
