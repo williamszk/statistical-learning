@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from itsdangerous import json
 
 app = Flask(__name__)
@@ -17,7 +17,9 @@ stores = [
 
 @app.route("/")
 def home():
-    return "Hello World!"
+    return render_template("index.html")
+    # flask will look at the templates folder
+
 
 @app.route("/lotr")
 def get_lotr():
@@ -42,7 +44,6 @@ def get_store(name):
         if store["name"] == name :
             return jsonify(store)
     return jsonify({"Error": "Store not found"})
-    
 
 
 @app.route("/store")
@@ -56,7 +57,7 @@ def create_item_in_store(name):
     for store in stores:
         if store["name"] == name:
             new_item = {
-                "name": request_data["data"],
+                "name": request_data["name"],
                 "price": request_data["price"]
             }
             store["items"].append(new_item)
@@ -70,6 +71,7 @@ def get_items_in_store(name):
         if store["name"] == name:
             return jsonify({"items":store["items"]})
     return jsonify({"Error": "Store not found"})
+
 
 app.run(port=5000)
 # to run just write: python app.py
