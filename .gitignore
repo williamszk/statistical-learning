@@ -45,6 +45,7 @@ models/
 *.lock
 *.swp
 *.exe
+main
 
 minikube-linux-amd64
 kubectl
