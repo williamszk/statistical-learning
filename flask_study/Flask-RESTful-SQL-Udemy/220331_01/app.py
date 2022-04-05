@@ -16,46 +16,39 @@ from security import authenticate, identity
 
 app = Flask(__name__)
 api = Api(app)
-app.secret_key = "mysecretekey" # this in production should be in a secret file, not commited
+app.secret_key = "mysecretekey"
 
-jwt = JWT(app, authenticate, identity) # JWT will create a new endpoint called /auth
-# can we use a custom endpoint instead of /auth for authentication?
-
-# Flask RESTful and Authentication
+jwt = JWT(app, authenticate, identity)
 
 items = []
+
 
 class Item(Resource):
 
     parser = reqparse.RequestParser()
     parser.add_argument(
-        "price", 
-        type=float, 
-        required=True, 
+        "price",
+        type=float,
+        required=True,
         help="This is field is needed."
     )
 
-    @jwt_required() # with this decorator we need to authenticate first before being able to call this endpoint
+    @jwt_required()
     def get(self, name):
         item = next(filter(lambda x: x["name"] == name, items), None)
 
-        return {"item":item}, "200" if item else "404"
-    
+        return {"item": item}, "200" if item else "404"
+
     @jwt_required()
     def post(self, name):
-        # including the possible exception first in code is good
-        # this is called "error first approach"
-        # this can shrink the number of indentations in the code
-        # and it can save processing that would not be used
-        # if we encounter an error
         if next(filter(lambda x: x["name"] == name, items), None):
             return {"message": "The item already exists"}, "400"
 
         data = Item.parser.parse_args()
         item = {"name": name, "price": data["price"]}
         items.append(item)
-        return {"item": item}, "201" # 201 for created
-    
+        return {"item": item}, "201"  # 201 for created
+
     @jwt_required()
     def delete(self, name):
         global items
@@ -69,7 +62,8 @@ class Item(Resource):
         data = Item.parser.parse_args()
         item = next(filter(lambda x: x["name"] == name, items), None)
         if item:
-            item.update(data) # this will make a change in the "items" object this is an implicit change
+            # this will make a change in the "items" object this is an implicit change
+            item.update(data)
         else:
             item = {"name": name, "price": data["price"]}
             items.append(item)
@@ -83,12 +77,8 @@ class ItemList(Resource):
         return {"items": items}, "200"
 
 
-
-
-
 api.add_resource(Item, "/item/<string:name>")
 api.add_resource(ItemList, "/items")
-
 
 
 app.run(port=5000, debug=True)
