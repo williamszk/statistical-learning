@@ -1,4 +1,0 @@
-# Objective
-
-Build Simon Game
-

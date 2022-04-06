@@ -1,0 +1,25 @@
+/* Book: C++ Primer
+ * Stanley Lipman, Josée Lojoie, Barbara Moo
+ * */
+
+types 
+
+short
+int
+long
+long long (c++11)
+
+
+double is better than float usually
+double sometimes runs faster than float
+and long double have an overhead
+
+rate: unsigned double
+principal: unsigned double
+payment: unsigned double
+
+
+
+
+
+
