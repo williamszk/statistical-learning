@@ -1,0 +1,26 @@
+body {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 3rem;
+}
+
+span {
+  text-decoration: underline;
+  font-size: 2rem;
+  padding: 0.2rem;
+  
+}
+
+button {
+    background-color: aliceblue;
+    padding: 0.5rem;
+    border-radius: 0%;
+    font-size: 1rem;
+    margin: 0.5rem;
+}
+
+#num1-el {
+}
+
+#num2-el {
+}
