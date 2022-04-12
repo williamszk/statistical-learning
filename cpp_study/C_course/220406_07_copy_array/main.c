@@ -10,7 +10,7 @@ void printArr(int arr[], unsigned int n)
 }
 
 void copyArr(int originalArr[], int n, int (*copyArr)[])
-{
+{ // maybe instead of writting int (*copyArr)[] we could use just int *copyArr
     for (int i=0;i<n;i++)
     {
         (*copyArr)[i] = originalArr[i];
