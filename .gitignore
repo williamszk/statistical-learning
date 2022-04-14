@@ -8,6 +8,7 @@ data/
 models/
 node_modules/
 target/
+.env
 
 *__pycache__/
 *.pytest_cache/
