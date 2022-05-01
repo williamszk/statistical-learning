@@ -52,3 +52,5 @@ minikube-linux-amd64
 kubectl
 
 *~
+
+*.h.gch
