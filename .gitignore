@@ -8,6 +8,7 @@ data/
 models/
 node_modules/
 target/
+.env
 
 *__pycache__/
 *.pytest_cache/
@@ -49,3 +50,7 @@ main
 
 minikube-linux-amd64
 kubectl
+
+*~
+
+*.h.gch
