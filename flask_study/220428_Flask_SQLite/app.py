@@ -4,6 +4,7 @@ from flask_restful import Resource, Api
 from flask_jwt import JWT, jwt_required
 
 from security import authenticate, identity
+from user import UserRegister
 
 
 secrets_dotenv = dotenv_values(".env")
@@ -24,7 +25,7 @@ jwt = JWT(app, authenticate, identity)  # creates a new endpoint, "/auth" POST
 # endpoint to be called.
 
 # Flask JWT made the process of authentication easier.
-# 
+#
 
 # https://www.udemy.com/course/rest-api-flask-and-python/learn/lecture/5960168#overview
 
@@ -55,5 +56,6 @@ class ItemList(Resource):
 
 api.add_resource(Item, "/item/<string:name>")
 api.add_resource(ItemList, "/items")
+api.add_resource(UserRegister, "/register")
 
 app.run(port=5000, debug=True)
