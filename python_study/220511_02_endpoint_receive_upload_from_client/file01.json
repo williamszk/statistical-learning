@@ -1,0 +1,5 @@
+{
+    "message": "this is an important message to be sent",
+    "obs": "this comes from another endpoitn",
+    "array": ["and it will be tested for another project", "end"]
+}
