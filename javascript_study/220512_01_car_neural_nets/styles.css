@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  background-color: darkgray;
+  overflow: hidden;
+  text-align: center;
+}
+/* overflow: hidden makes the scroll bar hidden */
+
+#my-canvas {
+  background: lightgray;
+}
