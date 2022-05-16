@@ -15,6 +15,9 @@ Some objectives with this project:
 Build methods:
 
 - increment_u128
+- xor
+- and
+- or
 - not_operator_u128
 - twos_complement_u128
 - decrement_u128

@@ -4,6 +4,13 @@ $(CC) = gcc
 a: main.o large_integer.o
 	$(CC) -g main.o large_integer.o -o a
 
+
+test_comparison_u128: test_comparison_u128.o large_integer.o
+	$(CC) -g test_comparison_u128.o large_integer.o -o test
+
+test_comparison_u128.o: tests/test_comparison_u128.c 
+	$(CC) -g -c tests/test_comparison_u128.c -I .
+
 test_add_subtract_u128: test_add_subtract_u128.o large_integer.o
 	$(CC) -g test_add_subtract_u128.o large_integer.o -o test
 
