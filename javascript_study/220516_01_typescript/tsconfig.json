@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "target": "ESNext", // this means that we compile to the latest version of ES
+        "watch": true, // this will compile the code run tsc everytime we save the file
+        "lib": ["dom", "es2017"],
+        "moduleResolution": "Node"
+    }
+    
+}
