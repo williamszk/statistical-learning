@@ -56,3 +56,6 @@ kubectl
 *.h.gch
 obj/
 bin/
+*.a
+
+
