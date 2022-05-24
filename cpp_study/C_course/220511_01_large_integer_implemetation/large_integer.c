@@ -100,13 +100,6 @@ void decrement_u128(uint32_t *out, uint32_t *a)
     add_u128(out, a, neg_one);
 }
 
-// next step:
-// implement functions for comparison
-// greater, less, equal and not equal
-// then implement function for testing in "testing.c"
-// include this testing function in all test_* files and
-// check if they respond with the expected answer
-
 /**
  * @brief Returns 1 if "a" is strictly greater than "b". Returns 0 otherwise.
  *
@@ -138,10 +131,10 @@ int greater_u128(uint32_t *a, uint32_t *b)
     // msb |= msb >> 16; ... this in the case of 32 bit integer
     // return !!(a_gt_b & msb)
 
-    // An alternative is to use just bitwise operations 
+    // An alternative is to use just bitwise operations
     // but this may not be necessary
     // in our case the restriction is if-else (condition operators)
-    // and variable loop 
+    // and variable loop
 
     return (a_gt_b > b_gt_a);
 }
@@ -190,8 +183,16 @@ int equal_u128(uint32_t *a, uint32_t *b)
     return !holder;
 }
 
-
 int not_equal_u128(uint32_t *a, uint32_t *b)
 {
     return !equal_u128(a, b);
+}
+
+void sub_u128(uint32_t *out, uint32_t *a, uint32_t *b)
+{
+    uint32_t b_2s_comp[5] = {0, 0, 0, 0, 0};
+
+    twos_complement_u128(b_2s_comp, b);
+
+    add_u128(out, a, b_2s_comp);
 }

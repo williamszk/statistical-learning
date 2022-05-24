@@ -25,3 +25,5 @@ int less_u128(uint32_t *a, uint32_t *b);
 int equal_u128(uint32_t *a, uint32_t *b);
 
 int not_equal_u128(uint32_t *a, uint32_t *b);
+
+void sub_u128(uint32_t *out, uint32_t *a, uint32_t *b);
