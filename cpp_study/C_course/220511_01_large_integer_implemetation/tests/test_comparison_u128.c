@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "large_integer.h"
+#include "testing.h"
 
 /**
  * Resets to zero all values of the array out.
@@ -15,9 +16,9 @@ int main()
     int result;
     int expected;
 
-    printf("\n// ================ Tests for Greater ========================//\n");
-
-    printf("\n// ================ Test A.1 ========================//\n");
+    printf("\n// ==== Tests for Greater ==== //\n");
+    // ================================================== //
+    printf("1. \t");
     a[0] = 0x00000002;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -28,23 +29,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x00000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = greater_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test A.2 ========================//\n");
+    // ================================================== //
+    printf("2. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -55,23 +47,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x10000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = greater_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test A.3 ========================//\n");
+    // ================================================== //
+    printf("3. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -82,23 +65,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x20000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = greater_u128(a, b);
 
-    printf("Result: \t");
-    printf("%d\n", result);
-
     expected = 0;
+    
+    test_int_u128(result, expected);
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
-
-    printf("\n// ================ Test A.4 ========================//\n");
+   // ================================================== //
+    printf("4. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000020;
@@ -109,23 +83,14 @@ int main()
     b[2] = 0x00000010;
     b[3] = 0x10000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = greater_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test A.5 ========================//\n");
+    // ================================================== //
+    printf("5. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000021;
@@ -136,23 +101,14 @@ int main()
     b[2] = 0x00000020;
     b[3] = 0x10000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = greater_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test A.6 ========================//\n");
+    // ================================================== //
+    printf("6. \t");
     a[0] = 0xffffffff;
     a[1] = 0x00000000;
     a[2] = 0x00000021;
@@ -163,23 +119,14 @@ int main()
     b[2] = 0x00000021;
     b[3] = 0x10000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = greater_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 0;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test A.7 ========================//\n");
+    // ================================================== //
+    printf("7. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000003;
@@ -190,23 +137,14 @@ int main()
     b[2] = 0x00000002;
     b[3] = 0x00000002;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = greater_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 0;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test A.8 ========================//\n");
+    // ================================================== //
+    printf("8. \t");
     a[0] = 0x000000ff;
     a[1] = 0x0000000e;
     a[2] = 0x00000003;
@@ -217,25 +155,16 @@ int main()
     b[2] = 0x00000002;
     b[3] = 0x00000002;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = greater_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Tests for Less-Than ========================//\n");
+    printf("\n// ==== Tests for Less-Than ==== //\n");
 
-    printf("\n// ================ Test B.1 ========================//\n");
+    // ================================================== //
+    printf("1. \t");
     a[0] = 0x00000002;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -246,23 +175,15 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x00000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = less_u128(a, b);
 
-    printf("Result: \t");
-    printf("%d\n", result);
-
     expected = 0;
+    
+    test_int_u128(result, expected);
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    // ================================================== //
+    printf("2. \t");
 
-    printf("\n// ================ Test B.2 ========================//\n");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -273,23 +194,13 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x10000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = less_u128(a, b);
 
-    printf("Result: \t");
-    printf("%d\n", result);
-
     expected = 0;
+    test_int_u128(result, expected);
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
-
-    printf("\n// ================ Test B.3 ========================//\n");
+    // ================================================== //
+    printf("3. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -300,23 +211,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x20000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = less_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test B.4 ========================//\n");
+   // ================================================== //
+    printf("4. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000020;
@@ -327,23 +229,14 @@ int main()
     b[2] = 0x00000010;
     b[3] = 0x10000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = less_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 0;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test B.5 ========================//\n");
+    // ================================================== //
+    printf("5. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000021;
@@ -354,23 +247,14 @@ int main()
     b[2] = 0x00000020;
     b[3] = 0x10000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = less_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 0;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test B.6 ========================//\n");
+    // ================================================== //
+    printf("6. \t");
     a[0] = 0xffffffff;
     a[1] = 0x00000000;
     a[2] = 0x00000021;
@@ -381,23 +265,14 @@ int main()
     b[2] = 0x00000021;
     b[3] = 0x10000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = less_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 0;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test B.7 ========================//\n");
+    // ================================================== //
+    printf("7. \t");
     a[0] = 0x000000ff;
     a[1] = 0x0000000e;
     a[2] = 0x00000003;
@@ -408,23 +283,14 @@ int main()
     b[2] = 0x00000002;
     b[3] = 0x00100002;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = less_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test B.8 ========================//\n");
+    // ================================================== //
+    printf("8. \t");
     a[0] = 0x0000000f;
     a[1] = 0x0000000f;
     a[2] = 0x0000000f;
@@ -435,25 +301,16 @@ int main()
     b[2] = 0x0000000f;
     b[3] = 0x0000000f;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = less_u128(a, b);
 
-    printf("Result: \t");
-    printf("%d\n", result);
-
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Tests for Equal ========================//\n");
-
-    printf("\n// ================ Test C.1 ========================//\n");
+    printf("\n// ==== Tests for Equal ==== //\n");
+    // ================================================== //
+    printf("1. \t");
+    
     a[0] = 0x00000001;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -464,23 +321,15 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x00000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = equal_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test C.2 ========================//\n");
+    // ================================================== //
+    printf("2. \t");
+
     a[0] = 0x00000001;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -491,23 +340,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x02000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = equal_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test C.2 ========================//\n");
+    // ================================================== //
+    printf("3. \t");
     a[0] = 0x00000001;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -518,23 +358,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x02000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = equal_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
-
+    
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test C.3 ========================//\n");
+    // ================================================== //
+    printf("4. \t");
     a[0] = 0x00000001;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -545,23 +376,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x02000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = equal_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 0;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test C.4 =======================//\n");
+    // ================================================== //
+    printf("5. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -572,25 +394,16 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x10000001;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = equal_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 0;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Tests for Not Equal ========================//\n");
-
-    printf("\n// ================ Test D.1 ========================//\n");
+    printf("\n// ==== Tests for Not Equal ==== //\n");
+    // ================================================== //
+    printf("1. \t");
+    
     a[0] = 0x00000001;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -601,23 +414,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x00000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = not_equal_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 0;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test D.2 ========================//\n");
+    // ================================================== //
+    printf("2. \t");
     a[0] = 0x00000001;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -628,23 +432,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x02000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = not_equal_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 0;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test D.2 ========================//\n");
+    // ================================================== //
+    printf("3. \t");
     a[0] = 0x00000001;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -655,23 +450,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x02000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = not_equal_u128(a, b);
 
-    printf("Result: \t");
-    printf("%d\n", result);
-
     expected = 0;
+    
+    test_int_u128(result, expected);
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
-
-    printf("\n// ================ Test D.3 ========================//\n");
+    // ================================================== //
+    printf("4. \t");
     a[0] = 0x00000001;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -682,23 +468,14 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x02000000;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = not_equal_u128(a, b);
-
-    printf("Result: \t");
-    printf("%d\n", result);
 
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
-    printf("\n// ================ Test D.4 =======================//\n");
+    // ================================================== //
+    printf("5. \t");
     a[0] = 0x00000000;
     a[1] = 0x00000000;
     a[2] = 0x00000000;
@@ -709,21 +486,12 @@ int main()
     b[2] = 0x00000000;
     b[3] = 0x10000001;
 
-    printf("Input a: \t");
-    print_u128(a);
-
-    printf("Input b: \t");
-    print_u128(b);
-
     result = not_equal_u128(a, b);
 
-    printf("Result: \t");
-    printf("%d\n", result);
-
+    // expected = 1;
     expected = 1;
 
-    printf("Expected: \t");
-    printf("%d\n", expected);
+    test_int_u128(result, expected);
 
     return 0;
 }

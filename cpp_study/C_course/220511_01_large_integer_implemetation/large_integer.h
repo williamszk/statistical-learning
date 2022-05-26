@@ -27,3 +27,15 @@ int equal_u128(uint32_t *a, uint32_t *b);
 int not_equal_u128(uint32_t *a, uint32_t *b);
 
 void sub_u128(uint32_t *out, uint32_t *a, uint32_t *b);
+
+void left_shift_u128(uint32_t *out, uint32_t *a);
+
+void right_shift_u128(uint32_t *out, uint32_t *a);
+
+void left_rotate_u128(uint32_t *out, uint32_t *a);
+
+void right_rotate_u128(uint32_t *out, uint32_t *a);
+
+void mult_u128(uint32_t *out, uint32_t *a);
+
+void div_u128(uint32_t *out, uint32_t *a);
