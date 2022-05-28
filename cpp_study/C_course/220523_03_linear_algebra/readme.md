@@ -30,7 +30,21 @@ is the sum of the two vectors.
 Maybe using JavaScript we could build some graphical interface that can sum two vectors and show a graph in the page.
 
 
+Some other ideas:
 
+I’ve started some tinkering with C code to implement linear algebra operations in C.
+Here I’ll note some ideas:
+- Matrix multiplication
+- Multiply many matrices, first square matrices, and then matrices with different dimensions.
+
+- Try to build gradient descent for a linear regresion.
+
+Let's start with a single feature then we can add more features.
+
+We can use a closed formula solution and then we can try to do with a generic solution.
+
+We should generate the data from a know data generating process, use python to generate the data.
+Then we pass the data to the C code so that we can make the estimation.
 
 
 
