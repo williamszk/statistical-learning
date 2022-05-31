@@ -100,13 +100,6 @@ void decrement_u128(uint32_t *out, uint32_t *a)
     add_u128(out, a, neg_one);
 }
 
-// next step:
-// implement functions for comparison
-// greater, less, equal and not equal
-// then implement function for testing in "testing_module.c"
-// include this testing function in all test_* files and
-// check if they respond with the expected answer
-
 /**
  * @brief Returns 1 if "a" is strictly greater than "b". Returns 0 otherwise.
  *
@@ -118,15 +111,32 @@ int greater_u128(uint32_t *a, uint32_t *b)
 {
     // look how to find greater than using only bitwise operators
     // https://stackoverflow.com/questions/10096599/bitwise-operations-equivalent-of-greater-than-operator
-    uint32_t holder[4];
+    // https://iq.opengenus.org/bitwise-comparisons/
 
-    for (int i = 0; i , 4; i++)
+    uint32_t a_gt_b = 0;
+    uint32_t b_gt_a = 0;
+
+    for (int i = 3; i >= 0; i--)
     {
-
-
-
-
+        a_gt_b += (a[i] > b[i]) << i;
+        b_gt_a += (a[i] < b[i]) << i;
     }
+    // printf("a_gt_b = 0x%0x\tb_gt_a = 0x%x\n", a_gt_b, b_gt_a);
+
+    // uint32_t msb = a_gt_b ^ b_gt_a;
+    // msb |= msb >> 1;
+    // msb |= msb >> 2;
+    // msb |= msb >> 4;
+    // msb |= msb >> 8; ...
+    // msb |= msb >> 16; ... this in the case of 32 bit integer
+    // return !!(a_gt_b & msb)
+
+    // An alternative is to use just bitwise operations
+    // but this may not be necessary
+    // in our case the restriction is if-else (condition operators)
+    // and variable loop
+
+    return (a_gt_b > b_gt_a);
 }
 
 /**
@@ -138,19 +148,16 @@ int greater_u128(uint32_t *a, uint32_t *b)
  */
 int less_u128(uint32_t *a, uint32_t *b)
 {
-    // PROBLEM WITH IF STATEMENT, FOR NEEDS TO BE FIXED LENGTH
+    uint32_t a_gt_b = 0;
+    uint32_t b_gt_a = 0;
+
     for (int i = 3; i >= 0; i--)
     {
-        if (a[i] < b[i])
-        {
-            return 1;
-        }
-        if (a[i] > b[i])
-        {
-            return 0;
-        }
+        a_gt_b += (a[i] > b[i]) << i;
+        b_gt_a += (a[i] < b[i]) << i;
     }
-    return 0;
+
+    return (a_gt_b < b_gt_a);
 }
 
 /**
@@ -162,13 +169,30 @@ int less_u128(uint32_t *a, uint32_t *b)
  */
 int equal_u128(uint32_t *a, uint32_t *b)
 {
-    // PROBLEM WITH IF STATEMENT, FOR NEEDS TO BE FIXED LENGTH
-    for (int i = 3; i >= 0; i--)
+
+    uint32_t out[5] = {0, 0, 0, 0, 0};
+
+    xor_operator_u128(out, a, b);
+
+    uint32_t holder = 0;
+    for (int i = 0; i < 4; i++)
     {
-        if (a[i] != b[i])
-        {
-            return 0;
-        }
+        holder |= out[i];
     }
-    return 1;
+
+    return !holder;
+}
+
+int not_equal_u128(uint32_t *a, uint32_t *b)
+{
+    return !equal_u128(a, b);
+}
+
+void sub_u128(uint32_t *out, uint32_t *a, uint32_t *b)
+{
+    uint32_t b_2s_comp[5] = {0, 0, 0, 0, 0};
+
+    twos_complement_u128(b_2s_comp, b);
+
+    add_u128(out, a, b_2s_comp);
 }

@@ -57,5 +57,5 @@ kubectl
 obj/
 bin/
 *.a
-
+*.sqlite3
 

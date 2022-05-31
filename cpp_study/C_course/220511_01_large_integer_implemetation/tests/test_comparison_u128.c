@@ -179,6 +179,60 @@ int main()
     printf("Expected: \t");
     printf("%d\n", expected);
 
+    printf("\n// ================ Test A.7 ========================//\n");
+    a[0] = 0x00000000;
+    a[1] = 0x00000000;
+    a[2] = 0x00000003;
+    a[3] = 0x00000001;
+
+    b[0] = 0x00000000;
+    b[1] = 0x00000000;
+    b[2] = 0x00000002;
+    b[3] = 0x00000002;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = greater_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 0;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
+    printf("\n// ================ Test A.8 ========================//\n");
+    a[0] = 0x000000ff;
+    a[1] = 0x0000000e;
+    a[2] = 0x00000003;
+    a[3] = 0xf0000001;
+
+    b[0] = 0x0000000f;
+    b[1] = 0x20000000;
+    b[2] = 0x00000002;
+    b[3] = 0x00000002;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = greater_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 1;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
     printf("\n// ================ Tests for Less-Than ========================//\n");
 
     printf("\n// ================ Test B.1 ========================//\n");
@@ -343,9 +397,62 @@ int main()
     printf("Expected: \t");
     printf("%d\n", expected);
 
+    printf("\n// ================ Test B.7 ========================//\n");
+    a[0] = 0x000000ff;
+    a[1] = 0x0000000e;
+    a[2] = 0x00000003;
+    a[3] = 0x00000001;
+
+    b[0] = 0x0000000f;
+    b[1] = 0x20000000;
+    b[2] = 0x00000002;
+    b[3] = 0x00100002;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = less_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 1;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
+    printf("\n// ================ Test B.8 ========================//\n");
+    a[0] = 0x0000000f;
+    a[1] = 0x0000000f;
+    a[2] = 0x0000000f;
+    a[3] = 0x0000000f;
+
+    b[0] = 0x00000010;
+    b[1] = 0x0000000f;
+    b[2] = 0x0000000f;
+    b[3] = 0x0000000f;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = less_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 1;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
     printf("\n// ================ Tests for Equal ========================//\n");
 
-    
     printf("\n// ================ Test C.1 ========================//\n");
     a[0] = 0x00000001;
     a[1] = 0x00000000;
@@ -450,6 +557,170 @@ int main()
     printf("%d\n", result);
 
     expected = 0;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
+    printf("\n// ================ Test C.4 =======================//\n");
+    a[0] = 0x00000000;
+    a[1] = 0x00000000;
+    a[2] = 0x00000000;
+    a[3] = 0x10000000;
+
+    b[0] = 0x00000000;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x10000001;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = equal_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 0;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
+    printf("\n// ================ Tests for Not Equal ========================//\n");
+
+    printf("\n// ================ Test D.1 ========================//\n");
+    a[0] = 0x00000001;
+    a[1] = 0x00000000;
+    a[2] = 0x00000000;
+    a[3] = 0x00000000;
+
+    b[0] = 0x00000001;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x00000000;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = not_equal_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 0;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
+    printf("\n// ================ Test D.2 ========================//\n");
+    a[0] = 0x00000001;
+    a[1] = 0x00000000;
+    a[2] = 0x00000000;
+    a[3] = 0x02000000;
+
+    b[0] = 0x00000001;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x02000000;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = not_equal_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 0;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
+    printf("\n// ================ Test D.2 ========================//\n");
+    a[0] = 0x00000001;
+    a[1] = 0x00000000;
+    a[2] = 0x00000000;
+    a[3] = 0x02000000;
+
+    b[0] = 0x00000001;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x02000000;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = not_equal_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 0;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
+    printf("\n// ================ Test D.3 ========================//\n");
+    a[0] = 0x00000001;
+    a[1] = 0x00000000;
+    a[2] = 0x00000000;
+    a[3] = 0x02000000;
+
+    b[0] = 0x00000000;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x02000000;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = not_equal_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 1;
+
+    printf("Expected: \t");
+    printf("%d\n", expected);
+
+    printf("\n// ================ Test D.4 =======================//\n");
+    a[0] = 0x00000000;
+    a[1] = 0x00000000;
+    a[2] = 0x00000000;
+    a[3] = 0x10000000;
+
+    b[0] = 0x00000000;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x10000001;
+
+    printf("Input a: \t");
+    print_u128(a);
+
+    printf("Input b: \t");
+    print_u128(b);
+
+    result = not_equal_u128(a, b);
+
+    printf("Result: \t");
+    printf("%d\n", result);
+
+    expected = 1;
 
     printf("Expected: \t");
     printf("%d\n", expected);
