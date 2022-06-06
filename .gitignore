@@ -58,4 +58,4 @@ obj/
 bin/
 *.a
 *.sqlite3
-
+*.so

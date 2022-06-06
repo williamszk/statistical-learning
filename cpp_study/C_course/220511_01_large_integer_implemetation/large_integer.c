@@ -196,3 +196,92 @@ void sub_u128(uint32_t *out, uint32_t *a, uint32_t *b)
 
     add_u128(out, a, b_2s_comp);
 }
+
+void left_shift_u128(uint32_t *out, uint32_t *a)
+{
+}
+
+void right_shift_u128(uint32_t *out, uint32_t *a)
+{
+}
+
+void left_rotate_u128(uint32_t *out, uint32_t *a)
+{
+}
+
+void right_rotate_u128(uint32_t *out, uint32_t *a)
+{
+}
+
+/**
+ * @brief Makes all values in the array 0.
+ *
+ * This is used to reset all values in the 4 positions 32 bit array.
+ * @param a
+ */
+void reset_u128(uint32_t *a)
+{
+    int i;
+
+    for (i = 0; i < 4; i++)
+    {
+        a[i] = 0;
+    }
+}
+
+void mult_u128(uint32_t *out, uint32_t *a, uint32_t *b)
+{
+    reset_u128(out);
+
+    uint32_t holder[4] = {0};
+    uint64_t mult;
+
+    mult = (uint64_t)a[0] * (uint64_t)b[0];
+    holder[0] = (uint32_t)mult;
+
+    mult = (uint64_t)a[0] * (uint64_t)b[1] + (uint64_t)(mult >> 32);
+    holder[1] = (uint32_t)mult;
+
+    mult = (uint64_t)a[0] * (uint64_t)b[2] + (uint64_t)(mult >> 32);
+    holder[2] = (uint32_t)mult;
+
+    mult = (uint64_t)a[0] * (uint64_t)b[3] + (uint64_t)(mult >> 32);
+    holder[3] = (uint32_t)mult;
+
+    add_u128(out, holder, out);
+    reset_u128(holder);
+
+    mult = (uint64_t)a[1] * (uint64_t)b[0];
+    holder[1] = (uint32_t)mult;
+
+    mult = (uint64_t)a[1] * (uint64_t)b[1] + (uint64_t)(mult >> 32);
+    holder[2] = (uint32_t)mult;
+
+    mult = (uint64_t)a[1] * (uint64_t)b[2] + (uint64_t)(mult >> 32);
+    holder[3] = (uint32_t)mult;
+
+    // mult = (uint64_t)a[1] * (uint64_t)b[3] + (uint64_t)(mult >> 32);
+    // holder[4] = (uint32_t)mult;
+
+    add_u128(out, holder, out);
+    reset_u128(holder);
+
+    mult = (uint64_t)a[2] * (uint64_t)b[0];
+    holder[2] = (uint32_t)mult;
+
+    mult = (uint64_t)a[2] * (uint64_t)b[1] + (uint64_t)(mult >> 32);
+    holder[3] = (uint32_t)mult;
+
+    add_u128(out, holder, out);
+    reset_u128(holder);
+
+    mult = (uint64_t)a[3] * (uint64_t)b[0];
+    holder[3] = (uint32_t)mult;
+
+    add_u128(out, holder, out);
+    reset_u128(holder);
+}
+
+void div_u128(uint32_t *out, uint32_t *a, uint32_t *b)
+{
+}
