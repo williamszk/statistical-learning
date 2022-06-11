@@ -31,7 +31,7 @@ struct Card
 
 int main()
 {
-    // delcaration and initialization
+    // declaration and initialization
     struct Rectangle myRect = {
         10, // sizeof 4 bytes
         5,  // sizeof 4 bytes
