@@ -1,6 +1,8 @@
 
 # https://www.youtube.com/watch?v=x97ChYDd12U
 
+cd 220610_01_kedro_tutorial
+
 pip3 install kedro kedro[pandas] kedro-viz 
 
 python3 --version
@@ -31,5 +33,8 @@ git clone https://github.com/tamsanh/kedro-introduction-tutorial.git
 kedro run --pipeline <name of the pipeline >
 ./src/kit/pipeline.py
 # kit stands for kedro introductory tutorial
+
+# to run the kedro pipeline
+kedro run --pipeline hello-world
 
 
