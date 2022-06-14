@@ -5,7 +5,7 @@ venv37/
 .venv/
 virtualenv/
 data/
-models/
+# models/
 node_modules/
 target/
 .env
@@ -40,7 +40,6 @@ secret/
 *.db
 scala_study/null/
 scala_study/.metals/
-models/
 .clj-kondo/
 .lsp/
 *.lock
