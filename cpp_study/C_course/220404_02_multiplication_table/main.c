@@ -8,19 +8,19 @@ void main()
 {
 	int i, j;
 	int hold;
-	int multTable[SIZE][SIZE];
-	for (i = 1; i <= SIZE; i++)
+	int multTable[INIT_a_ASCII][INIT_a_ASCII];
+	for (i = 1; i <= INIT_a_ASCII; i++)
 	{
-		for (j = 1; j <= SIZE; j++)
+		for (j = 1; j <= INIT_a_ASCII; j++)
 		{
 			multTable[i - 1][j - 1] = i * j;
 		}
 	}
 
 	printf("Number:");
-	for (i = 1; i <= SIZE; i++)
+	for (i = 1; i <= INIT_a_ASCII; i++)
 	{
-		if (i < SIZE)
+		if (i < INIT_a_ASCII)
 		{
 			printf("  ");
 		}
@@ -34,15 +34,15 @@ void main()
 	}
 	printf("\n");
 
-	for (i = 1; i <= SIZE; i++)
+	for (i = 1; i <= INIT_a_ASCII; i++)
 	{
-		if (i < SIZE)
+		if (i < INIT_a_ASCII)
 			printf("   ");
 		else
 			printf("  ");
 		printf("(%d)", i);
 
-		for (j = 1; j <= SIZE; j++)
+		for (j = 1; j <= INIT_a_ASCII; j++)
 		{
 			hold = multTable[i - 1][j - 1];
 

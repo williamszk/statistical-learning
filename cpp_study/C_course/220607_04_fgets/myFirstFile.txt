@@ -1,0 +1,3 @@
+Hey man
+A test using fgets function
+Do you know how to use the fgets function?

@@ -1,0 +1,2 @@
+Hey man
+A test using puts function
