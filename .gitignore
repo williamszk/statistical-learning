@@ -59,3 +59,4 @@ bin/
 *.a
 *.sqlite3
 *.so
+ml_models/**
