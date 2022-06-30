@@ -6,12 +6,12 @@ import survival_breakdown
 import hello_world
 
 
-def create_pipeline(**kwargs) -> Dict[str, Pipeline]:
+def create_pipelines(**kwargs) -> Dict[str, Pipeline]:
     return {
-        "class-gender-survival-breakdown": class_gender_survival_breakdown.pipeline(),
-        "survival-breakdown": survival_breakdown.pipeline(),
-        "gender-survival-breakdown": gender_survival_breakdown.pipeline(),
-        "hello_world": hello_world.pipeline(),
+        "class-gender-survival-breakdown": class_gender_survival_breakdown.create_pipeline(),
+        "survival-breakdown": survival_breakdown.create_pipeline(),
+        "gender-survival-breakdown": gender_survival_breakdown.create_pipeline(),
+        "hello_world": hello_world.create_pipeline(),
         "__default__": Pipeline([
             class_gender_survival_breakdown.create_pipeline() +
             survival_breakdown.pipeline() +

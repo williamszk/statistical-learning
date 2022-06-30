@@ -216,7 +216,7 @@ void right_rotate_u128(uint32_t *out, uint32_t *a)
 /**
  * @brief Makes all values in the array 0.
  *
- * This is used to reset all values in the 4 positions 32 bit array.
+ * This is used to reset all values in the 4 positions of the 32 bit array.
  * @param a
  */
 void reset_u128(uint32_t *a)
@@ -284,4 +284,22 @@ void mult_u128(uint32_t *out, uint32_t *a, uint32_t *b)
 
 void div_u128(uint32_t *out, uint32_t *a, uint32_t *b)
 {
+    // if denominator is 0 then return 0
+
+    reset_u128(out);
+
+    uint32_t holder[4] = {0};
+    uint64_t divi;
+
+
+    divi = (uint64_t)a[0] / (uint64_t)b[0];
+    holder[0] = (uint32_t)divi;
+
+    // printf("\n");
+    // printf("before: \t0x%016lX\n", (uint64_t)a[1]);    
+    // printf("after: \t\t0x%016lX\n", (uint64_t)a[1] << 1); // doint this way works
+
+    divi = ((uint64_t)a[1] << 32) / (uint64_t)b[0];
+
+    holder[1] = (uint32_t)divi;
 }

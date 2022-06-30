@@ -490,5 +490,72 @@ int main()
 
     test_u128(out, expected);
 
+    printf("\n// ==== Tests for Division ==== //\n");
+    
+    printf("1. \t");
+    a[0] = 0x00000004;
+    a[1] = 0x00000000;
+    a[2] = 0x00000000;
+    a[3] = 0x00000000;
+
+    b[0] = 0x00000002;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x00000000;
+
+    reset_out(out);
+
+    div_u128(out, a, b);
+
+    expected[0] = 0x00000002;
+    expected[1] = 0x00000000;
+    expected[2] = 0x00000000;
+    expected[3] = 0x00000000;
+
+    test_u128(out, expected);
+
+    printf("2. \t");
+    a[0] = 0xf0000000;
+    a[1] = 0xf0000000;
+    a[2] = 0xf0000000;
+    a[3] = 0xf0000000;
+
+    b[0] = 0xf0000000;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x00000000;
+
+    reset_out(out);
+
+    div_u128(out, a, b);
+
+    expected[0] = 0x00000001;
+    expected[1] = 0x00000001;
+    expected[2] = 0x00000001;
+    expected[3] = 0x00000001;
+
+    test_u128(out, expected);
+
+    printf("3. \t");
+    a[0] = 0xe0000000;
+    a[1] = 0xf0000000;
+    a[2] = 0xf0000000;
+    a[3] = 0xf0000000;
+
+    b[0] = 0xf0000000;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x00000000;
+
+    reset_out(out);
+
+    div_u128(out, a, b);
+
+    expected[0] = 0x00000000;
+    expected[1] = 0x00000001;
+    expected[2] = 0x00000001;
+    expected[3] = 0x00000001;
+
+    test_u128(out, expected);
 
 }
