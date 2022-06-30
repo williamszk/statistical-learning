@@ -104,14 +104,36 @@ docker stop suspicious_bose
 docker rm dreamy_galois
 docker rm suspicious_bose
 
+docker ps -a
+# how to see the logs of a container
+docker run -p6000:6379 -d redis:5.0.6
+docker run -p6001:6379 -d redis:4.0
+
+docker logs fd34888bcbe5f55167f  
+
+# CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+# 17e2a7c86850   redis:4.0     "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes   0.0.0.0:6001->6379/tcp, :::6001->6379/tcp   relaxed_babbage
+# fd34888bcbe5   redis:5.0.6   "docker-entrypoint.s…"   2 minutes ago   Up 2 minutes   0.0.0.0:6000->6379/tcp, :::6000->6379/tcp   reverent_pare
+
+docker stop 17e2a7c86850
+docker stop fd34888bcbe5
+
+docker rm 17e2a7c86850
+docker rm fd34888bcbe5
+
+# how to create a container specifying its name
+docker run -p6000:6379 -d redis:5.0.6
+docker run -d -p6000:6379 --name my-redis-container redis:5.0.6
+# CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+# a2a90375f29a   redis:5.0.6   "docker-entrypoint.s…"   5 seconds ago   Up 2 seconds   0.0.0.0:6000->6379/tcp, :::6000->6379/tcp   my-redis-container
+# docker stop a2a90375f29a   
+# docker rm a2a90375f29a   
+
+# docker exec, to enter inside a docker container
+docker exec -it my-redis-container /bin/bash
+
+# checkpoint
+# https://youtu.be/3c-iBn73dDE?t=4000
 
 
-
-
-
-
-
-
-
-
-
+git clone https://gitlab.com/nanuchi/techworld-js-docker-demo-app.git
