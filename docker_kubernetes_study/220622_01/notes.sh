@@ -135,5 +135,12 @@ docker exec -it my-redis-container /bin/bash
 # checkpoint
 # https://youtu.be/3c-iBn73dDE?t=4000
 
-
 git clone https://gitlab.com/nanuchi/techworld-js-docker-demo-app.git
+
+# checkpoint
+# https://youtu.be/3c-iBn73dDE?t=8346
+# https://youtu.be/3c-iBn73dDE?t=8799
+
+
+# Next video:
+# https://www.youtube.com/watch?v=X48VuDVv0do&ab_channel=TechWorldwithNana

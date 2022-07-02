@@ -2,6 +2,9 @@
 
 docker-compose -f mongo.yaml up
 
+# -d for detached
+docker-compose -f mongo.yaml up -d
+
 # Creating network "techworld-js-docker-demo-app_default" with the default driver
 # Creating techworld-js-docker-demo-app_my-mongo-express_1 ... done
 # Creating techworld-js-docker-demo-app_my-mongodb_1       ... done
@@ -41,3 +44,13 @@ docker-compose -f mongo.yaml down
 
 # checkpoint:
 # https://youtu.be/3c-iBn73dDE?t=6120 
+
+# Docker Image
+# Dockerfile
+
+
+
+# call docker compose with all 3 containers now
+# docker-compose -f mongo-node.yaml up -d
+docker-compose -f mongo-node.yaml up
+docker-compose -f mongo-node.yaml down
