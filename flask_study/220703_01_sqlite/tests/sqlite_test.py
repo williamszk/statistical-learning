@@ -1,9 +1,7 @@
-from select import select
 import sqlite3
 
-from sqlalchemy import insert
 
-connection = sqlite3.connect("data.db")
+connection = sqlite3.connect("../data.db")
 # sqlite stores all data in a local file
 # sqlite is slower to write
 
