@@ -40,3 +40,9 @@ docker run 5a94c82ce78e
 
 # course:
 # https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436696#overview 
+
+
+docker build -t my-image-repository/my-redis-image:1.0 .
+
+# Next:
+# https://www.udemy.com/course/docker-and-kubernetes-the-complete-guide/learn/lecture/11436722#overview
