@@ -39,29 +39,33 @@ class Item(Resource):
         if row:
             return {'message': f"An item with name '{name}' already exists."}, 400
 
-        data = Item.parser.parse_args()
+        try:
+            data = Item.parser.parse_args()
 
-        connection = sqlite3.connect("../data.db")
-        cursor = connection.cursor()
+            connection = sqlite3.connect("../data.db")
+            cursor = connection.cursor()
 
-        query = """ --sql
-        INSERT INTO items VALUES (NULL, ?, ?) ;
-        """
+            query = """ --sql
+            INSERT INTO items VALUES (NULL, ?, ?) ;
+            """
 
-        price = data["price"]
-        cursor.execute(query, (name, price))
+            price = data["price"]
+            cursor.execute(query, (name, price))
 
-        connection.commit()
-        connection.close()
+            connection.commit()
+            connection.close()
 
-        item = {'name': name, 'price': data['price']}
+            item = {'name': name, 'price': data['price']}
 
-        return item, 200
+            return item, 200
+
+        except Exception as e:
+            # we should log e
+            return {"message": "Something went wrong with the server while inserting the new item"}, 500
 
     @jwt_required()
     def delete(self, name):
 
-        # maybe we should include a check to see if item exists
         if find_by_name(name) is None:
             return {"message": f"Item with name '{name}' does not exist. We can't delete it."}
 
@@ -81,15 +85,20 @@ class Item(Resource):
 
     @jwt_required()
     def put(self, name):
+        """Used to change the price of an item.
+        """
+        if find_by_name(name) is None:
+            return {"message": f"Item with name '{name}' does not exist. We can't update it."}
+
         data = Item.parser.parse_args()
-        # Once again, print something not in the args to verify everything works
-        item = next(filter(lambda x: x['name'] == name, items), None)
-        if item is None:
-            item = {'name': name, 'price': data['price']}
-            items.append(item)
-        else:
-            item.update(data)
-        return item
+
+        try:
+            price = data["price"]
+            update(name, price)
+            return {"message": f"Item '{name}' changed"}
+        except Exception as e:
+            # log e
+            return {"message": "Something went wrong with the server while inserting the new item"}, 500
 
 
 class ItemList(Resource):
@@ -109,7 +118,7 @@ class ItemList(Resource):
                 "price": row[2],
             }
             items.append(item)
-       
+
         connection.close()
         return {'items': items}
 
@@ -129,3 +138,16 @@ def find_by_name(name: str) -> QueryOuput:
     connection.close()
 
     return row
+
+
+def update(name, price):
+    connection = sqlite3.connect("../data.db")
+    cursor = connection.cursor()
+
+    query = """ --sql
+    UPDATE items SET price=? WHERE name=?;
+    """
+    cursor.execute(query, (price, name))
+
+    connection.commit()
+    connection.close()
