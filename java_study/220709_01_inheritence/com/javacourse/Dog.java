@@ -29,7 +29,8 @@ public class Dog extends Animal {
         super.eat();
     }
 
-    public void move(int speed) {
+    @Override
+    public void move(int speed){
         System.out.println("Move from Dog class");
     }
 
