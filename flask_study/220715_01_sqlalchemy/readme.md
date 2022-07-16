@@ -13,4 +13,10 @@ Some ideas to expand this application:
 - Include hashing in password
 - Containarized the application
 
+We need to install SQLAlchemy for Flask
+
+pip install Flask-SQLAlchemy
+
+This command will install both SQLAlchemy and Flask-SQLAlchemy.
+
 

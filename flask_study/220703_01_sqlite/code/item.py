@@ -33,7 +33,8 @@ class Item(Resource):
 
     @jwt_required()
     def post(self, name: str):
-        # we could create a model, class, interface for the output of this function
+        # we could create a model, class, interface for the output of this
+        # function
 
         row = find_by_name(name)
         if row:
@@ -61,13 +62,15 @@ class Item(Resource):
 
         except Exception as e:
             # we should log e
-            return {"message": "Something went wrong with the server while inserting the new item"}, 500
+            return {
+                "message": "Something went wrong with the server while inserting the new item"}, 500
 
     @jwt_required()
     def delete(self, name):
 
         if find_by_name(name) is None:
-            return {"message": f"Item with name '{name}' does not exist. We can't delete it."}
+            return {
+                "message": f"Item with name '{name}' does not exist. We can't delete it."}
 
         connection = sqlite3.connect("../data.db")
         cursor = connection.cursor()
@@ -88,7 +91,8 @@ class Item(Resource):
         """Used to change the price of an item.
         """
         if find_by_name(name) is None:
-            return {"message": f"Item with name '{name}' does not exist. We can't update it."}
+            return {
+                "message": f"Item with name '{name}' does not exist. We can't update it."}
 
         data = Item.parser.parse_args()
 
@@ -98,7 +102,8 @@ class Item(Resource):
             return {"message": f"Item '{name}' changed"}
         except Exception as e:
             # log e
-            return {"message": "Something went wrong with the server while inserting the new item"}, 500
+            return {
+                "message": "Something went wrong with the server while inserting the new item"}, 500
 
 
 class ItemList(Resource):

@@ -1,48 +1,6 @@
 import sqlite3
 from flask_restful import Resource, reqparse
-
-
-class User(object):
-    def __init__(self, id, username, password):
-        self.id = id
-        self.username = username
-        self.password = password
-
-
-def find_by_id(id: int) -> User:
-    connection = sqlite3.connect("../data.db")
-    cursor = connection.cursor()
-    query = """--sql
-    SELECT * FROM users WHERE id=?;
-    """
-    result = cursor.execute(query, (id,))
-    row = result.fetchone()
-    if row:
-        user = User(*row)
-    else:
-        user = None
-
-    connection.close()
-
-    return user
-
-
-def find_by_username(username: str) -> User:
-    connection = sqlite3.connect("../data.db")
-    cursor = connection.cursor()
-    query = """--sql
-    SELECT * FROM users WHERE username=?;
-    """
-    result = cursor.execute(query, (username,))
-    row = result.fetchone()
-    if row:
-        user = User(*row)
-    else:
-        user = None
-
-    connection.close()
-
-    return user
+from models.user import find_by_username
 
 
 class UserRegister(Resource):
@@ -62,7 +20,7 @@ class UserRegister(Resource):
         connection = sqlite3.connect("../data.db")
         cursor = connection.cursor()
 
-        query = """--sql
+        query = """
         INSERT INTO users VALUES (NULL, ?, ?);
         """
 
