@@ -327,40 +327,6 @@ void div_u128(uint32_t *out, uint32_t *a, uint32_t *b)
     uint64_t divi;
     uint64_t rest;
 
-    // printf("\n");
-    // printf("0x%016lX\n", (uint64_t)0xffffffff);
-    // printf("0x%016lX\n", (uint64_t)0xffffffff << 32);
-    // printf("0x%016lX\n", (uint64_t)0xffffffff00000000 >> 32);
-    // printf("0x%016lX\n", (uint64_t)0xffffffffeeeeeeee);
-    // printf("0x%016lX\n", (uint64_t)(uint32_t)0xffffffffeeeeeeee);
-
-    // first proposal of implementation ==========================================================
-    // divi = safe_divide((uint64_t)a[3] << 32, (uint64_t)b[0]);
-    // holder[3] = (uint32_t)(divi >> 32);
-
-    // divi = safe_divide((uint64_t)a[2] << 32, (uint64_t)b[0]) + (uint64_t)(divi << 32);
-    // holder[2] = (uint32_t)(divi >> 32);
-
-    // divi = safe_divide((uint64_t)a[1] << 32, (uint64_t)b[0]) + (uint64_t)(divi << 32);
-    // holder[1] = (uint32_t)(divi >> 32);
-
-    // divi = safe_divide((uint64_t)a[0] << 32, (uint64_t)b[0]) + (uint64_t)(divi << 32);
-    // holder[0] = (uint32_t)(divi >> 32);
-
-    // add_u128(out, holder, out);
-    // reset_u128(holder);
-
-    // divi = safe_divide((uint64_t)a[3] << 32, (uint64_t)b[1]);
-    // holder[2] = (uint32_t)(divi >> 32);
-
-    // divi = safe_divide((uint64_t)a[2] << 32, (uint64_t)b[1]) + (uint64_t)(divi << 32);
-    // holder[1] = (uint32_t)(divi >> 32);
-
-    // divi = safe_divide((uint64_t)a[1] << 32, (uint64_t)b[1]) + (uint64_t)(divi << 32);
-    // holder[0] = (uint32_t)(divi >> 32);
-
-    // add_u128(out, holder, out);
-
     // second proposal of implementation ==========================================================
     divi = safe_divide((uint64_t)a[3], (uint64_t)b[0]);
     holder[3] = (uint32_t)divi;
@@ -375,6 +341,7 @@ void div_u128(uint32_t *out, uint32_t *a, uint32_t *b)
     divi = safe_divide((uint64_t)a[1], (uint64_t)b[0]) + safe_divide((rest << 32), (uint64_t)b[0]);
     holder[1] = (uint32_t)divi;
     rest = safe_rest((rest << 32) + (uint64_t)a[1], (uint64_t)b[0], divi);
+    // rest = safe_rest((uint64_t)a[1], (uint64_t)b[0], divi) + safe_rest((rest << 32), (uint64_t)b[0], divi);
 
     // divi = safe_divide((rest << 32) + (uint64_t)a[0], (uint64_t)b[0]);
     divi = safe_divide((uint64_t)a[0], (uint64_t)b[0]) + safe_divide((rest << 32), (uint64_t)b[0]);

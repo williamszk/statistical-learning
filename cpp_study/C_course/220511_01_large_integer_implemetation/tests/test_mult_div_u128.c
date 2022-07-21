@@ -830,8 +830,8 @@ int main()
     // expected[2] = 0x5aaaaaaa;
     // expected[3] = 0x05555555;
 
-    expected[0] = 0xffffffff;
-    expected[1] = 0xafffffff;
+    expected[0] = 0x05555554;
+    expected[1] = 0xb0000000;
     expected[2] = 0x5aaaaaaa;
     expected[3] = 0x05555555;
 
@@ -928,5 +928,78 @@ int main()
 
     test_u128(out, expected);
 
+    printf("20. \t");
+    // this is a case of non-rational division
+    a[0] = 0x00000000;
+    a[1] = 0x10000000;
+    a[2] = 0x10000000;
+    a[3] = 0x10000000;
 
+    b[0] = 0x00000003;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x00000000;
+
+    reset_out(out);
+
+    div_u128(out, a, b);
+
+    expected[0] = 0xffffffff;
+    expected[1] = 0xafffffff;
+    expected[2] = 0x5aaaaaaa;
+    expected[3] = 0x05555555;
+
+    test_u128(out, expected);
+    print_u128(out);
+    print_u128(expected);
+
+    printf("21. \t");
+    // this is a case of non-rational division
+    a[0] = 0x00000000;
+    a[1] = 0x00000000;
+    a[2] = 0x10000000;
+    a[3] = 0x10000000;
+
+    b[0] = 0x00000003;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x00000000;
+
+    reset_out(out);
+
+    div_u128(out, a, b);
+
+    expected[0] = 0xaaaaaaaa;
+    expected[1] = 0xaaaaaaaa;
+    expected[2] = 0x5aaaaaaa;
+    expected[3] = 0x05555555;
+
+    test_u128(out, expected);
+    print_u128(out);
+    print_u128(expected);
+
+    printf("22. \t");
+    // this is a case of non-rational division
+    a[0] = 0x00000000;
+    a[1] = 0x00000000;
+    a[2] = 0x00000000;
+    a[3] = 0x10000000;
+
+    b[0] = 0x00000003;
+    b[1] = 0x00000000;
+    b[2] = 0x00000000;
+    b[3] = 0x00000000;
+
+    reset_out(out);
+
+    div_u128(out, a, b);
+
+    expected[0] = 0x55555555;
+    expected[1] = 0x55555555;
+    expected[2] = 0x55555555;
+    expected[3] = 0x05555555;
+
+    test_u128(out, expected);
+    print_u128(out);
+    print_u128(expected);
 }
