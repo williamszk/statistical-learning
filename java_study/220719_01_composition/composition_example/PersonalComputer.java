@@ -11,16 +11,16 @@ public class PersonalComputer {
         this.motherboard = motherboard;
     }
 
-    public Case getTheCase() {
-        return theCase;
+
+    private void drawLogo(){
+        // Fancy graphics
+        monitor.drawPixelAt(1200, 50, "yellow");
     }
 
-    public Monitor getMonitor() {
-        return monitor;
-    }
+    public void powerUp(){
+        theCase.pressPowerButton();
+        drawLogo();
 
-    public Motherboard getMotherboard() {
-        return motherboard;
     }
 
 }
