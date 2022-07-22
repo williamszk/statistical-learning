@@ -16,12 +16,9 @@ class Item(Resource):
 
     @jwt_required()
     def get(self, name):
-
-        row = it.find_by_name(name)
-
-        if row:
-            item = it.ItemModel(*row).json()
-
+        item_instance = it.find_by_name(name)
+        if item_instance:
+            item = item_instance.json()
             return {"item": item}, 200
 
         return {"message": "Item not found"}, 404
@@ -29,18 +26,15 @@ class Item(Resource):
     @jwt_required()
     def post(self, name: str):
         # we could create a model, class, interface for the output of this function
-
-        row = it.find_by_name(name)
-        if row:
+        item_instance = it.find_by_name(name)
+        if item_instance:
             return {'message': f"An item with name '{name}' already exists."}, 400
-
         try:
             data = Item.parser.parse_args()
-
-            it.insert_new_item(name, data["price"])
-
-            item = it.ItemModel(name, data["price"]).json()
-
+            item_instance =  it.ItemModel(name, data["price"])
+            item_instance.insert()
+            # it.insert_new_item(name, data["price"])
+            item = item_instance.json()
             return item, 200
 
         except Exception as e:
@@ -50,19 +44,16 @@ class Item(Resource):
 
     @jwt_required()
     def delete(self, name):
-
         if it.find_by_name(name) is None:
             return {"message": f"Item with name '{name}' does not exist. We can't delete it."}
-
         # create function here
-
+        # I need to move the sql code to the model/item.py directory
         connection = sqlite3.connect("../data.db")
         cursor = connection.cursor()
 
-        query = """
+        query = """ --sql
         DELETE FROM items WHERE name=?;
         """
-
         cursor.execute(query, (name,))
 
         connection.commit()
@@ -74,13 +65,15 @@ class Item(Resource):
     def put(self, name):
         """Used to change the price of an item.
         """
-        if it.find_by_name(name) is None:
+        item_instance = it.find_by_name(name)
+        if item_instance  is None:
             return {"message": f"Item with name '{name}' does not exist. We can't update it."}
 
         data = Item.parser.parse_args()
 
         try:
-            it.update(name, data["price"])
+            item_instance = it.ItemModel(name, data["price"])
+            item_instance.update()
             return {"message": f"Item '{name}' changed"}
         except Exception as e:
             # log e
@@ -90,19 +83,20 @@ class Item(Resource):
 class ItemList(Resource):
     @jwt_required()
     def get(self):
-
         # create function here
-
+        # This query should be inside the models/item.py
         connection = sqlite3.connect("../data.db")
         cursor = connection.cursor()
 
-        query = """
+        query = """ --sql
         SELECT * FROM items;
         """
 
         items = []
         for row in cursor.execute(query):
-            item = it.ItemModel(*row).json()
+            name = row[1]
+            price = row[2]
+            item = it.ItemModel(name, price).json()
             items.append(item)
 
         connection.close()
