@@ -80,7 +80,7 @@ void add_u128(uint32_t *out, uint32_t *a, uint32_t *b)
 }
 
 /**
- * @brief Decrement 1 to "a" para then outputs it to "out".
+ * @brief Decrement 1 to "a" then outputs it to "out".
  *
  * Decrement by 1 the 128 bit integer that is inserted as argument.
  * Decrement is just an example of subtraction.
@@ -260,9 +260,6 @@ void mult_u128(uint32_t *out, uint32_t *a, uint32_t *b)
     mult = (uint64_t)a[1] * (uint64_t)b[2] + (uint64_t)(mult >> 32);
     holder[3] = (uint32_t)mult;
 
-    // mult = (uint64_t)a[1] * (uint64_t)b[3] + (uint64_t)(mult >> 32);
-    // holder[4] = (uint32_t)mult;
-
     add_u128(out, holder, out);
     reset_u128(holder);
 
@@ -282,24 +279,90 @@ void mult_u128(uint32_t *out, uint32_t *a, uint32_t *b)
     reset_u128(holder);
 }
 
+/**
+ * @brief Divide two uint64_t numbers.
+ * If the denominator b is zero we return zero.
+ *
+ * @param a
+ * @param b
+ * @return uint64_t
+ */
+uint64_t safe_divide(uint64_t a, uint32_t b)
+{
+    if (b == 0)
+        return 0;
+
+    return a / b;
+}
+
+/**
+ * @brief Gives the rest or modulo.
+ * To make things easier we make the calculation of the rest given
+ * that we already have made the division in a priveous step.
+ *
+ * @param denominator
+ * @param divi
+ * @param next_num
+ * @return uint64_t
+ */
+uint64_t safe_rest(uint64_t numerator, uint64_t denominator, uint64_t divi)
+{
+    uint64_t rest = numerator - denominator * divi;
+    return rest;
+}
+
+/**
+ * @brief Divide two 128 bit unsigned integers.
+ * If denominator is 0 then return 0
+ *
+ * @param out
+ * @param a
+ * @param b
+ */
 void div_u128(uint32_t *out, uint32_t *a, uint32_t *b)
 {
-    // if denominator is 0 then return 0
-
     reset_u128(out);
 
     uint32_t holder[4] = {0};
     uint64_t divi;
+    uint64_t rest;
 
+    // second proposal of implementation ==========================================================
+    divi = safe_divide((uint64_t)a[3], (uint64_t)b[0]);
+    holder[3] = (uint32_t)divi;
+    rest = safe_rest((uint64_t)a[3], (uint64_t)b[0], divi);
 
-    divi = (uint64_t)a[0] / (uint64_t)b[0];
+    // divi = safe_divide((rest << 32) + (uint64_t)a[2], (uint64_t)b[0]);
+    divi = safe_divide((uint64_t)a[2], (uint64_t)b[0]) + safe_divide((rest << 32), (uint64_t)b[0]);
+    holder[2] = (uint32_t)divi;
+    rest = safe_rest((rest << 32) + (uint64_t)a[2], (uint64_t)b[0], divi);
+
+    // divi = safe_divide((rest << 32) + (uint64_t)a[1], (uint64_t)b[0]);
+    divi = safe_divide((uint64_t)a[1], (uint64_t)b[0]) + safe_divide((rest << 32), (uint64_t)b[0]);
+    holder[1] = (uint32_t)divi;
+    rest = safe_rest((rest << 32) + (uint64_t)a[1], (uint64_t)b[0], divi);
+    // rest = safe_rest((uint64_t)a[1], (uint64_t)b[0], divi) + safe_rest((rest << 32), (uint64_t)b[0], divi);
+
+    // divi = safe_divide((rest << 32) + (uint64_t)a[0], (uint64_t)b[0]);
+    divi = safe_divide((uint64_t)a[0], (uint64_t)b[0]) + safe_divide((rest << 32), (uint64_t)b[0]);
     holder[0] = (uint32_t)divi;
 
-    // printf("\n");
-    // printf("before: \t0x%016lX\n", (uint64_t)a[1]);    
-    // printf("after: \t\t0x%016lX\n", (uint64_t)a[1] << 1); // doint this way works
+    add_u128(out, holder, out);
+    reset_u128(holder);
 
-    divi = ((uint64_t)a[1] << 32) / (uint64_t)b[0];
+    // divi = safe_divide((uint64_t)a[3], (uint64_t)b[1]);
+    divi = safe_divide((uint64_t)a[3], (uint64_t)b[1]);
+    holder[2] = (uint32_t)divi;
+    rest = safe_rest((uint64_t)a[3], (uint64_t)b[1], divi);
 
+    // divi = safe_divide((rest << 32) + (uint64_t)a[2], (uint64_t)b[1]);
+    divi = safe_divide((uint64_t)a[2], (uint64_t)b[1]) + safe_divide((rest << 32), (uint64_t)b[1]);
     holder[1] = (uint32_t)divi;
+    rest = safe_rest((rest << 32) + (uint64_t)a[2], (uint64_t)b[1], divi);
+
+    // divi = safe_divide((rest << 32) + (uint64_t)a[1], (uint64_t)b[1]);
+    divi = safe_divide((uint64_t)a[1], (uint64_t)b[1]) + safe_divide((rest << 32), (uint64_t)b[1]);
+    holder[0] = (uint32_t)divi;
+
+    add_u128(out, holder, out);
 }
