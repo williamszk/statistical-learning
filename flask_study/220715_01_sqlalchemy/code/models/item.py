@@ -1,7 +1,4 @@
 import sqlite3
-from typing import Union
-
-QueryOuput = Union[tuple, None]
 
 
 class ItemModel:
@@ -37,6 +34,37 @@ class ItemModel:
         connection.commit()
         connection.close()
 
+    def delete(self):
+        connection = sqlite3.connect("../data.db")
+        cursor = connection.cursor()
+
+        query = """ --sql
+        DELETE FROM items WHERE name=?;
+        """
+        cursor.execute(query, (self.name,))
+
+        connection.commit()
+        connection.close()
+    
+def get_all_items():
+    connection = sqlite3.connect("../data.db")
+    cursor = connection.cursor()
+
+    query = """ --sql
+    SELECT * FROM items;
+    """
+
+    items = []
+    for row in cursor.execute(query):
+        name = row[1]
+        price = row[2]
+        item = ItemModel(name, price).json()
+        items.append(item)
+
+    connection.close()
+
+    return items
+
 
 def find_by_name(name: str) -> ItemModel:
     connection = sqlite3.connect("../data.db")
@@ -51,8 +79,7 @@ def find_by_name(name: str) -> ItemModel:
     if row:
         price = row[2]
         item_instance = ItemModel(name, price)
-        return item_instance 
+        return item_instance
 
     else:
         return None
-

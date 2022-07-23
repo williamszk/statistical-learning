@@ -32,3 +32,9 @@ res = requests.post("http://127.0.0.1:5000/item/table",
                     json={"price": 789.50},
                     headers={"Authorization": "JWT " + access_token})
 print_http_response(res)
+
+print_message("POST phone")
+res = requests.post("http://127.0.0.1:5000/item/phone",
+                    json={"price": 100.50},
+                    headers={"Authorization": "JWT " + access_token})
+print_http_response(res)
