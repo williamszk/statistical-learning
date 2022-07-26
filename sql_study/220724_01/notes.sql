@@ -66,6 +66,62 @@ USE sales;
 -- BIGINT 8 bytes
 -- all of them can be signed or unsigned, by default MySQL 
 
+-- Precision and Scale:
+-- 10.523 -> precision=5
+-- 10.523 -> scale=3
+-- DECIMAL(5, 3)
+--
+-- NUMERIC, DECIMAL, both are fixed-point
+-- Money should be treated as DECIMAL 
+-- DECIMAL(7, 2)
+-- 
+-- Floating-point numbers
+-- This is not precise
+-- FLOAT(5,3) 4 bytes, single precision
+-- DOUBLE() 8 bytes, double precision
+
+-- DATE     YYYY-MM-DD
+-- there is no time in DATE
+
+-- DATETIME YYYY-MM-DD HH:MM:SS[.fraction]
+
+-- TIMESTAMP, number of seconds after 1st January 1970
+-- timestamp is better for time zones
+-- DATE, DATETIME, TIMESTAMP must be written with quotes
+
+
+-- BLOB needs to be written in quotes
+-- Binary Large Object
+CREATE TABLE table_name (
+    column_1 data_type constraints
+    , column_2 data_type constraints
+    , column_3 data_type constraints
+);
+
+mysqlsh -u william
+\sql
+
+SHOW DATABASES;
+USE sales;
+
+CREATE TABLE sales (
+    purchase_number INT NOT NULL PRIMARY KEY AUTO_INCREMENT
+    , date_of_purchase DATE NOT NULL 
+    , customer_id INT
+    , item_code VARCHAR(10)  NOT NULL
+);
+
+SHOW TABLES;
+
+SELECT * FROM sales.sales;
+
+SELECT * FROM sales;
+
+DROP TABLE sales;
+
+SHOW TABLES;
+
+
 
 
 
