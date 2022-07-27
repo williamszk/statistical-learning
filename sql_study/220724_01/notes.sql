@@ -19,7 +19,6 @@ SHOW DATABASES;
 -- | performance_schema |
 -- | sys                |
 -- +--------------------+
--- 4 rows in set (0.0017 sec)
 
 CREATE DATABASE IF NOT EXISTS sales;
 -- we could have used:
@@ -35,7 +34,6 @@ SHOW DATABASES;
 -- | sales              |
 -- | sys                |
 -- +--------------------+
--- 5 rows in set (0.0015 sec)
 
 -- how to enter into a database?
 USE sales;
@@ -120,6 +118,259 @@ SELECT * FROM sales;
 DROP TABLE sales;
 
 SHOW TABLES;
+
+-- ==================================================
+
+mysqlsh -u william
+\sql
+
+SHOW DATABASES;
+USE sales;
+
+-- An alternative way to specify the primary key
+CREATE TABLE sales (
+    purchase_number INT NOT NULL AUTO_INCREMENT
+    , date_of_purchase DATE NOT NULL 
+    , customer_id INT
+    , item_code VARCHAR(10)  NOT NULL
+    , PRIMARY KEY (purchase_number)
+);
+
+DROP TABLE sales;
+
+SHOW TABLES;
+
+DESCRIBE sales;
+-- +------------------+-------------+------+-----+---------+----------------+
+-- | Field            | Type        | Null | Key | Default | Extra          |
+-- +------------------+-------------+------+-----+---------+----------------+
+-- | purchase_number  | int         | NO   | PRI | NULL    | auto_increment |
+-- | date_of_purchase | date        | NO   |     | NULL    |                |
+-- | customer_id      | int         | YES  |     | NULL    |                |
+-- | item_code        | varchar(10) | NO   |     | NULL    |                |
+-- +------------------+-------------+------+-----+---------+----------------+
+
+-- DDL statemtnt
+-- Data Definition Language 
+SHOW CREATE TABLE sales;
+-- +-------+----------------------------------------------------------------------
+-- | Table | Create Table
+--                           |
+-- +-------+----------------------------------------------------------------------
+-- | sales | CREATE TABLE `sales` (
+--   `purchase_number` int NOT NULL AUTO_INCREMENT,
+--   `date_of_purchase` date NOT NULL,
+--   `customer_id` int DEFAULT NULL,
+--   `item_code` varchar(10) NOT NULL,
+--   PRIMARY KEY (`purchase_number`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
+-- +-------+----------------------------------------------------------------------
+
+-- Then, create the “items” table  
+-- (columns - data types:  
+-- item_code – VARCHAR of 255,  
+-- item – VARCHAR of 255,  
+-- unit_price – NUMERIC of 10 and 2,  
+-- company­_id – VARCHAR of 255),  
+-- and the “companies” table  
+-- (company_id – VARCHAR of 255,  
+-- company_name – VARCHAR of 255,  
+-- headquarters_phone_number – integer of 12). 
+
+
+CREATE TABLE items (
+    item_code VARCHAR(255)
+    , item VARCHAR(255)
+    , unit_price NUMERIC(10,2)
+    , company_id VARCHAR(255)
+    , PRIMARY KEY (item_code)
+);
+
+CREATE TABLE companies (
+    company_id VARCHAR(255)
+    , company_name VARCHAR(255) 
+    , headquarters_phone_number INTEGER(12) 
+    , PRIMARY KEY (company_id)
+);
+
+SHOW TABLES;
+-- +-----------------+
+-- | Tables_in_sales |
+-- +-----------------+
+-- | companies       |
+-- | items           |
+-- | sales           |
+-- +-----------------+
+
+DROP TABLE items;
+DROP TABLE companies;
+
+-- FOREIGN KEY Constraint ----------------------------------------------
+-- parent table = referenced table
+-- child table = referencing table
+
+CREATE TABLE sales (
+    purchase_number INT NOT NULL AUTO_INCREMENT
+    , date_of_purchase DATE NOT NULL 
+    , customer_id INT
+    , item_code VARCHAR(10)  NOT NULL
+    , PRIMARY KEY (purchase_number)
+    , FOREIGN KEY (customer_id) REFERENCES customers (customer_id) ON DELETE CASCADE
+);
+
+DROP TABLE sales;
+
+-- We need to create the customers table first
+-- Or we can add the foreign key later, by altering the existing table
+
+CREATE TABLE sales (
+    purchase_number INT NOT NULL AUTO_INCREMENT
+    , date_of_purchase DATE NOT NULL 
+    , customer_id INT
+    , item_code VARCHAR(10)  NOT NULL
+    , PRIMARY KEY (purchase_number)
+);
+
+ALTER TABLE sales
+ADD FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE;
+
+-- we can also drop the foreign key
+ALTER TABLE sales
+DROP FOREIGN KEY 
+-- not finished we need to take a look more on how to do this
+
+-- an exercise to create and remove all tables in the sales database
+
+CREATE TABLE sales (
+    purchase_number INT NOT NULL AUTO_INCREMENT
+    , date_of_purchase DATE NOT NULL 
+    , customer_id INT
+    , item_code INT NOT NULL
+    , PRIMARY KEY (purchase_number)
+);
+
+CREATE TABLE customers (
+    customer_id INT NOT NULL AUTO_INCREMENT  
+    , first_name VARCHAR(255)
+    , last_name VARCHAR(255)
+    , email_address VARCHAR(255)
+    , number_of_complaints INT
+    , PRIMARY KEY (customer_id)
+);
+
+CREATE TABLE items (
+    item_code INT NOT NULL AUTO_INCREMENT  
+    , item VARCHAR(255)
+    , unit_price NUMERIC(10,2)
+    , company_id INT
+    , PRIMARY KEY (item_code)
+);
+
+CREATE TABLE companies (
+    company_id INT NOT NULL AUTO_INCREMENT  
+    , company_name VARCHAR(255) 
+    , headquarters_phone_number INTEGER(12) 
+    , PRIMARY KEY (company_id)
+);
+
+ALTER TABLE sales
+ADD FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE;
+
+ALTER TABLE sales
+ADD FOREIGN KEY (item_code) REFERENCES items(item_code) ON DELETE CASCADE;
+
+ALTER TABLE items 
+ADD FOREIGN KEY (company_id) REFERENCES companies(company_id) ON DELETE CASCADE;
+
+SHOW TABLES;
+
+SHOW CREATE TABLE sales;
+DESCRIBE sales;
+DESCRIBE customers;
+DESCRIBE items;
+
+DROP TABLE sales;
+DROP TABLE customers;
+DROP TABLE items;
+DROP TABLE companies;
+
+-- about UNIQUE constraint -----------------------------------
+
+
+CREATE TABLE customers (
+    customer_id INT NOT NULL AUTO_INCREMENT  
+    , first_name VARCHAR(255)
+    , last_name VARCHAR(255)
+    , email_address VARCHAR(255)
+    , number_of_complaints INT
+    , PRIMARY KEY (customer_id)
+    , UNIQUE KEY (email_address) -- we add a new constraint
+);
+
+-- we can use the ALTER ATBLE command to add the UNIQUE KEY
+ALTER TABLE customers
+ADD UNIQUE KEY (email_address);
+
+-- Indexes
+-- we can add indexes in the table to retrieve the data more easily
+-- it is more time consuming to update a table with indexes
+-- by default the UNIQUE KEY will an index to a column
+-- so it is faster for mysql to retrieve data
+
+-- We can remove the UNIQUE KEY from a table
+ALTER TABLE customers
+DROP INDEX email_address;
+
+-- exercise
+
+DROP TABLE customers;
+
+CREATE TABLE customers (
+    customer_id INT NOT NULL AUTO_INCREMENT  
+    , first_name VARCHAR(255)
+    , last_name VARCHAR(255)
+    , email_address VARCHAR(255)
+    , number_of_complaints INT
+    , PRIMARY KEY (customer_id)
+);
+
+ALTER TABLE customers
+ADD COLUMN gender ENUM('M','F') AFTER last_name;
+
+DESCRIBE customers;
+
+INSERT INTO customers (first_name, last_name, gender, email_address, number_of_complaints)
+VALUES ('John', 'MacIntosh', 'F', 'john@mac.com', 10);
+
+SELECT * FROM customers;
+
+ALTER TABLE customers
+ADD UNIQUE KEY (email_address);
+
+DESCRIBE customers;
+-- +----------------------+---------------+------+-----+---------+----------------+
+-- | Field                | Type          | Null | Key | Default | Extra          |
+-- +----------------------+---------------+------+-----+---------+----------------+
+-- | customer_id          | int           | NO   | PRI | NULL    | auto_increment |
+-- | first_name           | varchar(255)  | YES  |     | NULL    |                |
+-- | last_name            | varchar(255)  | YES  |     | NULL    |                |
+-- | gender               | enum('M','F') | YES  |     | NULL    |                |
+-- | email_address        | varchar(255)  | YES  | UNI | NULL    |                |
+-- | number_of_complaints | int           | YES  |     | NULL    |                |
+-- +----------------------+---------------+------+-----+---------+----------------+
+
+-- Next:
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8400658#overview
+
+
+
+
+
+
+
+
+
+
 
 
 
