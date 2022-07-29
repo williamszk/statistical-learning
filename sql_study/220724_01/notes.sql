@@ -362,20 +362,67 @@ DESCRIBE customers;
 -- Next:
 -- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8400658#overview
 
+mysqlsh -u william
+\sql
 
+USE sales;
+SHOW TABLES;
 
+CREATE TABLE customers (
+    customer_id INT NOT NULL AUTO_INCREMENT  
+    , first_name VARCHAR(255)
+    , last_name VARCHAR(255)
+    , email_address VARCHAR(255)
+    , number_of_complaints INT DEFAULT 0 -- <== here we included the DEFAULT value of 0
+    , PRIMARY KEY (customer_id)
+);
 
+DESCRIBE customers;
+-- +----------------------+--------------+------+-----+---------+----------------+
+-- | Field                | Type         | Null | Key | Default | Extra          |
+-- +----------------------+--------------+------+-----+---------+----------------+
+-- | customer_id          | int          | NO   | PRI | NULL    | auto_increment |
+-- | first_name           | varchar(255) | YES  |     | NULL    |                |
+-- | last_name            | varchar(255) | YES  |     | NULL    |                |
+-- | email_address        | varchar(255) | YES  |     | NULL    |                |
+-- | number_of_complaints | int          | YES  |     | 0       |                |
+-- +----------------------+--------------+------+-----+---------+----------------+
 
+DROP TABLE customers;
 
+-- We can also include the DEFAULT constraint using the 
+-- ALTER statement
 
+CREATE TABLE customers (
+    customer_id INT NOT NULL AUTO_INCREMENT  
+    , first_name VARCHAR(255)
+    , last_name VARCHAR(255)
+    , email_address VARCHAR(255)
+    , number_of_complaints INT 
+    , PRIMARY KEY (customer_id)
+);
 
+ALTER TABLE customers
+CHANGE COLUMN number_of_complaints number_of_complaints INT DEFAULT 0;
 
+-- DDL statemtnt
+-- Data Definition Language 
+SHOW CREATE TABLE customers;
+-- +-----------+-------------------------------------------------------------
+-- | Table     | Create Table
+-- +-----------+-------------------------------------------------------------
+-- | customers | CREATE TABLE `customers` (
+--   `customer_id` int NOT NULL AUTO_INCREMENT,
+--   `first_name` varchar(255) DEFAULT NULL,
+--   `last_name` varchar(255) DEFAULT NULL,
+--   `email_address` varchar(255) DEFAULT NULL,
+--   `number_of_complaints` int DEFAULT '0',
+--   PRIMARY KEY (`customer_id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
+-- +-----------+-------------------------------------------------------------
 
-
-
-
-
-
+ALTER TABLE customers
+ALTER COLUMN number_of_complaints DROP DEFAULT;
 
 
 
