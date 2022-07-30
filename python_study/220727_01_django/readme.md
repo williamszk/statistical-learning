@@ -27,3 +27,30 @@ python3 manage.py startapp challenges
 ```
 
 https://github.com/academind/django-practical-guide-course-code/tree/setup-zz-extra-files
+
+URLs, routes and views
+
+https://www.udemy.com/course/python-django-the-practical-guide/learn/lecture/26372804#overview
+
+
+```
+django-admin startproject monthly_challenges
+
+cd monthly_challenges
+
+python3 manage.py startapp challenges
+```
+
+https://www.udemy.com/course/python-django-the-practical-guide/learn/lecture/26372806#overview
+
+Next video:
+https://www.udemy.com/course/python-django-the-practical-guide/learn/lecture/26372816#overview
+
+
+
+
+
+
+
+
+
