@@ -424,7 +424,51 @@ SHOW CREATE TABLE customers;
 ALTER TABLE customers
 ALTER COLUMN number_of_complaints DROP DEFAULT;
 
+-- =================================================================
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8400660#overview
 
 
+mysqlsh -u william
+\sql
 
+SHOW DATABASES;
+USE sales;
 
+CREATE TABLE companies (
+    company_id INT NOT NULL AUTO_INCREMENT  
+    , company_name VARCHAR(255) NOT NULL -- we added this new constraint
+    , headquarters_phone_number VARCHAR(255) 
+    , PRIMARY KEY (company_id)
+);
+
+DESCRIBE companies;
+
+-- we can modify the table to make the column nullable
+ALTER TABLE companies
+MODIFY company_name VARCHAR(255) NULL;
+
+DESCRIBE companies;
+
+DROP TABLE companies;
+
+SHOW CREATE TABLE companies;
+
+-- we can include again the nullable constraint
+ALTER TABLE companies
+CHANGE COLUMN company_name company_name VARCHAR(255) NOT NULL;
+
+SHOW CREATE TABLE companies;
+
+INSERT INTO companies (headquarters_phone_number)
+VALUE ("+1 (202) 1231-1232");
+
+INSERT INTO companies (company_name, headquarters_phone_number)
+VALUE ("Disney+", "+1 (202) 1231-1232");
+
+SELECT * FROM companies;
+
+INSERT INTO companies (company_name, headquarters_phone_number)
+VALUE ("Netflix", "+1 (202) 1231-0999");
+
+-- Next video:
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8410308#overview
