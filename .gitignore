@@ -5,7 +5,7 @@ venv37/
 .venv/
 virtualenv/
 data/
-models/
+# models/
 node_modules/
 target/
 .env
@@ -25,6 +25,7 @@ target/
 spark-3.1.2-bin-hadoop3.2/
 secret/
 *.out
+*.out*
 */*.out
 *.class
 *.idea/
@@ -40,7 +41,6 @@ secret/
 *.db
 scala_study/null/
 scala_study/.metals/
-models/
 .clj-kondo/
 .lsp/
 *.lock
@@ -59,3 +59,4 @@ bin/
 *.a
 *.sqlite3
 *.so
+ml_models/**

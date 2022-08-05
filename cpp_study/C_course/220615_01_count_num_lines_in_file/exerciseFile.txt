@@ -1,0 +1,4 @@
+Hey, this is a text from an exercise
+Please count the quantity of characters inside this document
+this is another line
+and another one
