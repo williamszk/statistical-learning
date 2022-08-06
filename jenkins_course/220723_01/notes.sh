@@ -112,20 +112,14 @@ docker-compose up -d
 # so volumes are very important to not loose all the work
 
 
+# =========================================================== #
 
+docker cp script.sh jenkins:/tmp/script.sh
+docker exec -it jenkins /bin/bash
+chmod +x /tmp/script.sh
+exit
 
+# =========================================================== #
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Next class:
+# https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/12925952#overview
