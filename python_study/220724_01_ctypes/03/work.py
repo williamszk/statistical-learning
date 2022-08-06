@@ -61,9 +61,9 @@ class DoubleArrayType:
         return param.ctypes.data_as(ctypes.POINTER(ctypes.c_double))
 
 
-DoubleArray = DoubleArrayType()
+# DoubleArray = DoubleArrayType()
 _avg = _mod.avg
-_avg.argtypes = (DoubleArray, ctypes.c_int)
+_avg.argtypes = (DoubleArrayType, ctypes.c_int)
 _avg.restype = ctypes.c_double
 
 
