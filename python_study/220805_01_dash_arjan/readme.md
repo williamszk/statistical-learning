@@ -6,3 +6,5 @@ https://www.youtube.com/watch?v=XOFrvzWFM7Y&ab_channel=ArjanCodes
 
 Stoped at:
 https://youtu.be/XOFrvzWFM7Y?t=789
+https://youtu.be/XOFrvzWFM7Y?t=1040
+
