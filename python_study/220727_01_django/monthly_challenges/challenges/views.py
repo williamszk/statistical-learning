@@ -1,5 +1,7 @@
+from urllib import response
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 monthly_challenges_dict = {
     "january": "Eat no meat for the entire month",
@@ -20,10 +22,13 @@ monthly_challenges_dict = {
 def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges_dict[month]
-        return HttpResponse(challenge_text)
+
+        response_data = f"<h1>{challenge_text}</h1>"
+
+        return HttpResponse(response_data)
     except KeyError as e:
         print(e)
-        return HttpResponseNotFound("This month is not supported!")
+        return HttpResponseNotFound("<h1>This month is not supported!</h1>")
 
 
 def monthly_challenge_by_number(request, month):
@@ -32,6 +37,34 @@ def monthly_challenge_by_number(request, month):
         redirect_month = months[month-1]
     except IndexError as e:
         print(e)
-        return HttpResponseNotFound("This month is not supported!")
+        return HttpResponseNotFound("<h1>This month is not supported!</h1>")
 
-    return HttpResponseRedirect(f"/challenges/{redirect_month}")
+    redirect_path = reverse("month-challenge", args=[redirect_month])
+
+    return HttpResponseRedirect(redirect_path)
+
+
+def index(request):
+    # response_data = """
+    # <ul>
+    #     <li><a href="/challenges/january">January</a></li>
+    #     <li><a href="/challenges/february">february</a></li>
+    #     <li><a href="/challenges/march">march</a></li>
+    #     <li><a href="/challenges/april">april</a></li>
+    #     <li><a href="/challenges/may">may</a></li>
+    #     <li><a href="/challenges/june">june</a></li>
+    #     <li><a href="/challenges/july">july</a></li>
+    #     <li><a href="/challenges/august">august</a></li>
+    #     <li><a href="/challenges/september">september</a></li>
+    #     <li><a href="/challenges/october">october</a></li>
+    #     <li><a href="/challenges/november">november</a></li>
+    #     <li><a href="/challenges/december">december</a></li>
+    # </ul>
+    # """
+
+    response_data = "<ul>"+"".join(
+        [f"<li><a href=\"/challenges/{month}\">{month}</a></li>"
+         for month in monthly_challenges_dict.keys()]) +\
+        "</ul>"
+
+    return HttpResponse(response_data)
