@@ -28,18 +28,6 @@ def divide(x, y):
 # void avg(double *, int n)
 # Define a special type for the 'double *' argument
 class DoubleArrayType:
-    def from_param(self, param):
-
-        typename = type(param).__name__
-
-        if hasattr(self, 'from_' + typename):
-            return getattr(self, 'from_' + typename)(param)
-
-        elif isinstance(param, ctypes.Array):
-            return param
-
-        else:
-            raise TypeError("Can't convert % s" % typename)
 
     # Cast from array.array objects
     def from_array(self, param):
@@ -60,10 +48,27 @@ class DoubleArrayType:
     def from_ndarray(self, param):
         return param.ctypes.data_as(ctypes.POINTER(ctypes.c_double))
 
+    def from_param(self, param):
+        # this function is what is called automatically 
+        # when we include it in:
+        # _avg.argtypes =
+        # it calls specifically for from_param
 
-# DoubleArray = DoubleArrayType()
+        typename = type(param).__name__
+
+        if hasattr(self, 'from_' + typename):
+            return getattr(self, 'from_' + typename)(param)
+
+        elif isinstance(param, ctypes.Array):
+            return param
+
+        else:
+            raise TypeError("Can't convert % s" % typename)
+
+
+DoubleArray = DoubleArrayType()
 _avg = _mod.avg
-_avg.argtypes = (DoubleArrayType, ctypes.c_int)
+_avg.argtypes = (DoubleArray, ctypes.c_int)
 _avg.restype = ctypes.c_double
 
 
@@ -81,5 +86,3 @@ class Point(ctypes.Structure):
 distance = _mod.distance
 distance.argtypes = (ctypes.POINTER(Point), ctypes.POINTER(Point))
 distance.restype = ctypes.c_double
-
-
