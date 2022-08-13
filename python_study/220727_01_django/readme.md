@@ -43,8 +43,6 @@ python3 manage.py startapp challenges
 
 https://www.udemy.com/course/python-django-the-practical-guide/learn/lecture/26372806#overview
 
-Next video:
-https://www.udemy.com/course/python-django-the-practical-guide/learn/lecture/26372816#overview
 
 
 
