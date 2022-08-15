@@ -49,3 +49,5 @@ M.main
 # using c("nameoftheprogram.ex")
 
 
+# Stopped at:
+# https://youtu.be/pBNOavRoNL0?t=749

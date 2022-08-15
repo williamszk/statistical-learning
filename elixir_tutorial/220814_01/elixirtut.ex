@@ -5,6 +5,8 @@ defmodule M do
     IO.puts("Hello #{name}. Welcome to the Elixir programming language.")
 
     data_stuff()
+
+    do_stuff()
   end
 
   def data_stuff do
@@ -25,5 +27,16 @@ defmodule M do
 
     # Stoped at:
     #  https://youtu.be/pBNOavRoNL0?t=402
+  end
+
+  def do_stuff do
+    my_str = "My sentence"
+
+    # print the length of the string
+    IO.puts("Length: #{String.length(my_str)}")
+
+    # combine strings
+    longer_str = my_str <> " " <> "is longer"
+
   end
 end
