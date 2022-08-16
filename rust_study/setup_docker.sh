@@ -25,8 +25,7 @@ git clone https://github.com/williamszk/statistical-learning.git
 
 
 # I had a problem with vscode not connecting with the container
-# I just destroyed and created it again
-
+# I just removed it and created it again
 
 # how to install rust in linux?
 
