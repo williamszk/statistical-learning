@@ -1,7 +1,11 @@
-from urllib import response
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
+# from django.template.loader import render_to_string
+
+# Should view contain some domain logic?
+# and the django html files should contain any logic related to presentation and UI?
+
 
 monthly_challenges_dict = {
     "january": "Eat no meat for the entire month",
@@ -15,17 +19,20 @@ monthly_challenges_dict = {
     "september": "september challenge:Study Django for at least 20 minutes everyday",
     "october": "october challenge: Eat no meat for the entire month",
     "november": "november challenge: Walk for at least 20 minutes everyday",
-    "december": "december challenge:  Study Django for at least 20 minutes everyday",
+    "december": None,
 }
 
 
-def monthly_challenge(request, month):
+def monthly_challenge(request, month: str):
     try:
         challenge_text = monthly_challenges_dict[month]
-
-        response_data = f"<h1>{challenge_text}</h1>"
-
-        return HttpResponse(response_data)
+        return render(request, "challenges/challenge.html", {
+            "text": challenge_text,
+            "month": month
+        })
+        # This dictionary is called context for the template
+        # Templaing is server side rendering
+        # Django Templeting Engine
     except KeyError as e:
         print(e)
         return HttpResponseNotFound("<h1>This month is not supported!</h1>")
@@ -45,26 +52,7 @@ def monthly_challenge_by_number(request, month):
 
 
 def index(request):
-    # response_data = """
-    # <ul>
-    #     <li><a href="/challenges/january">January</a></li>
-    #     <li><a href="/challenges/february">february</a></li>
-    #     <li><a href="/challenges/march">march</a></li>
-    #     <li><a href="/challenges/april">april</a></li>
-    #     <li><a href="/challenges/may">may</a></li>
-    #     <li><a href="/challenges/june">june</a></li>
-    #     <li><a href="/challenges/july">july</a></li>
-    #     <li><a href="/challenges/august">august</a></li>
-    #     <li><a href="/challenges/september">september</a></li>
-    #     <li><a href="/challenges/october">october</a></li>
-    #     <li><a href="/challenges/november">november</a></li>
-    #     <li><a href="/challenges/december">december</a></li>
-    # </ul>
-    # """
 
-    response_data = "<ul>"+"".join(
-        [f"<li><a href=\"/challenges/{month}\">{month}</a></li>"
-         for month in monthly_challenges_dict.keys()]) +\
-        "</ul>"
-
-    return HttpResponse(response_data)
+    return render(request, "challenges/index.html", {
+        "month_list": list(monthly_challenges_dict.keys())
+    })
