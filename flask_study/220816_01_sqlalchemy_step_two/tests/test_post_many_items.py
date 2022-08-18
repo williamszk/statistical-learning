@@ -3,7 +3,6 @@
 
 def test_main():
     import requests
-
     from utilmodule import print_http_response, print_message
 
     print_message("To request an access token")
@@ -17,13 +16,13 @@ def test_main():
 
     print_message("POST chair")
     res = requests.post("http://127.0.0.1:5000/item/chair",
-                        json={"price": 1982.00},
+                        json={"price": 1982.00, "store_id": 1},
                         headers={"Authorization": "JWT " + access_token})
     print_http_response(res)
 
     print_message("POST piano")
     res = requests.post("http://127.0.0.1:5000/item/piano",
-                        json={"price": 99999.00},
+                        json={"price": 99999.00, "store_id": 1},
                         headers={"Authorization": "JWT " + access_token})
     print_http_response(res)
 

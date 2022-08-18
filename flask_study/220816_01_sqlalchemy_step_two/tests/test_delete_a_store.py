@@ -13,16 +13,11 @@ def test_main():
     access_token = res.json()["access_token"]
     print(access_token)
 
-    print_message("DELETE chair")
-    res = requests.delete("http://127.0.0.1:5000/item/chair",
+    print_message("DELETE store Carrefour")
+    res = requests.delete("http://127.0.0.1:5000/store/Carrefour",
                         headers={"Authorization": "JWT " + access_token})
     print_http_response(res)
 
-    # what happens if we try to delete an item that doesn't exist?
-    print_message("DELETE apple")
-    res = requests.delete("http://127.0.0.1:5000/item/apple",
-                        headers={"Authorization": "JWT " + access_token})
-    print_http_response(res)
 
 if __name__ == "__main__":
     test_main()

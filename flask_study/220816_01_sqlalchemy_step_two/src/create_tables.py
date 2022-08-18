@@ -1,7 +1,5 @@
 
 import sqlite3
-from venv import create
-
 
 connection = sqlite3.connect("./db.sqlite")
 
