@@ -1,7 +1,7 @@
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
-# from django.template.loader import render_to_string
+from django.template.loader import render_to_string
 
 # Should view contain some domain logic?
 # and the django html files should contain any logic related to presentation and UI?
@@ -35,7 +35,11 @@ def monthly_challenge(request, month: str):
         # Django Templeting Engine
     except KeyError as e:
         print(e)
-        return HttpResponseNotFound("<h1>This month is not supported!</h1>")
+        # return HttpResponseNotFound("<h1>This month is not supported!</h1>")
+        # return HttpResponseNotFound(render_to_string("404.html"))
+        # Http404 is a class that should be raised and we can write an error message inside of it
+        # and it will automatically look for a 404.html file in the root templates directory
+        raise Http404()
 
 
 def monthly_challenge_by_number(request, month):
