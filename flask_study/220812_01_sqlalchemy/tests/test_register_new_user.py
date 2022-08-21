@@ -1,5 +1,5 @@
 
-def main():
+def test_main():
 
     import requests
     from utilmodule import print_http_response, print_message
@@ -16,4 +16,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    test_main()

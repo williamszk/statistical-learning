@@ -3,7 +3,7 @@ import sqlite3
 
 class ItemModel:
 
-    def __init__(self, name, price) -> None:
+    def __init__(self, name: str, price: float) -> None:
         self.name = name
         self.price = price
 
@@ -13,7 +13,7 @@ class ItemModel:
     @classmethod
     def find_by_name(cls, name: str) -> "ItemModel":
 
-        connection = sqlite3.connect("../db.sqlite")
+        connection = sqlite3.connect("./db.sqlite")
         cursor = connection.cursor()
 
         query = """ --sql
@@ -31,7 +31,7 @@ class ItemModel:
         return None
 
     def update(self):
-        connection = sqlite3.connect("../db.sqlite")
+        connection = sqlite3.connect("./db.sqlite")
         cursor = connection.cursor()
 
         query = """--sql
@@ -43,7 +43,7 @@ class ItemModel:
         connection.close()
 
     def insert(self) -> None:
-        connection = sqlite3.connect("../db.sqlite")
+        connection = sqlite3.connect("./db.sqlite")
         cursor = connection.cursor()
 
         query = """ --sql
@@ -56,7 +56,7 @@ class ItemModel:
         connection.close()
 
     def delete(self):
-        connection = sqlite3.connect("../db.sqlite")
+        connection = sqlite3.connect("./db.sqlite")
         cursor = connection.cursor()
 
         query = """ --sql
@@ -67,3 +67,19 @@ class ItemModel:
 
         connection.commit()
         connection.close()
+
+    @classmethod
+    def get_all(cls) -> list["ItemModel"]:
+        connection = sqlite3.connect("./db.sqlite")
+        cursor = connection.cursor()
+        query = """ --sql
+        SELECT * FROM items;
+        """
+        items = []
+        for row in cursor.execute(query):
+            item = cls(row[1], row[2])
+            items.append(item)
+
+        connection.close()
+
+        return items

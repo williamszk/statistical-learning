@@ -1,0 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Aboreto&family=Nunito+Sans:ital,wght@1,300&display=swap");
+
+html {
+	font-family: "Nunito Sans", sans-serif;
+	/* font-family: 'Aboreto', cursive;*/
+}
+
+body {
+	margin: 0;
+	background-color: rgb(62, 62, 62);
+}

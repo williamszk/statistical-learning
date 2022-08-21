@@ -1,12 +1,11 @@
-import sqlite3
 
+def test_main():
+    import sqlite3
 
-def main():
-    connection = sqlite3.connect("../db.sqlite")
+    connection = sqlite3.connect("../src/db.sqlite")
     cursor = connection.cursor()
-
-    query = """--sql
-    SELECT * FROM users;
+    query = """ --sql
+    SELECT * FROM stores;
     """
 
     for row in cursor.execute(query):
@@ -14,6 +13,5 @@ def main():
 
     connection.close()
 
-
 if __name__ == "__main__":
-    main()
+    test_main()
