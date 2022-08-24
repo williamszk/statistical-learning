@@ -1,6 +1,6 @@
 package com.javastudy;
 
-public class BaseHamburguer {
+public class BaseHamburger {
     private String breadRoll;
     private boolean meat;
     private boolean lettuce;
@@ -9,7 +9,7 @@ public class BaseHamburguer {
     private boolean bacon;
 
 
-    private String burguerName;
+    private String burgerName;
 
 
     private double basePrice;
@@ -19,11 +19,11 @@ public class BaseHamburguer {
     private double baconPrice = 1.12;
 
 
-    public BaseHamburguer(String breadRoll, boolean meat) {
+    public BaseHamburger(String breadRoll, boolean meat) {
         this.breadRoll = breadRoll;
         this.meat = meat;
 
-        this.burguerName = "Basic Hamburguer";
+        this.burgerName = "Basic Hamburger";
         this.lettuce = true;
         this.tomato = true;
         this.cheese = true;
@@ -43,6 +43,7 @@ public class BaseHamburguer {
 
         return totalPrice;
     }
+
 
     public void setLettuce(boolean lettuce) {
         this.lettuce = lettuce;
