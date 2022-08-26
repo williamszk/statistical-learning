@@ -16,7 +16,7 @@ public class BaseHamburger {
 
 
     public BaseHamburger(){
-        this("Basic Breadroll", true, true, true, true, true, "Basic Burger", 2.00, 0.50, 0.40, 1.0, 2.0);
+        this("Basic Breadroll", true, true, true, true, true, "Basic Burger", 2.00, 0.35, 0.40, 1.0, 1.0);
     }
 
 
@@ -77,6 +77,22 @@ public class BaseHamburger {
         this.burgerName = burgerName;
     }
 
+    public boolean isLettuce() {
+        return lettuce;
+    }
+
+    public boolean isTomato() {
+        return tomato;
+    }
+
+    public boolean isCheese() {
+        return cheese;
+    }
+
+    public boolean isBacon() {
+        return bacon;
+    }
+
     public double getBasePrice() {
         return basePrice;
     }
@@ -97,4 +113,7 @@ public class BaseHamburger {
         return baconPrice;
     }
 
+    public String getBurgerName() {
+        return burgerName;
+    }
 }
