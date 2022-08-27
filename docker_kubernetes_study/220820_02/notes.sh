@@ -156,18 +156,27 @@ touch docker-compose.yaml
 
 docker-compose up -d --build
 docker-compose up -d
+docker-compose down
 
 docker-compose stop
 docker-compose start
 
+# =================================================================
+npm run test
+docker build -t my-react-image -f Dockerfile.dev .
+docker run --rm -it --name my-react-container my-react-image npm run test
+# docker rm my-react-container
+
+# to run the test within the same running container
+docker exec -it frontend_my-react-container_1 npm run test
+
+docker attach frontend_tests_1 
+
+docker exec -it frontend_tests_1 sh
 
 
 
-
-
-
-
-
+# =================================================================
 
 
 
