@@ -472,3 +472,6 @@ VALUE ("Netflix", "+1 (202) 1231-0999");
 
 -- Next video:
 -- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8410308#overview
+
+
+
