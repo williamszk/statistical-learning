@@ -567,6 +567,316 @@ SELECT first_name FROM employees WHERE first_name NOT LIKE('%jack%');
 
 -- Next:
 -- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345114#overview
+-- the operator BETWEEN... END...
+-- used with the WHERE clause 
+
+SELECT * FROM employees WHERE hire_date BETWEEN '1990-01-01' AND '2000-01-01';
+-- +--------+------------+----------------+------------------+--------+------------+
+-- | emp_no | birth_date | first_name     | last_name        | gender | hire_date  |
+-- +--------+------------+----------------+------------------+--------+------------+
+-- |  10007 | 1958-02-19 | Saniya         | Kalloufi         | M      | 1994-09-15 |
+-- |  10010 | 1953-11-07 | Mary           | Sluis            | F      | 1990-01-22 |
+-- |  10011 | 1960-10-04 | Patricio       | Bridgland        | M      | 1992-12-18 |
+-- |  10015 | 1961-05-02 | Kazuhito       | Cappelletti      | M      | 1995-01-27 |
+-- ....
+-- |  13335 | 1963-03-11 | Vatsa          | Hofman           | M      | 1991-07-29 |
+-- |  13338 | 1962-03-24 | Mart           | Koblitz          | M      | 1990-08-24 |
+-- +--------+------------+----------------+------------------+--------+------------+
+-- 135214 rows in set (0.0065 sec)
+
+-- we can also use NOT BETWEEN... AND...
+
+DESCRIBE employees;
+-- +------------+---------------+------+-----+---------+-------+
+-- | Field      | Type          | Null | Key | Default | Extra |
+-- +------------+---------------+------+-----+---------+-------+
+-- | emp_no     | int           | NO   | PRI | NULL    |       |
+-- | birth_date | date          | NO   |     | NULL    |       |
+-- | first_name | varchar(14)   | NO   |     | NULL    |       |
+-- | last_name  | varchar(16)   | NO   |     | NULL    |       |
+-- | gender     | enum('M','F') | NO   |     | NULL    |       |
+-- | hire_date  | date          | NO   |     | NULL    |       |
+-- +------------+---------------+------+-----+---------+-------+
+-- 6 rows in set (0.0114 sec)
+
+-- note that hire_date is of "date" type
+
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8340844#overview
+
+--  MySQL  localhost:33060+ ssl  employees  SQL > describe salaries
+--                                             -> ;   
+-- +-----------+------+------+-----+---------+-------+
+-- | Field     | Type | Null | Key | Default | Extra |
+-- +-----------+------+------+-----+---------+-------+
+-- | emp_no    | int  | NO   | PRI | NULL    |       |
+-- | salary    | int  | NO   |     | NULL    |       |
+-- | from_date | date | NO   | PRI | NULL    |       |
+-- | to_date   | date | NO   |     | NULL    |       |
+-- +-----------+------+------+-----+---------+-------+
+-- 4 rows in set (0.0028 sec)
+
+-- Select all the information from the “salaries” table regarding contracts from 66,000 to 70,000 dollars per year.
+SELECT * FROM salaries WHERE salary BETWEEN 66000 AND 70000;
+-- +--------+--------+------------+------------+
+-- | emp_no | salary | from_date  | to_date    |
+-- +--------+--------+------------+------------+
+-- |  10001 |  66074 | 1988-06-25 | 1989-06-25 |
+-- |  10001 |  66596 | 1989-06-25 | 1990-06-25 |
+-- |  10001 |  66961 | 1990-06-25 | 1991-06-25 |
+-- |  10002 |  67534 | 1998-08-03 | 1999-08-03 |
+-- |  10002 |  69366 | 1999-08-03 | 2000-08-02 |
+-- |  10004 |  67096 | 1998-11-28 | 1999-11-28 |
+-- ...............
+-- |  10431 |  67068 | 1987-10-08 | 1988-10-07 |
+-- |  10431 |  68188 | 1988-10-07 | 1989-10-07 |
+-- +--------+--------+------------+------------+
+-- 74027 rows in set (0.0411 sec)
+
+
+-- Retrieve a list with all individuals whose employee number is not between ‘10004’ and ‘10012’.
+SELECT * FROM employees WHERE emp_no NOT BETWEEN '10004' AND '10012';
+-- +--------+------------+----------------+------------------+--------+------------+
+-- | emp_no | birth_date | first_name     | last_name        | gender | hire_date  |
+-- +--------+------------+----------------+------------------+--------+------------+
+-- |  10001 | 1953-09-02 | Georgi         | Facello          | M      | 1986-06-26 |
+-- |  10002 | 1964-06-02 | Bezalel        | Simmel           | F      | 1985-11-21 |
+-- |  10003 | 1959-12-03 | Parto          | Bamford          | M      | 1986-08-28 |
+-- |  10013 | 1963-06-07 | Eberhardt      | Terkki           | M      | 1985-10-20 |
+-- |  10014 | 1956-02-12 | Berni          | Genin            | M      | 1987-03-11 |
+-- ....
+-- |  10816 | 1958-02-24 | Morris         | Caine            | F      | 1989-06-27 |
+-- |  10817 | 1958-10-02 | Uri            | Rullman          | F      | 1990-12-26 |
+-- +--------+------------+----------------+------------------+--------+------------+
+-- 300015 rows in set (0.0107 sec)
+-- Result printing interrupted, rows may be missing from the output.
+
+
+-- Select the names of all departments with numbers between ‘d003’ and ‘d006’.
+DESCRIBE departments; 
+-- +-----------+-------------+------+-----+---------+-------+
+-- | Field     | Type        | Null | Key | Default | Extra |
+-- +-----------+-------------+------+-----+---------+-------+
+-- | dept_no   | char(4)     | NO   | PRI | NULL    |       |
+-- | dept_name | varchar(40) | NO   | UNI | NULL    |       |
+-- +-----------+-------------+------+-----+---------+-------+
+-- 2 rows in set (0.0054 sec)
+
+SELECT * FROM departments WHERE dept_no BETWEEN 'd003' AND 'd006';
+-- +---------+--------------------+
+-- | dept_no | dept_name          |
+-- +---------+--------------------+
+-- | d003    | Human Resources    |
+-- | d004    | Production         |
+-- | d005    | Development        |
+-- | d006    | Quality Management |
+-- +---------+--------------------+
+-- 4 rows in set (0.0049 sec)
+
+-- Next
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345126#overview
+
+
+-- start mysql shell 
+mysqlsh -u william
+-- the password for the local mysql
+mNpL9UwjEPFxTpGjRdnvDbAvrqvVGNxs48LAEWAu
+yes
+-- change to sql terminal
+\sql
+
+USE employees;
+
+SELECT * FROM employees WHERE first_name IS NULL;
+-- empty set
+
+-- Select the names of all departments whose department number value is not null.
+SELECT * FROM departments WHERE dept_no IS NOT NULL;
+
+
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345142#overview
+-- for not equal operators we can use <> or !=
+
+-- get all employees that were hired after 2000
+SELECT * FROM employees WHERE hire_date > '2000-01-01';
+-- +--------+------------+------------+------------+--------+------------+
+-- | emp_no | birth_date | first_name | last_name  | gender | hire_date  |
+-- +--------+------------+------------+------------+--------+------------+
+-- |  47291 | 1960-09-09 | Ulf        | Flexer     | M      | 2000-01-12 |
+-- |  60134 | 1964-04-21 | Seshu      | Rathonyi   | F      | 2000-01-02 |
+-- |  72329 | 1953-02-09 | Randi      | Luit       | F      | 2000-01-02 |
+-- | 205048 | 1960-09-12 | Ennio      | Alblas     | F      | 2000-01-06 |
+-- | 222965 | 1959-08-07 | Volkmar    | Perko      | F      | 2000-01-13 |
+-- | 226633 | 1958-06-10 | Xuejun     | Benzmuller | F      | 2000-01-04 |
+-- | 227544 | 1954-11-17 | Shahab     | Demeyer    | M      | 2000-01-08 |
+-- | 422990 | 1953-04-09 | Jaana      | Verspoor   | F      | 2000-01-11 |
+-- | 424445 | 1953-04-27 | Jeong      | Boreale    | M      | 2000-01-03 |
+-- | 428377 | 1957-05-09 | Yucai      | Gerlach    | M      | 2000-01-23 |
+-- | 463807 | 1964-06-12 | Bikash     | Covnot     | M      | 2000-01-28 |
+-- | 499553 | 1954-05-06 | Hideyuki   | Delgrande  | F      | 2000-01-22 |
+-- +--------+------------+------------+------------+--------+------------+
+-- 12 rows in set (0.3200 sec)
+
+
+
+SELECT * FROM employees WHERE hire_date < '1985-02-01';
+-- +--------+------------+-------------+--------------+--------+------------+
+-- | emp_no | birth_date | first_name  | last_name    | gender | hire_date  |
+-- +--------+------------+-------------+--------------+--------+------------+
+-- | 110022 | 1956-09-12 | Margareta   | Markovitch   | M      | 1985-01-01 |
+-- | 110085 | 1959-10-28 | Ebru        | Alpin        | M      | 1985-01-01 |
+-- | 110114 | 1957-03-28 | Isamu       | Legleitner   | F      | 1985-01-14 |
+-- | 110183 | 1953-06-24 | Shirish     | Ossenbruggen | F      | 1985-01-01 |
+-- | 110303 | 1956-06-08 | Krassimir   | Wegerle      | F      | 1985-01-01 |
+-- | 110511 | 1957-07-08 | DeForest    | Hagimont     | M      | 1985-01-01 |
+-- | 110725 | 1961-03-14 | Peternela   | Onuegbe      | F      | 1985-01-01 |
+-- | 111035 | 1962-02-24 | Przemyslawa | Kaelbling    | M      | 1985-01-01 |
+-- | 111400 | 1959-11-09 | Arie        | Staelin      | M      | 1985-01-01 |
+-- | 111692 | 1954-10-05 | Tonny       | Butterworth  | F      | 1985-01-01 |
+-- +--------+------------+-------------+--------------+--------+------------+
+-- 10 rows in set (0.3181 sec)
+
+
+-- Retrieve a list with data about all female employees who were hired in the year 2000 or after.
+-- Hint: If you solve the task correctly, SQL should return 7 rows.
+
+SELECT * FROM employees WHERE gender='F' AND hire_date >= '2000-01-01';
+-- +--------+------------+------------+------------+--------+------------+
+-- | emp_no | birth_date | first_name | last_name  | gender | hire_date  |
+-- +--------+------------+------------+------------+--------+------------+
+-- |  60134 | 1964-04-21 | Seshu      | Rathonyi   | F      | 2000-01-02 |
+-- |  72329 | 1953-02-09 | Randi      | Luit       | F      | 2000-01-02 |
+-- | 205048 | 1960-09-12 | Ennio      | Alblas     | F      | 2000-01-06 |
+-- | 222965 | 1959-08-07 | Volkmar    | Perko      | F      | 2000-01-13 |
+-- | 226633 | 1958-06-10 | Xuejun     | Benzmuller | F      | 2000-01-04 |
+-- | 422990 | 1953-04-09 | Jaana      | Verspoor   | F      | 2000-01-11 |
+-- | 499553 | 1954-05-06 | Hideyuki   | Delgrande  | F      | 2000-01-22 |
+-- +--------+------------+------------+------------+--------+------------+
+-- 7 rows in set (0.2035 sec)
+
+
+-- Extract a list with all employees’ salaries higher than $150,000 per annum.
+SELECT * FROM salaries WHERE salary > 150000;
+-- +--------+--------+------------+------------+
+-- | emp_no | salary | from_date  | to_date    |
+-- +--------+--------+------------+------------+
+-- |  43624 | 151115 | 1998-03-23 | 1999-03-23 |
+-- |  43624 | 153166 | 1999-03-23 | 2000-03-22 |
+-- |  43624 | 153458 | 2000-03-22 | 2001-03-22 |
+-- |  43624 | 157821 | 2001-03-22 | 2002-03-22 |
+-- |  43624 | 158220 | 2002-03-22 | 9999-01-01 |
+-- |  46439 | 150345 | 2002-05-15 | 9999-01-01 |
+-- |  47978 | 151929 | 2001-07-14 | 2002-07-14 |
+-- |  47978 | 155709 | 2002-07-14 | 9999-01-01 |
+-- |  66793 | 150052 | 2002-06-16 | 9999-01-01 |
+-- |  80823 | 151768 | 2001-02-22 | 2002-02-22 |
+-- |  80823 | 154459 | 2002-02-22 | 9999-01-01 |
+-- | 109334 | 151484 | 1998-02-12 | 1999-02-12 |
+-- | 109334 | 154885 | 1999-02-12 | 2000-02-12 |
+-- | 109334 | 155377 | 2000-02-12 | 2001-02-11 |
+-- | 109334 | 154888 | 2001-02-11 | 2002-02-11 |
+-- | 109334 | 155190 | 2002-02-11 | 9999-01-01 |
+-- +--------+--------+------------+------------+
+-- 16 rows in set (0.4967 sec)
+
+
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345160#overview
+-- SELECT DISTINCT
+SELECT DISTINCT gender FROM employees;
+-- +--------+
+-- | gender |
+-- +--------+
+-- | M      |
+-- | F      |
+-- +--------+
+-- 2 rows in set (0.2078 sec)
+
+-- Obtain a list with all different “hire dates” from the “employees” table.
+-- Expand this list and click on “Limit to 1000 rows”. This way you will set the limit of output rows displayed back to the default of 1000.
+-- In the next lecture, we will show you how to manipulate the limit rows count. 
+
+SELECT DISTINCT hire_date FROM employees;
+-- +------------+
+-- | hire_date  |
+-- +------------+
+-- | 1986-06-26 |
+-- | 1985-11-21 |
+-- | 1986-08-28 |
+-- ....
+-- | 1999-12-12 |
+-- | 1999-07-08 |
+-- | 1999-09-15 |
+-- | 1999-11-26 |
+-- | 2000-01-22 |
+-- +------------+
+-- 5434 rows in set (0.4003 sec)
+
+-- Aggregate Function
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345176#overview
+-- COUNT(), count of non-null values in a field
+-- SUM()
+-- MIN()
+-- MAX()
+-- AVG()
+
+-- How to count including the null values?
+-- We can count the index, which is not nullable
+
+-- how many employees are registered in the database?
+SELECT COUNT(emp_no) FROM employees;
+-- +---------------+
+-- | COUNT(emp_no) |
+-- +---------------+
+-- |        300024 |
+-- +---------------+
+-- 1 row in set (14.3672 sec)
+
+-- how many distinct first names do we have in the database?
+SELECT COUNT(DISTINCT first_name) FROM employees;
+-- +----------------------------+
+-- | COUNT(DISTINCT first_name) |
+-- +----------------------------+
+-- |                       1275 |
+-- +----------------------------+
+-- 1 row in set (0.2981 sec)
+
+
+-- How many annual contracts with a value higher than or equal to $100,000 have been registered in the salaries table?
+SELECT COUNT(emp_no) FROM salaries WHERE salary >= 100000;
+-- +---------------+
+-- | COUNT(emp_no) |
+-- +---------------+
+-- |         32207 |
+-- +---------------+
+-- 1 row in set (0.3401 sec)
+
+
+
+-- How many managers do we have in the “employees” database? Use the star symbol (*) in your code to solve this exercise.
+SELECT COUNT(*) FROM dept_manager;
+-- +----------+
+-- | COUNT(*) |
+-- +----------+
+-- |       24 |
+-- +----------+
+-- 1 row in set (0.0143 sec)
+
+
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345178#overview
+-- get the employees table and show in descending order on the first_name
+SELECT * FROM employees ORDER BY first_name DESC;
+-- ascending is the default. we could use ASC to make it explicit.
+
+-- we can sort by two or more fields
+SELECT * FROM employees ORDER BY first_name, last_name DESC;
+
+-- Select all data from the “employees” table, ordering it by “hire date” in descending order.
+SELECT * FROM employees ORDER BY hire_date DESC;
+
+-- GROUP BY
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345180#overview
+
+
+
 
 
 
