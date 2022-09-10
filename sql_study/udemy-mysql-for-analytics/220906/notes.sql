@@ -256,6 +256,7 @@ SELECT * FROM employees WHERE first_name = 'Elvis';
 -- +--------+------------+------------+----------------+--------+------------+
 -- 246 rows in set (0.3526 sec)
 
+-- keywords
 -- equal operator
 -- examples of operators that we can use inside the WHERE clause
 -- AND
@@ -874,6 +875,230 @@ SELECT * FROM employees ORDER BY hire_date DESC;
 
 -- GROUP BY
 -- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345180#overview
+
+
+-- start mysql shell 
+mysqlsh -u william
+-- the password for the local mysql
+mNpL9UwjEPFxTpGjRdnvDbAvrqvVGNxs48LAEWAu
+yes
+-- change to sql terminal
+\sql
+
+USE employees;
+
+-- GROUP BY must be placed after WHERE and before ORDER BY
+-- why is that?
+
+-- GROUP BY are useful with some aggregate function
+
+-- count the number of occurences of first_name
+SELECT first_name, COUNT(first_name)
+FROM employees
+GROUP BY first_name;
+
+-- +----------------+-------------------+
+-- | first_name     | COUNT(first_name) |
+-- +----------------+-------------------+
+-- | Georgi         |               253 |
+-- | Bezalel        |               228 |
+-- | Parto          |               228 |
+-- | Chirstian      |               226 |
+-- | Kyoichi        |               251 |
+-- | Anneke         |               225 |
+-- | Tzvetan        |               241 |
+-- ....
+-- | Paris          |               229 |
+-- | Roselyn        |               233 |
+-- | Padma          |               246 |
+-- | Noritoshi      |               225 |
+-- | Bodo           |               222 |
+-- | Khaled         |               233 |
+-- | Ravishankar    |               214 |
+-- +----------------+-------------------+
+-- 1275 rows in set (0.5351 sec)
+
+-- order the above result by the first_name
+
+SELECT first_name, COUNT(first_name)
+FROM employees
+GROUP BY first_name
+ORDER BY first_name DESC;
+
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345184#overview
+-- give a column another name, using alias
+
+SELECT first_name, COUNT(first_name) AS count_first_name
+FROM employees
+GROUP BY first_name
+ORDER BY first_name DESC;
+
+-- +----------------+------------------+
+-- | first_name     | count_first_name |
+-- +----------------+------------------+
+-- | Zvonko         |              258 |
+-- | Zsolt          |              236 |
+-- | Zorica         |              225 |
+-- | Zongyan        |              254 |
+-- | Ziyad          |              229 |
+-- | Ziya           |              207 |
+-- ...
+-- | Itzchak        |              244 |
+-- | Ishfaq         |              200 |
+-- | Isamu          |              221 |
+-- +----------------+------------------+
+-- 1275 rows in set (0.4503 sec)
+
+
+-- This will be a slightly more sophisticated task.
+-- Write a query that obtains two columns. The first column must contain annual salaries higher 
+-- than 80,000 dollars. The second column, renamed to “emps_with_same_salary”, must show the 
+-- number of employees contracted to that salary. Lastly, sort the output by the first column.
+
+SELECT salary, COUNT(emp_no) as emps_with_same_salary
+FROM salaries 
+WHERE salary > 80000
+GROUP BY salary 
+ORDER BY salary
+;
+
+-- +--------+-----------------------+
+-- | salary | emps_with_same_salary |
+-- +--------+-----------------------+
+-- |  80001 |                    12 |
+-- |  80002 |                    10 |
+-- |  80003 |                    10 |
+-- |  80004 |                    13 |
+-- |  80005 |                    15 |
+-- |  80006 |                     8 |
+-- |  80007 |                     8 |
+-- .....
+
+
+-- HAVING is used with GROUP BY
+SELECT column_names
+FROM table_name
+WHERE conditions
+GROUP BY column_names
+HAVING conditions
+ORDER BY column_names;
+
+-- HAVING is like WHERE but applied to the GROUP BY block
+
+SELECT * 
+FROM employees
+WHERE hire_date >= '2000-01-01';
+
+SELECT * 
+FROM employees
+HAVING hire_date >= '2000-01-01';
+
+-- Both work in the same way
+-- WHERE, HAVING
+
+
+-- find the employee's first_name that appears more than 250 times
+SELECT first_name, COUNT(first_name) as names_count
+FROM employees
+WHERE COUNT(first_name) > 250
+GROUP BY first_name
+ORDER BY first_name;
+-- this query will give an error
+-- ERROR: 1111: Invalid use of group function
+
+-- we need to change the WHERE to HAVING
+-- and the HAVING must come after the GROUP BY
+SELECT first_name, COUNT(first_name) as names_count
+FROM employees
+GROUP BY first_name
+HAVING COUNT(first_name) > 250
+ORDER BY first_name;
+
+-- +-------------+-------------+
+-- | first_name  | names_count |
+-- +-------------+-------------+
+-- | Adam        |         251 |
+-- | Akemi       |         259 |
+-- | Anyuan      |         278 |
+-- | Arie        |         255 |
+-- .............
+-- | Youssef     |         258 |
+-- | Yuguang     |         256 |
+-- | Yurij       |         266 |
+-- | Zhenhua     |         257 |
+-- | Zito        |         251 |
+-- | Zongyan     |         254 |
+-- | Zvonko      |         258 |
+-- +-------------+-------------+
+-- 193 rows in set (0.3748 sec)
+
+-- note that we are using COUNT with the HAVING clause
+
+
+-- Select all employees whose average salary is higher than $120,000 per annum.
+-- Hint: You should obtain 101 records.
+
+SELECT * 
+FROM salaries 
+GROUP BY emp_no 
+HAVING AVG(salary) > 120000;
+
+
+-- Compare the output you obtained with the output of the following two queries:
+SELECT *, AVG(salary)
+FROM salaries
+WHERE salary > 120000
+GROUP BY emp_no
+ORDER BY emp_no;
+
+
+SELECT *, AVG(salary)
+FROM salaries
+GROUP BY emp_no
+HAVING AVG(salary) > 120000;
+
+-- https://www.udemy.com/course/sql-mysql-for-data-analytics-and-business-intelligence/learn/lecture/8345188#overview
+
+-- keywords
+-- equal operator
+-- examples of operators that we can use inside the WHERE clause
+-- AND
+-- OR 
+-- IN 
+-- NOT IN 
+-- LIKE 
+-- NOT LIKE
+-- BETWEEN...  AND...
+-- EXISTS
+-- NOT EXISTS
+-- IS NULL
+-- IS NOT NULL
+-- comparison operators 
+
+-- HAVING clause
+
+-- WHERE is applied to individual records
+-- that is, it is applied before using GROUP BY
+
+-- an example
+-- extract a list of all names that are encountered less than 200 times
+-- let the data refer to people hired after the 1st of january 1999
+SELECT first_name, COUNT(first_name) as count_first_name 
+FROM employees
+WHERE hire_date > '1999-01-01'
+GROUP BY first_name
+HAVING COUNT(first_name) < 200
+ORDER BY COUNT(first_name);
+
+-- this is a case where we are using both WHERE and HAVING
+
+
+
+
+
+
+
+
 
 
 
