@@ -1,0 +1,4 @@
+jenkins-data/**
+!jenkins-data/.gitkeep
+
+jenkins_home/**
