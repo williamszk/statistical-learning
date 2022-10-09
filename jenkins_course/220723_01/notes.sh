@@ -112,6 +112,87 @@ docker-compose up -d
 # so volumes are very important to not loose all the work
 
 
+# =========================================================== #
+
+docker cp script.sh jenkins:/tmp/script.sh
+docker exec -it jenkins /bin/bash
+chmod +x /tmp/script.sh
+exit
+
+# =========================================================== #
+
+# Next class:
+# https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/12925952#overview
+
+
+# =========================================================== #
+# Create ssh key to access the other container
+ssh-keygen -f remote-key
+# Generating public/private rsa key pair.
+# Enter passphrase (empty for no passphrase): 
+# Enter same passphrase again: 
+# Your identification has been saved in remote-key
+# Your public key has been saved in remote-key.pub
+# The key fingerprint is:
+# SHA256:wuuXpoaXP4xSaYzKTFE/Rj69OVw/9J2vwRuP3V0vfyU william@william-300E5M-300E5L
+# The key's randomart image is:
+# +---[RSA 3072]----+
+# |                 |
+# |    . .          |
+# |   . + .         |
+# |  .  .* . . .    |
+# |   . +o=S+ o . ..|
+# |  . . =o=   o.E.o|
+# | + . +.+ o   .+.+|
+# |  + o.= *     .BB|
+# |     +o=..    ++O|
+# +----[SHA256]-----+
+
+# After altering the docker-compose file
+docker-compose build
+# this will build any images that are specified in the docker-compose file
+
+docker images
+# REPOSITORY                           TAG         IMAGE ID       CREATED          SIZE
+# remote-host                          latest      12b4ad35ace1   41 minutes ago   383MB
+
+# Now that the image was built we need to spin up the container
+docker-compose up -d
+
+docker ps 
+# CONTAINER ID   IMAGE                 COMMAND                  CREATED             STATUS             PORTS                                                  NAMES
+# a217edcbdf18   remote-host           "/bin/sh -c '/usr/sb…"   18 seconds ago      Up 13 seconds                                                             remote-host
+# bf7438ca4f35   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   About an hour ago   Up About an hour   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 50000/tcp   jenkins
+
+# From the jenkins container we can ssh into the other container, the remote-host
+docker exec -it jenkins /bin/bash
+
+# the name of the container is like an internal DNS
+ssh remote_user@remote_host
+# [remote_user@a217edcbdf18 ~]$
+
+ping remote_host
+
+# Try to ssh into the remote_host using the key
+# /home/william/Documents/statistical-learning/jenkins_course/220723_01/jenkins/jenkins-data/centos7
+# copy the private key to the jenkins server, this will work as the private key from jenkins
+docker cp remote-key jenkins:/tmp/remote-key 
+
+docker exec -it jenkins /bin/bash
+
+# use the copied key to ssh into the remote-server
+ssh -i /tmp/remote-key remote_user@remote_host
+# jenkins@bf7438ca4f35:/$ ssh -i /tmp/remote-key remote_user@remote_host
+# Last login: Sat Aug  6 15:53:48 2022 from jenkins.jenkins-data_net
+# [remote_user@a217edcbdf18 ~]$ 
+
+# In this way we don't need to use the password when we want to ssh into the server
+
+
+
+
+
+
 
 
 
