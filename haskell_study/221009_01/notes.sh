@@ -44,3 +44,21 @@ stack build
 
 stack exec hello-world
 
+# to run the haskell file directly instead of compiling the entire project
+stack runghc ./src/AddBrackets.hs
+
+
+touch ./src/Factorial.hs
+stack runghc ./src/Factorial.hs
+
+
+touch ./src/ControlStructures.hs
+stack runghc ./src/ControlStructures.hs
+
+
+touch ./src/Program.hs
+stack runghc ./src/Program.hs
+
+stack ghc ./src/Program.hs
+./src/Program
+
