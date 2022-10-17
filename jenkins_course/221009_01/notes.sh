@@ -77,6 +77,6 @@ ssh -i /tmp/my-remote-key remote_user@remote_host
 # next video:
 # https://www.udemy.com/course/jenkins-from-zero-to-hero/learn/lecture/12925972#overview
 
-
+docker-compose start
 
 
