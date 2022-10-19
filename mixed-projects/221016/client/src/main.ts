@@ -38,6 +38,15 @@ type WeeklySalesReport = {
 		"Unemployment",
 	];
 
+	const floatColumns: string[] = [
+		"Weekly_Sales",
+		"Temperature",
+		"Fuel_Price",
+		"CPI",
+		"Unemployment",
+	];
+	const intColumns: string[] = ["Holiday_Flag", "Store"];
+
 	const fileContent = fs.readFileSync(csvFilePath, { encoding: "utf-8" });
 
 	parse(
@@ -45,6 +54,31 @@ type WeeklySalesReport = {
 		{
 			delimiter: ",",
 			columns: headers,
+			// fromLine: 6430,
+			fromLine: 10,
+			cast: (columnValue, context) => {
+				const columnName: string = context.column.toString();
+
+				if (intColumns.includes(columnName)) {
+					return parseInt(columnValue);
+				} else if (floatColumns.includes(columnName)) {
+					return parseFloat(columnValue);
+				}
+				return columnValue;
+			},
+			on_record: (line: WeeklySalesReport, context)=>{
+
+				// get only 2012 records
+				// if(line.Date.slice(6,10) === "2012"){
+				// 	return line;
+				// }
+
+				// get only data about store 3
+				if(line.Store === 3){
+					return line;
+				}
+				return;
+			}
 		},
 		(error, result: WeeklySalesReport[]) => {
 			if (error) {
@@ -53,7 +87,4 @@ type WeeklySalesReport = {
 			console.log("Result", result);
 		}
 	);
-
-	console.log("Hello World");
-	console.log(hello("Bob"));
 })();

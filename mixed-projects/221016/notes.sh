@@ -54,3 +54,5 @@ npm i @types/node
 # then I need to take each line of the csv and send the object through an
 # http request
 # Search for how to make requests with typescript
+
+# we could plot the graph on the client it self using typescript
