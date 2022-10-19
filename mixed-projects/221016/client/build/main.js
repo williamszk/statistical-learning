@@ -30,7 +30,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const csv_parse_1 = require("csv-parse");
 const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
-const module_1 = require("./module");
 (() => {
     const csvFilePath = path.resolve(__dirname, "../../original-data/Walmart.csv");
     const headers = [
@@ -43,16 +42,45 @@ const module_1 = require("./module");
         "CPI",
         "Unemployment",
     ];
+    const floatColumns = [
+        "Weekly_Sales",
+        "Temperature",
+        "Fuel_Price",
+        "CPI",
+        "Unemployment",
+    ];
+    const intColumns = ["Holiday_Flag", "Store"];
     const fileContent = fs.readFileSync(csvFilePath, { encoding: "utf-8" });
     (0, csv_parse_1.parse)(fileContent, {
         delimiter: ",",
         columns: headers,
+        // fromLine: 6430,
+        fromLine: 10,
+        cast: (columnValue, context) => {
+            const columnName = context.column.toString();
+            if (intColumns.includes(columnName)) {
+                return parseInt(columnValue);
+            }
+            else if (floatColumns.includes(columnName)) {
+                return parseFloat(columnValue);
+            }
+            return columnValue;
+        },
+        on_record: (line, context) => {
+            // get only 2012 records
+            // if(line.Date.slice(6,10) === "2012"){
+            // 	return line;
+            // }
+            // get only data about store 3
+            if (line.Store === 3) {
+                return line;
+            }
+            return;
+        }
     }, (error, result) => {
         if (error) {
             console.log(error);
         }
         console.log("Result", result);
     });
-    console.log("Hello World");
-    console.log((0, module_1.hello)("Bob"));
 })();
