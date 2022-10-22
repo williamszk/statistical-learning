@@ -1,0 +1,1 @@
+In this directory we include code related to Django study
