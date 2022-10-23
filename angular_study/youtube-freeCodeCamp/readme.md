@@ -9,5 +9,4 @@ Angular is TypeScript
 
 About typescript:
 
-https://youtu.be/3qBXWUpoPHo?t=600
 
