@@ -9,4 +9,8 @@ Angular is TypeScript
 
 About typescript:
 
+Next video:
+https://youtu.be/3qBXWUpoPHo?t=1784
+
+
 

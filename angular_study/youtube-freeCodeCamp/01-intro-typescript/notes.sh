@@ -11,3 +11,15 @@ npm i
 # check typscript version
 tsc -v
 
+touch datatypes.ts
+
+tsc
+
+# Data types and functions
+# https://youtu.be/3qBXWUpoPHo?t=2553
+
+# compile
+tsc
+# run
+node datatypes.js
+
