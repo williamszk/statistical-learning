@@ -1,0 +1,51 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#wrapper {
+	border: 5px solid black;
+	width: 1280px;
+	height: 720px;
+	position: absolute;
+	/* to center container in the middle vertically and horizontally */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	overflow: hidden;
+}
+
+canvas {
+	background: url("../owlbear/background.png");
+}
+
+#overlay {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+#leaves_left {
+	position: absolute;
+	top: 50px;
+	left: -100px;
+}
+
+#leaves_right {
+	position: absolute;
+	top: 50px;
+	right: -100px;
+}
+
+/* general sibling selector 
+use the tilda symbol ~ 
+selects all elements that are next siblings of a specified element
+*/
+
+canvas:hover ~ #leaves_left {
+	/* left: -100px; */
+	transform: rotate(15deg);
+}
