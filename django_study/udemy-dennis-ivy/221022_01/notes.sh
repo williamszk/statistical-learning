@@ -61,6 +61,21 @@ python3 manage.py migrate
 
 # register model with admin panel
 
+# after including more models
+python3 manage.py makemigrations
+python3 manage.py migrate
+# (.venv) root@d03aa4273aef:~/statistical-learning/django_study/udemy-dennis-ivy/221022_01/devsearch# python3 manage.py makemigrations
+# Migrations for 'projects':
+#   projects/migrations/0002_tag_project_vote_ratio_project_vote_total_review_and_more.py
+#     - Create model Tag
+#     - Add field vote_ratio to project
+#     - Add field vote_total to project
+#     - Create model Review
+#     - Add field tags to project
+# (.venv) root@d03aa4273aef:~/statistical-learning/django_study/udemy-dennis-ivy/221022_01/devsearch# python3 manage.py migrate
+# Operations to perform:
+#   Apply all migrations: admin, auth, contenttypes, projects, sessions
+# Running migrations:
+#   Applying projects.0002_tag_project_vote_ratio_project_vote_total_review_and_more... OK
 
-
-
+# register tables in the admin panel
