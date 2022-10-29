@@ -57,3 +57,37 @@ let sumNum = numList.reduce((acc, num) => acc + num);
 
 // stopped at:
 // https://youtu.be/3qBXWUpoPHo?t=3638
+
+const enum Color {
+	Red,
+	Green,
+	Blue,
+}
+// Design System
+
+let c: Color = Color.Green;
+
+// Tuples
+let swapNumbs: [number, number];
+
+function swapNumbers(num1: number, num2: number): [number, number] {
+	return [num2, num1];
+}
+
+swapNumbs = swapNumbers(10, 20);
+console.log(swapNumbs);
+
+swapNumbs[0];
+swapNumbs[1];
+// swapNumbs[2]; // this will give an error, given that it is a tuple
+
+// any datatype
+let department;
+department = "IT";
+department = 10;
+
+
+// void
+
+
+// never
