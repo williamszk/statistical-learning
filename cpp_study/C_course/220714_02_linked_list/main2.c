@@ -2,7 +2,7 @@
 
 /** Here we want to make the list be presented in 
  * the reverse order, on main.c the liked list is being
- * created with the resersed order compared to the input
+ * created with the reversed order compared to the input
  * list.
  * */
 
@@ -15,7 +15,6 @@ typedef struct node {
 } Node;
 
 Node* createNode(int data){
-
 	Node* curNode = malloc(sizeof(Node));
 	curNode->data = data;
 	return curNode;
