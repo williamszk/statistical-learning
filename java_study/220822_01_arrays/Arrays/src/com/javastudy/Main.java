@@ -36,7 +36,7 @@ public class Main {
 
         printArray(inputsScanner);
 
-        System.out.println("The average of the inputed numbers is "+calculateAverage(inputsScanner));
+        System.out.println("The average of the inputted numbers is " + calculateAverage(inputsScanner));
     }
 
     public static void printArray(int[] anArray) {
