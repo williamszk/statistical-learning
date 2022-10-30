@@ -32,9 +32,27 @@ function add3(num1: number, num2: number, num3: number = 3): number {
 }
 
 // rest parameters
-// we use the spread operator ... 
+// we use the spread operator ...
 function add4(num1: number, num2: number, ...num3: number[]): number {
 	return num1 + num2 + num3.reduce((a, b) => a + b, 0);
 }
 
 console.log(add4(1, 1, 1, 1, 1, 1, 1, 1));
+
+// generics
+function getItems<T>(items: T[]) {
+	return new Array<T>().concat(items);
+}
+
+let result01 = getItems([1, 2, 3, 4]);
+console.log(result01);
+
+let result02 = getItems(["a", "b", "c"]);
+console.log(result02);
+
+// we can explicitly pass the type into the function invocation
+let result03 = getItems<number>([1, 2, 3, 4]);
+console.log(result03);
+
+let result04 = getItems<string>(["a", "b", "c"]);
+console.log(result04);
