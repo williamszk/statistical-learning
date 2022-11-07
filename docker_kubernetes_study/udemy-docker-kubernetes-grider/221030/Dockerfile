@@ -5,6 +5,7 @@ FROM alpine
 RUN apk add --update redis
 
 
+
 # what the image do when it starts?
 CMD ["redis-server"]
 

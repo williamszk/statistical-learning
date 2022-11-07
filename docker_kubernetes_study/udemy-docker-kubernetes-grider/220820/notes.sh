@@ -9,7 +9,7 @@ npm init
 touch index.js
 
 npm i express redis@2.8.0
- 
+
 touch Dockerfile
 
 docker build .

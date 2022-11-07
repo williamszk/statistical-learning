@@ -47,8 +47,14 @@ touch Dockerfile
 
 docker image rm my-docker-image
 
-docker build -t my-docker-image . 
-docker run -d --name my-docker-container my-docker-image 
+docker build -t williamszk/my-docker-image . 
+# docker run -d --name my-docker-container my-docker-image 
+
+docker run \
+    -d -p 8080:8080 \
+    --name my-docker-container \
+    williamszk/my-docker-image 
+
 docker exec -it my-docker-container sh
 ls
 docker stop my-docker-container
