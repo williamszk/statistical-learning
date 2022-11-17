@@ -18,8 +18,7 @@ IRkernel::installspec()
 # for that we need python
 # and then
 pip3 install jupyter
-# and for vscode conected to the container
+# and for vscode connected to the container
 # we need to have the jupyter extension activated
-
 
 
