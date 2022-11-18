@@ -24,7 +24,7 @@ int strcmpUser(char *str1, char *str2)
 
     // printf("lenStr1 = %d\n", lenStr1);
     // printf("lenStr2 = %d\n", lenStr2);
-
+    
     for (i = 0; i < lenStr1; i++)
     {
         if (str1[i] > str2[i])
