@@ -47,7 +47,7 @@ scala_study/.metals/
 *.lock
 *.swp
 *.exe
-main
+*.jar
 
 minikube-linux-amd64
 kubectl
