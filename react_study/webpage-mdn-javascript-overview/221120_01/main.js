@@ -336,3 +336,6 @@ myDate02.getYear = function () {
 };
 
 myDate02.getYear(); // 'something else!'
+
+// Stopped at:
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Language_Overview#arrays
