@@ -11,5 +11,3 @@ pip3 install jupyterlab-vim
 # jupyter notebook --ip 0.0.0.0 --allow-root --port 3000 --no-browser
 jupyter lab --ip 0.0.0.0 --allow-root --port 3000 --no-browser
 # https://github.com/jwkvam/jupyterlab-vim
-
-hello hello
