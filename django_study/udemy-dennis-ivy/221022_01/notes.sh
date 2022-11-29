@@ -79,3 +79,9 @@ python3 manage.py migrate
 #   Applying projects.0002_tag_project_vote_ratio_project_vote_total_review_and_more... OK
 
 # register tables in the admin panel
+
+# How to start application?
+python3 manage.py runserver
+
+
+
