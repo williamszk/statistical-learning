@@ -4,4 +4,12 @@
 <h1>{{ project.title }}</h1> 
 <br>
 <p> {{ project.description }} </p> 
+<hr>
+{% comment %} We can write ORM queries inside of the template {% endcomment %}
+{% for tag in project.tags.all %}
+    <span style="border:2px solid grey">
+        {{tag}}
+    </span>
+{% endfor %}
+<hr>
 {% endblock %}
