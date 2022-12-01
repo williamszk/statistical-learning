@@ -3,40 +3,38 @@
 {% block content %}
     <p>Hello, you are in the {{ page }} page.</p>
 
-
     {% comment %} {% if number > 10 %}
-    <p> Number is greater than 10. </p> 
+    <p> Number is greater than 10. </p>
     {% elif number == 10 %}
-    <p> Number is exactly 10. </p> 
+    <p> Number is exactly 10. </p>
     {% else %}
-    <p> Number is less then 10. </p> 
+    <p> Number is less then 10. </p>
     {% endif %} {% endcomment %}
 
-    <h1>Projects</h1> 
+    <h1>Projects</h1>
 
     <table>
         <tr>
-            <th>ID</th>
+            {% comment %} <th>ID</th> {% endcomment %}
             <th>Project</th>
             <th>Votes</th>
             <th>Ratio</th>
             <th>Created</th>
             <th></th>
+            <th></th>
         </tr>
         {% for project in projects %}
         <tr>
-            <td>{{project.id}}</td>
+            {% comment %} <td>{{project.id}}</td> {% endcomment %}
             <td>{{project.title}}</td>
             <td>{{project.vote_total}}</td>
             <td>{{project.vote_ratio}}%</td>
             <td>{{project.created}}</td>
+            <td><a href="{% url 'update-project' project.id %}"> Edit </a></td>
+            <td><a href="{% url 'delete-project' project.id %}"> Delete </a></td>
             <td><a href="{% url 'project' project.id %}"> View </a></td>
         </tr>
         {% endfor %}
     </table>
-
-
-
-
 
 {% endblock %}
