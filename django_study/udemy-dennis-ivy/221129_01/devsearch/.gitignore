@@ -1,0 +1,6 @@
+# static/images/*
+!static/images/.gitkeep
+!static/images/default.jpeg
+!static/images/logo.svg
+
+staticfiles/**

@@ -75,3 +75,19 @@ projects.review_set.all()
 # tags is an attribute of the Model Project
 # we can query the many to many relationship as in the below example
 projects.tags.all()
+
+
+# ========================================= 
+# get some resources from Dennis Ivanov github
+cd static/images
+curl -LO https://raw.githubusercontent.com/divanov11/Django-2021/master/static/images/logo.svg
+curl -LO https://github.com/divanov11/Django-2021/raw/master/static/images/default.jpg
+curl -LO https://github.com/divanov11/Django-2021/raw/master/static/images/yogavive.png
+curl -LO https://github.com/divanov11/Django-2021/raw/master/static/images/codesniper.png
+cd -
+
+# about collecting static
+python3 manage.py collectstatic
+
+# install django whitenoise
+pip3 install whitenoise

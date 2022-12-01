@@ -5,6 +5,7 @@ import uuid
 class Project(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
+    featured_image = models.ImageField(null=True, blank=True, default="default.jpeg")
     demo_link = models.CharField(max_length=2000, null=True, blank=True)
     source_link = models.CharField(max_length=2000, null=True, blank=True)
     tags = models.ManyToManyField("Tag", blank=True)
@@ -24,7 +25,7 @@ class Review(models.Model):
         ("up", "Up Vote"),
         ("down", "Down Vote"),
     )
-    # owner = 
+    # owner =
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
     body = models.TextField(null=True, blank=True)
     value = models.CharField(max_length=200, choices=VOTE_TYPE)
@@ -34,7 +35,8 @@ class Review(models.Model):
     )
 
     def __str__(self) -> str:
-        return  self.value
+        return self.value
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=200)
