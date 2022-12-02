@@ -1,3 +1,4 @@
+
 # https://leetcode.com/problems/find-substring-with-given-hash-value/
 
 
@@ -62,8 +63,3 @@ def test_03():
 
     sol = Solution()
     print(sol.subStrHash(s, power, module, k, hash_value))
-
-
-
-
-
