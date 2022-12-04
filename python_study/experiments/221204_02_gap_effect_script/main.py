@@ -5,17 +5,20 @@ keep my eyes closed and wait for 10 seconds.
 
 import time
 import random
+import chime
 
 
 def main():
+    chime.theme("mario")
     while True:
         time.sleep(1)
         print("waiting...")
         if random.random() > 0.8:
-            print("\a")  # this will send a bell sound to stdout
-            print("\a")
+            chime.info()
             time.sleep(10)
-            print("\a")
+            chime.info()
+            time.sleep(0.2)
+            chime.info()
 
 
 if __name__ == "__main__":
