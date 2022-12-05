@@ -91,3 +91,16 @@ python3 manage.py collectstatic
 
 # install django whitenoise
 pip3 install whitenoise
+
+
+# ====================================================
+# Creating the new app called "users"
+python3 manage.py startapp users
+
+python3 manage.py makemigrations
+
+python3 manage.py migrate
+
+
+# ====================================================
+
