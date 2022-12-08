@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Project
+from django.contrib.auth.decorators import login_required
 from .forms import ProjectForm
 
 projects_list = [
@@ -36,7 +37,9 @@ def project(request, pk):
     }
     return render(request, "projects/single-project.html", context)
 
-
+# This is telling Django to send the user to the "login" page
+# if the user is not authenticated.
+@login_required(login_url="login")
 def create_project(request):
     form = ProjectForm()
 
