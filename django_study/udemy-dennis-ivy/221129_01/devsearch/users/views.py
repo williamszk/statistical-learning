@@ -46,7 +46,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    messages.error(request, "User was logged out.")
+    messages.info(request, "User was logged out.")
     return redirect("login")
 
 
@@ -67,7 +67,7 @@ def register_user(request):
             login(request, user)
             return redirect('profiles')
         else:
-            messages.success(request, "Sorry, we found that something is not right in the form's information.")
+            messages.error(request, "Sorry, we found that something is not right in the information in the form.")
 
     return render(request, "users/login-register.html", context)
 

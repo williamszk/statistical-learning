@@ -71,13 +71,14 @@
 			<div class="form__field">
 				<label for="formInput#text">{{ field.label }}</label>
 				{{ field }}
-				<!-- <input
-					class="input input--text"
-					id="formInput#text"
-					type="text"
-					name="text"
-					placeholder="e.g. Dennis Ivanov"
-				/> -->
+				<!-- {% if field.help_text %}
+					<small>{{field.help_text}}</small>
+				{% endif %} -->
+
+				{% for error in field.errors %}
+					<p style="color:red;">{{error}}</p>
+				{% endfor %}
+
 			</div>
 			{% endfor %}
 
