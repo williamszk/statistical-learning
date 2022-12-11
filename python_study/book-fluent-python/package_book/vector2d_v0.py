@@ -20,8 +20,10 @@ Scalar multiplication::
     15.0
 """
 
+
 from array import array
 import math
+from typing import Iterable
 
 class Vector2d:
     typecode = "d" # this is called a class attribute
@@ -44,4 +46,11 @@ class Vector2d:
     def __bytes__(self):
         return (bytes(ord(self.typecode))) + bytes(array(self.typecode, self))
 
+    def __eq__(self, other) -> bool:
+        return tuple(self) == tuple(other)
 
+    def __abs__(self):
+        return math.hypot(self.x, self.y)
+
+    def __bool__(self):
+        return bool(abs(self))
