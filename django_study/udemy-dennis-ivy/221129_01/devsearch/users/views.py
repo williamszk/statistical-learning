@@ -6,7 +6,7 @@ from django.contrib import messages
 # from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Profile
-from .forms import CustomUserCreationForm, ProfileForm
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm
 
 
 def login_user(request):
@@ -95,19 +95,21 @@ def user_profile(request, pk):
     }
     return render(request, "users/user-profile.html", context)
 
-@login_required(login_url='login')
+
+@login_required(login_url="login")
 def user_account(request):
     profile = request.user.profile
     skills = profile.skill_set.all()
     projects = profile.project_set.all()
     context = {
-        "profile":profile,
-        "projects":projects,
+        "profile": profile,
+        "projects": projects,
         "skills": skills,
-        }
+    }
     return render(request, "users/account.html", context)
 
-@login_required(login_url='login')
+
+@login_required(login_url="login")
 def edit_account(request):
     profile = request.user.profile
     form = ProfileForm(instance=profile)
@@ -118,5 +120,38 @@ def edit_account(request):
             form.save()
             return redirect("account")
 
-    context = {"form":form}
+    context = {"form": form}
     return render(request, "users/profile-form.html", context)
+
+
+@login_required(login_url="login")
+def create_skill(request):
+    profile = request.user.profile
+    if request.method == "POST":
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            skill = form.save(commit=False)
+            skill.owner = profile
+            skill.save()
+            messages.success(request, "Skill was added successfully.")
+            return redirect("account")
+
+
+    context = {"form": SkillForm()}
+    return render(request, "users/skill-form.html", context)
+
+
+@login_required(login_url="login")
+def update_skill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    form = SkillForm(instance=skill)
+    if request.method == "POST":
+        form = SkillForm(request.POST, instance=skill)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Skill was updated successfully.")
+            return redirect("account")
+
+    context = {"form": form}
+    return render(request, "users/skill-form.html", context)

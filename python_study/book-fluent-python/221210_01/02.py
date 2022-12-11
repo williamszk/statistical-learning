@@ -25,3 +25,12 @@ v1 == v1_clone
 abs(v1)
 
 abs(Vector2d(3, 4))
+
+bytes(v1)
+
+bool(v1)
+abs(Vector2d(0,0))
+bool(Vector2d(0,0))
+bool(0)
+
+

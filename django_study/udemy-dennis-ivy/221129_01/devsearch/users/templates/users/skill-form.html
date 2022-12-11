@@ -1,15 +1,15 @@
-{% extends 'main.html' %} 
+{% extends "main.html" %}
 
 {% block content %}
 
-<!-- Main Section -->
+
 <main class="formPage my-xl">
 	<div class="content-box">
 		<div class="formWrapper">
 			<a class="backButton" href="{% url 'account' %}"><i class="im im-angle-left"></i></a>
 			<br />
 
-			<form class="form" method="POST" action="{% url 'edit-account' %}">
+			<form class="form" method="POST" action="">
 				{% csrf_token %}
         {% for field in form %}
 				<!-- Input:Text -->
@@ -28,4 +28,4 @@
 	</div>
 </main>
 
-{% endblock content %}
+{% endblock %}
