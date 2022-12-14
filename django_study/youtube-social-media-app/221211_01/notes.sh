@@ -12,5 +12,14 @@ django-admin startapp core
 # to run the server
 python3 manage.py runserver
 
+# to make migrations
+python3 manage.py makemigrations
+python3 manage.py migrate 
+
+python3 manage.py createsuperuser 
+admin
+1234
+
+
 
 
