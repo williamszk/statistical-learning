@@ -33,9 +33,9 @@
 							class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm"
 						>
 							<a
-								href="signin.html"
+								href="{% url 'signin' %}"
 								class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white"
-								>Login</a
+								>Sign In</a
 							>
 						</div>
 					</div>
@@ -117,7 +117,7 @@
 						</button>
 						<div class="text-center mt-5 space-x-2">
 							<p class="text-base">
-								Do you have an account? <a href="form-login.html"> Login </a>
+								Do you have an account? <a href="{% url 'signin' %}"> Sign In </a>
 							</p>
 						</div>
 					</form>
@@ -136,7 +136,7 @@
 						<a href="#"> Terms</a>
 						<a href="#"> Privacy</a>
 					</div>
-					<p class="capitalize">© copyright 2020 by socol</p>
+					<p class="capitalize">© Copyright <script>document.write(/\d{4}/.exec(Date())[0])</script> by Social Book</p>
 				</div>
 			</div>
 		</div>

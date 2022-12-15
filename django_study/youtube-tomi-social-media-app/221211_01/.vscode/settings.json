@@ -1,0 +1,6 @@
+{
+    "cSpell.words": [
+        "signin"
+    ],
+    "python.formatting.provider": "black"
+}
