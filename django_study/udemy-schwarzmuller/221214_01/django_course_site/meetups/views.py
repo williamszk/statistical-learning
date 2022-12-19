@@ -3,10 +3,18 @@ from django.http import HttpResponse
 
 # Create your views here.
 def index(request):
-    # return HttpResponse("<p>Hi there</p>") 
+    # return HttpResponse("<p>Hi there</p>")
     meetups = [
-        {"title":"A first meetup"},
-        {"title":"A Second meetup"},
+        {
+            "title": "How to create a famous programming language?",
+            "location": "Amsterdam",
+            "slug": "the-amsterdam-first-meetup",
+        },
+        {
+            "title": "The capital is sinking!",
+            "location": "Jakarta",
+            "slug": "the-indonesia-meetup-to-make-capitals",
+        },
     ]
     context = {
         "show_meetups": True,
