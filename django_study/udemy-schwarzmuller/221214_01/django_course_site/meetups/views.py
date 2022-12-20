@@ -21,3 +21,12 @@ def index(request):
         "meetups": meetups,
     }
     return render(request, "meetups/index.html", context)
+
+
+def meetup_details(request):
+    context = {
+            "title": "Why do we meetup?",
+            "description": "How to not build a site for organizing meetups...",
+        }
+    return render(request, "meetups/meetup-details.html", context)
+
