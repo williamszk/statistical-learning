@@ -23,7 +23,8 @@ def index(request):
     return render(request, "meetups/index.html", context)
 
 
-def meetup_details(request):
+def meetup_details(request, meetup_slug):
+    print(meetup_slug)
     context = {
             "title": "Why do we meetup?",
             "description": "How to not build a site for organizing meetups...",
