@@ -14,7 +14,15 @@ touch meetups/urls.py
 
 
 # to start running the project
-python3 manage.py runserver
+python manage.py runserver
 
+# to migrate database 
+python manage.py makemigrations
+python manage.py migrate 
+
+# create a new user in admin
+python manage.py createsuperuser
+admin
+1234
 
 

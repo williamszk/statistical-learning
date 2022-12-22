@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-{{ title }}
+{{ meetup.title }}
 {% endblock %}
 
 {% block site_css %}
@@ -10,13 +10,15 @@
 {% endblock %}
 
 {% block main_heading %}
-{{ title }}
+{{ meetup.title }}
 {% endblock %}
 
 {% block header_content %}
 {% endblock %}
 
 {% block body %}
+
+{% if meetup_found %}
 <article>
   <img src="" alt="">
   <section id="location">
@@ -25,7 +27,7 @@
   </section>
   <section id="details">
     <h2>What's this meetup about?</h2>
-    <p>{{ description }}</p>
+    <p>{{ meetup.description }}</p>
     <footer>
       <p>Need more details? Please <a href="">contact the organizer</a> but don't span us 😉</p>
     </footer>
@@ -35,4 +37,7 @@
     FORM
   </section>
 </article>
+{% else %}
+<p>Sorry, we couldn't find any meetup with that slug...</p>
+{% endif %}
 {% endblock %}
