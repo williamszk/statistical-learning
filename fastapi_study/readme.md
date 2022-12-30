@@ -1,1 +1,0 @@
-In this directory we include code for FastAPI study
