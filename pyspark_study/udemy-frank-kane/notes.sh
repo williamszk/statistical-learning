@@ -15,3 +15,6 @@ pip install pyspark
 
 # to run a .py script inside spark
 spark-submit ratings_counter.py
+
+
+

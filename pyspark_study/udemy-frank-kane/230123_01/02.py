@@ -45,3 +45,19 @@ nums.map(lambda x: x*x)
 
 nums.map(lambda x: x*x).collect()
 
+
+#-------------------------------------------- #
+
+def square_it(x):
+    return x**2
+
+nums.map(square_it).collect()
+
+#-------------------------------------------- #
+# take the length of the rdd
+nums.count()
+
+nums.countByValue()
+
+type(nums.countByValue())
+
