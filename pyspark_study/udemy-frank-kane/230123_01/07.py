@@ -52,7 +52,23 @@ sum_per_station_id.take(3)
 # count the frequency of station id
 # Calculate the maximum temperature for each weather station
 
+lines = sc.textFile("./datasets/1800.csv")
 
+def parseLine03(line):
+    fields = line.split(',')
+    stationID = fields[0]
+    entryType = fields[2]
+    temperature = float(fields[3]) * 0.1 * (9.0 / 5.0) + 32.0
+    return (stationID, entryType, temperature)
+
+parsedLines = lines.map(parseLine03)
+maxTemp = parsedLines.filter(lambda x: "TMAX" in x[1])
+stationTemps = maxTemp.map(lambda x: (x[0], x[2]))
+maxTemp = stationTemps.reduceByKey(lambda x, y: max(x,y))
+results = maxTemp.collect()
+
+for result in results:
+    print(result[0] + "\t{:.2f}F".format(result[1]))
 
 
 
