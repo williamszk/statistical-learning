@@ -1,0 +1,6 @@
+{
+    "cSpell.words": [
+        "pyspark"
+    ],
+    "python.formatting.provider": "black"
+}

@@ -1,0 +1,1 @@
+This directory contains code related to Al Sweigart's youtube channel.

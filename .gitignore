@@ -13,12 +13,12 @@ target/
 *__pycache__/
 *.pytest_cache/
 *.mypy_cache/
-.vscode/
-.vs/
 .pytest_cache/
-.vscode
+.vs
+*.vsidx
 *.Rproj.user
 *.Rproj
+*.log
 *.RData
 *.Rhistory
 .Rproj.user
