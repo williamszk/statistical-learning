@@ -1,3 +1,4 @@
 ml-100k
 *.txt
 *.csv
+*.json
