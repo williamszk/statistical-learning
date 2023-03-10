@@ -1,0 +1,26 @@
+[32m2023-03-10 02:32:29 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 647e2637-b559-4467-bc1c-fc2bdb2b30c5 - 26798 - LOGS_CAPTURED - Started capturing logs in process (pid: 26798).
+[32m2023-03-10 02:32:29 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 647e2637-b559-4467-bc1c-fc2bdb2b30c5 - 26798 - github_stargazer - STEP_START - Started execution of step "github_stargazer".
+[32m2023-03-10 02:33:18 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 647e2637-b559-4467-bc1c-fc2bdb2b30c5 - 26798 - github_stargazer - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2023-03-10 02:33:18 +0000[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 647e2637-b559-4467-bc1c-fc2bdb2b30c5 - github_stargazer - Writing file at: /root/statistical-learning/dagster_study/youtube-dagster/230309_01/my-dagster-project/tmpotrihoa6/storage/github_stargazer
+[32m2023-03-10 02:33:18 +0000[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 647e2637-b559-4467-bc1c-fc2bdb2b30c5 - 26798 - github_stargazer - STEP_FAILURE - Execution of step "github_stargazer" failed.
+
+dagster._core.errors.DagsterExecutionHandleOutputError: Error occurred while handling output "result" of step "github_stargazer"::
+
+RuntimeError: RLock objects should only be shared between processes through inheritance
+
+Stack Trace:
+  File "/root/statistical-learning/dagster_study/.venv/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 55, in op_execution_error_boundary
+    yield
+  File "/root/statistical-learning/dagster_study/.venv/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 471, in iterate_with_context
+    next_output = next(iterator)
+  File "/root/statistical-learning/dagster_study/.venv/lib/python3.10/site-packages/dagster/_core/execution/plan/execute_step.py", line 597, in _gen_fn
+    gen_output = output_manager.handle_output(output_context, output.value)
+  File "/root/statistical-learning/dagster_study/.venv/lib/python3.10/site-packages/dagster/_core/storage/upath_io_manager.py", line 245, in handle_output
+    self.dump_to_path(context=context, obj=obj, path=path)
+  File "/root/statistical-learning/dagster_study/.venv/lib/python3.10/site-packages/dagster/_core/storage/fs_io_manager.py", line 149, in dump_to_path
+    pickle.dump(obj, file, PICKLE_PROTOCOL)
+  File "/usr/lib/python3.10/multiprocessing/synchronize.py", line 101, in __getstate__
+    context.assert_spawning(self)
+  File "/usr/lib/python3.10/multiprocessing/context.py", line 373, in assert_spawning
+    raise RuntimeError(
+[0m
