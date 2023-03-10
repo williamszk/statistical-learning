@@ -75,14 +75,16 @@ int append_to_linked_list(LinkedList target, int new_valeu)
 int print_linked_list(LinkedList target)
 {
     uint64_t length = target.length;
+    printf("length: %ld\n", length);
     printf("[");
     Node *current_node = target.initial_node;
     for (int i = 0; i < length; i++)
     {
         if (i == length - 1){
-            printf("%d]\n", current_node->data);
+            printf("%d]\n", target.initial_node->data);
+        }else {
+            printf("%d ", target.initial_node->data);
         }
-        // printf("%d ", current_node->data);
         current_node = current_node->next_node;
     }
 }
@@ -99,6 +101,7 @@ int main()
     // I don't need to initialize the next_node
     //--------------------------------------------------------------------------
     // Initialized a linked list
+
     LinkedList my_linked_list = build_linked_list(0);
     printf("my_linked_list.initial_node->data = %d\n", my_linked_list.initial_node->data);
 
