@@ -26,9 +26,9 @@ We create two new abstract classes:
 QuackBehavior and FlyBehavior.
 
 Then we need to implement concrete classes, which inherit from the abstract classes
-of QuackBehvaior and FlyBehavior. In the case of Java, there is a distinction
+of QuackBehavior and FlyBehavior. In the case of Java, there is a distinction
 between interface and superclass. In the case of Python an interface is a superclass
 with some decorators.
 
-
+This example was taken from the Head First Design Patterns.
 
