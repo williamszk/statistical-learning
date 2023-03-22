@@ -1,0 +1,11 @@
+README.md
+pyproject.toml
+setup.cfg
+setup.py
+my_simple_experiment/__init__.py
+my_simple_experiment/assets.py
+my_simple_experiment.egg-info/PKG-INFO
+my_simple_experiment.egg-info/SOURCES.txt
+my_simple_experiment.egg-info/dependency_links.txt
+my_simple_experiment.egg-info/requires.txt
+my_simple_experiment.egg-info/top_level.txt
