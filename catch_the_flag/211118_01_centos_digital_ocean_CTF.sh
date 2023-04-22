@@ -70,7 +70,7 @@ cat /etc/centos-release
 # connect with digital ocean droplet
 # 198.199.122.147
 ssh -i "C:\Users\william.suzuki\.ssh\id_rsa" root@198.199.122.147
-
+0
 
 # -------------------------------------------------------------------------- #
 # how to see centos version?
