@@ -1,3 +1,0 @@
-# we can use local gitignore files to ignore relative to the directory
-*.csv
-*.pickle

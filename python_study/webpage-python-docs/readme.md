@@ -1,1 +1,0 @@
-In this directory we include the notes based on the study of the Python official docs.
