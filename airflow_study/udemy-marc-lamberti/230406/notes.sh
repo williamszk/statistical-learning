@@ -1,3 +1,7 @@
+
+docker compose up -d
+
+
 # If building a new virtual environment:
 python.exe -m pip install --upgrade pip
 pip install apache-airflow
@@ -205,3 +209,11 @@ airflow tasks test user_processing is_api_available 2023-04-20
 # [2023-04-23 20:49:18,895] {base.py:213} INFO - Success criteria met. Exiting.
 # [2023-04-23 20:49:18,896] {taskinstance.py:1406} INFO - Marking task as SUCCESS. dag_id=user_processing, task_id=is_api_available, execution_date=20230420T000000, start_date=, end_date=20230423T204918
 # airflow@eed7ba10a5c1:/opt/airflow$ 
+
+# ==============================================================================
+# How to make connection for postgres
+
+
+# How to make connection for http for https://randomuser.me/
+
+# ==============================================================================
