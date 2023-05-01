@@ -1,6 +1,9 @@
 cd python_flask
 autocannon -c 100 -d 5 -p 10 http://127.0.0.1:5000/
 
+# This test was run in a local server in my windows "Pichau" machine
+# I need to get the specs of this machine
+
 # $ autocannon -c 100 -d 5 -p 10 http://127.0.0.1:5000/
 # Running 5s test @ http://127.0.0.1:5000/
 # 100 connections with 10 pipelining factor

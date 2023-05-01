@@ -1,9 +1,11 @@
 
 autocannon -c 100 -d 5 -p 10 http://127.0.0.1:5000/
 
+# This test was run in a local server in my windows "Pichau" machine
+# I need to get the specs of this machine
+
 # Running 5s test @ http://127.0.0.1:5000/ 
 # 100 connections with 10 pipelining factor
-
 
 # ┌─────────┬───────┬───────┬───────┬───────┬──────────┬─────────┬────────┐
 # │ Stat    │ 2.5%  │ 50%   │ 97.5% │ 99%   │ Avg      │ Stdev   │ Max    │

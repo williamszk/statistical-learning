@@ -9,3 +9,7 @@ do
 done
 
 #==============================================================================
+
+# I think that using curl is not a good idea
+# it is limited by the amount of requests that it can make
+# I'll be using autocannon for now

@@ -1,5 +1,4 @@
 # how to run flask app?
-
 cd python_flask
 flask run --host=127.0.0.1
 
@@ -24,8 +23,18 @@ done
 pip install gunicorn
 pip install fcntl
 
+#==============================================================================
+# to start gunicorn
+
 # -w: number of workers
 gunicorn -w 4
 
 gunicorn --bind 0.0.0.0:5000 wsgi:app
 # I'll need to try this later connected to a linux machine
+
+# let's try to use this one
+gunicorn --workers=5 --bind 0.0.0.0:5000 wsgi:app
+
+# gunicorn will create different processes in the same machine
+# so that we can have parallelism
+# gunicorn will automatically queue requests that can't be served at the moment

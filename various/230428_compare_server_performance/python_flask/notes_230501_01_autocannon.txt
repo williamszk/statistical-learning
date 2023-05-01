@@ -1,0 +1,38 @@
+Question: autocannon -c 100 -d 5 -p 10 http://127.0.0.1:5000
+
+The command you provided is using Autocannon, a Node.js command line tool for 
+load testing HTTP servers. The parameters used in this command are:
+
+-c 100: The number of concurrent connections to use. In this case, Autocannon 
+will simulate 100 clients hitting the server at the same time.
+-d 5: The duration of the test in seconds. In this case, the test will run for 
+5 seconds.
+-p 10: The number of pipelined requests to use. This means that Autocannon will 
+send 10 HTTP requests at a time to the server over the same connection.
+http://127.0.0.1:5000: The URL of the server to test. In this case, Autocannon 
+will hit the HTTP server running on the local machine on port 5000.
+Overall, this command will test how well the server can handle 100 concurrent 
+clients, with each client sending up to 10 HTTP requests at a time, over a 
+period of 5 seconds. The results of the test will include metrics such as 
+requests per second, latency, and throughput.
+
+
+Question: what is the difference between option -c and -p?
+
+The Autocannon options -c and -p are related to different aspects of how the 
+load test is executed.
+
+The -c option determines the number of concurrent connections to the server. 
+Each connection represents a separate client, and Autocannon will create and 
+manage the specified number of connections to simulate a load of that many 
+concurrent clients.
+
+On the other hand, the -p option determines the number of pipelined requests 
+that each connection will use. Pipelining allows multiple HTTP requests to be 
+sent over a single connection without waiting for the response of the previous 
+request. By default, Autocannon sends one request at a time per connection, 
+but using pipelining allows for more efficient use of the connections, as it 
+can reduce the amount of time spent on setting up and tearing down connections.
+
+In summary, -c controls the number of concurrent clients, while -p controls 
+the number of HTTP requests that can be sent in parallel over each connection.
