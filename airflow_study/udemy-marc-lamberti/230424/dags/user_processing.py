@@ -44,6 +44,8 @@ with DAG(
     schedule_interval="@daily",
     catchup=False,
 ) as dag:
+    # port: 5342
+    # host: postgres
     create_table = PostgresOperator(
         task_id="create_table",
         postgres_conn_id="my_postgres_conn_id",
@@ -59,6 +61,7 @@ with DAG(
         """,
     )
 
+    # host: https://randomuser.me/
     is_api_available = HttpSensor(
         task_id="is_api_available", http_conn_id="user_api", endpoint="api/"
     )
