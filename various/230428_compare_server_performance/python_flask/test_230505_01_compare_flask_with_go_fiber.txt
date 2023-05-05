@@ -1,0 +1,68 @@
+
+Compare previous notes from flask gunicorn with go fiber 
+go_fiber/test_230501_01_local_container
+
+In the context of the thinkpad ubuntu container
+
+autocannon -c 100 -d 5 -p 10 http://127.0.0.1:5000
+
+
+================================================================================
+http://127.0.0.1:5000/
+Running 5s test @ http://127.0.0.1:5000/
+100 connections with 10 pipelining factor
+
+This is for flask gunicorn
+┌─────────┬────────┬─────────┬─────────┬─────────┬───────────┬────────────┬─────────┐
+│ Stat    │ 2.5%   │ 50%     │ 97.5%   │ 99%     │ Avg       │ Stdev      │ Max     │
+├─────────┼────────┼─────────┼─────────┼─────────┼───────────┼────────────┼─────────┤
+│ Latency │ 252 ms │ 2466 ms │ 4347 ms │ 4408 ms │ 2429.9 ms │ 1226.49 ms │ 4509 ms │
+└─────────┴────────┴─────────┴─────────┴─────────┴───────────┴────────────┴─────────┘
+┌───────────┬────────┬────────┬────────┬────────┬────────┬────────┬────────┐
+│ Stat      │ 1%     │ 2.5%   │ 50%    │ 97.5%  │ Avg    │ Stdev  │ Min    │
+├───────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+│ Req/Sec   │ 1480   │ 1480   │ 2091   │ 2239   │ 1923   │ 307.09 │ 1480   │
+├───────────┼────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+│ Bytes/Sec │ 241 kB │ 241 kB │ 341 kB │ 365 kB │ 313 kB │ 50 kB  │ 241 kB │
+└───────────┴────────┴────────┴────────┴────────┴────────┴────────┴────────┘
+
+================================================================================
+This is for go fiber
+
+http://127.0.0.1:5000/
+Running 5s test @ http://127.0.0.1:5000/
+100 connections with 10 pipelining factor
+
+┌─────────┬───────┬───────┬───────┬───────┬──────────┬─────────┬────────┐
+│ Stat    │ 2.5%  │ 50%   │ 97.5% │ 99%   │ Avg      │ Stdev   │ Max    │
+├─────────┼───────┼───────┼───────┼───────┼──────────┼─────────┼────────┤
+│ Latency │ 21 ms │ 28 ms │ 44 ms │ 54 ms │ 29.66 ms │ 7.89 ms │ 105 ms │
+└─────────┴───────┴───────┴───────┴───────┴──────────┴─────────┴────────┘
+┌───────────┬────────┬────────┬─────────┬─────────┬─────────┬─────────┬─────────┐
+│ Stat      │ 1%     │ 2.5%   │ 50%     │ 97.5%   │ Avg     │ Stdev   │ Min     │
+├───────────┼────────┼────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
+│ Req/Sec   │ 27919  │ 27919  │ 35007   │ 36031   │ 33755.2 │ 3029.93 │ 27910   │
+├───────────┼────────┼────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
+│ Bytes/Sec │ 3.3 MB │ 3.3 MB │ 4.13 MB │ 4.25 MB │ 3.98 MB │ 357 kB  │ 3.29 MB │
+└───────────┴────────┴────────┴─────────┴─────────┴─────────┴─────────┴─────────┘
+
+================================================================================
+
+let's compare latency median:
+- go fiber:         28ms
+- flask gunicorn  2466ms
+go fiber is a lot faster, 88 times faster
+
+let's compare req/s median:
+- go fiber:       35007
+- flask gunicorn   2091
+go can handle much more requests per second 16 times more requests
+
+let's compare throughput (bytes/s) median:
+- go fiber:       4130 kB
+- flask gunicorn   341 kB
+go's throughput is 12 times faster
+
+Even with gunicorn Go fiber is extremely more performant then flask with gunicorn.
+I wonder how Go fiber compares to Go net/http
+And how flask gunicorn will behave if we increase the time of the test
