@@ -23,3 +23,10 @@ select * from users;
 #  Malone    | Roussel   | France      | tinysnake675      | suzanne  | malone.roussel@example.com
 # (6 rows)
 
+docker cp 230424-airflow-scheduler-1:/opt/airflow/airflow.cfg .
+
+docker compose down && docker compose --profile flower up -d
+
+docker compose down && docker compose -d
+
+# localhost:5555

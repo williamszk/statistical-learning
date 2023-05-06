@@ -3,6 +3,8 @@
 	"python.linting.enabled": true,
 	"python.formatting.provider": "none",
 	"cSpell.words": [
+		"subdag",
+		"subdags",
 		"xcom"
 	],
 	"[python]": {
