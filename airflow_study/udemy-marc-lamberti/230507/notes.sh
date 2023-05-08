@@ -1,9 +1,9 @@
 docker compose up -d
 
 # If building a new virtual environment:
-python.exe -m pip install --upgrade pip
 python3 -m venv .venv
 source .venv/bin/activate
+python3 -m pip install --upgrade pip
 pip install apache-airflow
 pip install 'apache-airflow[postgres]'
 pip install pandas
@@ -17,6 +17,7 @@ pip install pandas
 curl -LO https://airflow.apache.org/docs/apache-airflow/2.5.1/docker-compose.yaml
 
 docker compose up -d
+docker compose down && docker compose up -d
 
 # ================================================================================ 
 # We should run this example using the host machine so that we can use volumes
