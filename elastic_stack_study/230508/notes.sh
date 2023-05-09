@@ -2,6 +2,9 @@
 # stopped at:
 # https://youtu.be/gS_nHTWZEJ8?t=2294
 
+# Next video:
+# https://www.youtube.com/watch?v=CCTgroOcyfM&ab_channel=OfficialElasticCommunity
+
 #
 # Elastic Search
 #
@@ -128,8 +131,212 @@ POST <name-of-the-index>/_doc
 }
 
 
+#-------------------------------------------------------------------------------
+# start the elastic search and kibana containers
+docker ps 
+
+docker start elastic-search-01-test
+docker start kibana-01-test
+
+# go to the dev tools in kibana
+# Management > Dev Tools 
+GET _cluster/health
+
+POST favorite_candy/_doc
+{
+    "first_name": "Lisa",
+    "candy": "Sour Skittles"
+}
+# 201 response - created
+# {
+#   "_index" : "favorite_candy",
+#   "_type" : "_doc",
+#   "_id" : "lKUHAYgBfKuxGVD5dwF8",
+#   "_version" : 1,
+#   "result" : "created",
+#   "_shards" : {
+#     "total" : 2,
+#     "successful" : 1,
+#     "failed" : 0
+#   },
+#   "_seq_no" : 0,
+#   "_primary_term" : 2
+# }
+
+# we can assign the id that we want in the document, using PUT instead of POST
+PUT <name-of-the-index>/_doc/<id-you-want-to-assign>
+{
+    "field": "value"
+}
+
+PUT favorite_candy/_doc/1
+{
+    "first_name": "John",
+    "candy": "Starburst"
+}
+# {
+#   "_index" : "favorite_candy",
+#   "_type" : "_doc",
+#   "_id" : "1",
+#   "_version" : 1,
+#   "result" : "created",
+#   "_shards" : {
+#     "total" : 2,
+#     "successful" : 1,
+#     "failed" : 0
+#   },
+#   "_seq_no" : 1,
+#   "_primary_term" : 2
+# }
+
+
+PUT favorite_candy/_doc/2
+{
+    "first_name": "Rachel",
+    "candy": "Rolos"
+}
+
+PUT favorite_candy/_doc/3
+{
+    "first_name": "Tom",
+    "candy": "Sweet Tarts"
+}
+
+# read the documents that are in the index
+GET <name-of-the-index>/_doc/<id-you-want-to-assign>
+
+GET favorite_candy/_doc/1
+# {
+#   "_index" : "favorite_candy",
+#   "_type" : "_doc",
+#   "_id" : "1",
+#   "_version" : 1,
+#   "_seq_no" : 1,
+#   "_primary_term" : 2,
+#   "found" : true,
+#   "_source" : {
+#     "first_name" : "John",
+#     "candy" : "Starburst"
+#   }
+# }
+
+GET favorite_candy/_doc/2
 
 
 
+PUT favorite_candy/_doc/1
+{
+    "first_name": "Sally",
+    "candy": "Snickers"
+}
+# {
+#   "_index" : "favorite_candy",
+#   "_type" : "_doc",
+#   "_id" : "1",
+#   "_version" : 2,       # <-- notice the version here
+#   "result" : "updated", # <-- it says updated instead of created
+#   "_shards" : {
+#     "total" : 2,
+#     "successful" : 1,
+#     "failed" : 0
+#   },
+#   "_seq_no" : 8,
+#   "_primary_term" : 2
+# }
 
+# _doc endpoint will overwrite the document underlying
+# if we want to create we use the _create this will throw an error
+# if the document already exists
+PUT favorite_candy/_create/1
+{
+    "first_name": "Sally",
+    "candy": "Snickers"
+}
+# The response is a 409 - conflict message
+# {
+#   "error" : {
+#     "root_cause" : [
+#       {
+#         "type" : "version_conflict_engine_exception",
+#         "reason" : "[1]: version conflict, document already exists (current version [2])",
+#         "index_uuid" : "M9htLW8OTVWlZ0pQwG-v5w",
+#         "shard" : "0",
+#         "index" : "favorite_candy"
+#       }
+#     ],
+#     "type" : "version_conflict_engine_exception",
+#     "reason" : "[1]: version conflict, document already exists (current version [2])",
+#     "index_uuid" : "M9htLW8OTVWlZ0pQwG-v5w",
+#     "shard" : "0",
+#     "index" : "favorite_candy"
+#   },
+#   "status" : 409
+# }
+
+# we can update document by
+POST <name-of-the-index>/_update/<id-you-want-to-assign>
+{
+    "doc": { # <-- use this to specify some fields to change, and not the whole document
+        "field1": "value",
+        "field2": "value"
+    }
+}
+
+POST favorite_candy/_update/1
+{
+    "doc": {
+        "candy": "M&M's"
+    }
+}
+# the response was 200 - Ok
+# {
+#   "_index" : "favorite_candy",
+#   "_type" : "_doc",
+#   "_id" : "1",
+#   "_version" : 3,
+#   "result" : "updated",
+#   "_shards" : {
+#     "total" : 2,
+#     "successful" : 1,
+#     "failed" : 0
+#   },
+#   "_seq_no" : 9,
+#   "_primary_term" : 2
+# }
+
+# Check the value of the document
+GET favorite_candy/_doc/1
+# {
+#   "_index" : "favorite_candy",
+#   "_type" : "_doc",
+#   "_id" : "1",
+#   "_version" : 3,
+#   "_seq_no" : 9,
+#   "_primary_term" : 2,
+#   "found" : true,
+#   "_source" : {
+#     "first_name" : "Sally",
+#     "candy" : "M&M's"
+#   }
+# }
+
+# to delete a document
+DELETE <name-of-the-index>/_doc/<id-you-want-to-assign>
+
+DELETE favorite_candy/_doc/1
+# response was 200 - Ok
+# {
+#   "_index" : "favorite_candy",
+#   "_type" : "_doc",
+#   "_id" : "1",
+#   "_version" : 4,
+#   "result" : "deleted",
+#   "_shards" : {
+#     "total" : 2,
+#     "successful" : 1,
+#     "failed" : 0
+#   },
+#   "_seq_no" : 10,
+#   "_primary_term" : 2
+# }
 
