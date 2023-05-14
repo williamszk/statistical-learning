@@ -10,7 +10,7 @@ func main() {
 	// fmt.Println("Starting server in port 5000")
 
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.SendString("hi")
+		return c.SendString("Hi!")
 	})
 
 	app.Listen(":5000")
