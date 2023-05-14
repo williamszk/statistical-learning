@@ -61,7 +61,7 @@ let's compare req/s median:
 go fiber is slightly worse, but the statistical difference is not very large
 
 let's compare throughput (bytes/s) median:
-- go net/http    5170 MB
+- go net/http    5170 kB
 - go fiber       4130 kB
 go net/http is slightly better in terms of throughput too
 
