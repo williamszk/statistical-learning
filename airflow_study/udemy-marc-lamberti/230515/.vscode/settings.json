@@ -1,0 +1,7 @@
+{
+	"python.formatting.provider": "none",
+	"cSpell.words": ["forex"],
+	"[python]": {
+		"editor.defaultFormatter": "ms-python.black-formatter"
+	}
+}
