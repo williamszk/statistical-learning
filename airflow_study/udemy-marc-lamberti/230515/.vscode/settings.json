@@ -1,6 +1,10 @@
 {
 	"python.formatting.provider": "none",
-	"cSpell.words": ["forex"],
+	"cSpell.words": [
+		"forex",
+		"hdfs",
+		"marclamberti"
+	],
 	"[python]": {
 		"editor.defaultFormatter": "ms-python.black-formatter"
 	}
