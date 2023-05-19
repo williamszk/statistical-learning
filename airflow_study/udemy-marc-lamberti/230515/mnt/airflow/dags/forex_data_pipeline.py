@@ -11,6 +11,7 @@ from airflow.operators.bash import BashOperator
 from airflow.providers.apache.hive.operators.hive import HiveOperator
 from airflow.providers.apache.spark.operators.spark_submit import  SparkSubmitOperator
 from airflow.operators.email import EmailOperator
+from airflow.providers.slack.operators.slack_webhook import SlackWebhookOperator
 
 default_args = {
     "owner": "airflow",
@@ -41,6 +42,8 @@ def download_rates():
                 json.dump(out_data, outfile)
                 outfile.write("\n")
 
+def _get_message()->str:
+    return "Hi from forex_data_pipeline"
 
 with DAG(
     "forex_data_pipeline",
@@ -136,3 +139,17 @@ with DAG(
         html_content="<h3>forex_data_pipeline</h3>"
     )
 
+    # https://api.slack.com/apps
+    # https://hooks.slack.com/services/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
+    
+    # create conntion in airflow UI
+    # Conn Id: slack_conn
+    # Conn Type: http
+    # Password: https://hooks.slack.com/services/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
+    # https://hooks.slack.com/services/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
+    send_slack_notification = SlackWebhookOperator(
+        task_id="send_slack_notification",
+        http_conn_id="slack_conn",
+        message=_get_message(),
+        channel="#monitoring",
+    )

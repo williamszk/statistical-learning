@@ -15,6 +15,10 @@ pip install apache-airflow-providers-apache-hive
 # for spark
 pip install apache-airflow-providers-apache-spark
 
+# for slack
+pip install apache-airflow-providers-slack[common.sql]
+
+# to start all containers for study airflow
 ./start.sh
 
 
@@ -47,12 +51,13 @@ airflow tasks list forex_data_pipeline
 airflow tasks test forex_data_pipeline saving_rates 2023-01-01
 
 # test the new task "creating_forex_rates_table"
-docker exec -it 5e17a91b24bf bash
+docker exec -it 4af4e347b621 bash
 airflow tasks list forex_data_pipeline
 airflow tasks test forex_data_pipeline creating_forex_rates_table 2023-01-01
 airflow tasks test forex_data_pipeline forex_processing 2023-01-01
 
 airflow tasks test forex_data_pipeline send_email_notification 2023-01-01
+airflow tasks test forex_data_pipeline send_slack_notification 2023-01-01
 
 
 
