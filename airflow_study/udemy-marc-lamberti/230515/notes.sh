@@ -1,3 +1,5 @@
+python3 -m venv .venv
+source .venv/bin/activate
 
 python3 -m pip install --upgrade pip
 pip install apache-airflow
@@ -31,23 +33,26 @@ airflow tasks list forex_data_pipeline
 
 # test the new task by running it 
 airflow tasks test forex_data_pipeline is_forex_available 2023-01-01
-airflow tasks test forex_data_pipeline forex_file_sensor 2023-01-01
+airflow tasks test forex_data_pipeline is_forex_currencies_file_available 2023-01-01
 
 # test the new task downloading_rates
-docker exec -it e6f5e935cc76 bash
+docker exec -it 8125f81fe1a4 bash
 airflow tasks test forex_data_pipeline downloading_rates 2023-01-01
 # check the output of the task
 cat /opt/airflow/dags/files/forex_rates.json
 
 # test the new task "saving_rates"
-docker exec -it 2b7821eb3861 bash
+docker exec -it 8125f81fe1a4 bash
 airflow tasks list forex_data_pipeline
 airflow tasks test forex_data_pipeline saving_rates 2023-01-01
 
 # test the new task "creating_forex_rates_table"
-docker exec -it 2b7821eb3861 bash
+docker exec -it 5e17a91b24bf bash
 airflow tasks list forex_data_pipeline
 airflow tasks test forex_data_pipeline creating_forex_rates_table 2023-01-01
+airflow tasks test forex_data_pipeline forex_processing 2023-01-01
+
+airflow tasks test forex_data_pipeline send_email_notification 2023-01-01
 
 
 

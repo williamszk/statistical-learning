@@ -9,7 +9,8 @@ from airflow.sensors.filesystem import FileSensor
 from airflow.operators.python import PythonOperator
 from airflow.operators.bash import BashOperator
 from airflow.providers.apache.hive.operators.hive import HiveOperator
-from airflow.providers.apache.spark.operators import spark_submit
+from airflow.providers.apache.spark.operators.spark_submit import  SparkSubmitOperator
+from airflow.operators.email import EmailOperator
 
 default_args = {
     "owner": "airflow",
@@ -48,10 +49,10 @@ with DAG(
     default_args=default_args,
     catchup=False,
 ) as dag:
+    # For the connection:
     # conn id = forex_api
     # conn type = http
     # host = https://gist.github.com/
-    #
     is_forex_available = HttpSensor(
         task_id="is_forex_available",
         http_conn_id="forex_api",
@@ -61,6 +62,10 @@ with DAG(
         timeout=20,
     )
 
+    # For the connection:
+    # conn id = forex_path
+    # conn type = file
+    # Extra = {"path":"/opt/airflow/dags/files"}
     is_forex_currencies_file_available = FileSensor(
         task_id="is_forex_currencies_file_available",
         fs_conn_id="forex_path",
@@ -83,6 +88,7 @@ with DAG(
     )
 
     # for the connection
+    # Conn Id: hive_conn
     # Conn Type: Hive Server 2 Thrift
     # Host: hive-server
     # Login: hive
@@ -107,3 +113,26 @@ with DAG(
             STORED AS TEXTFILE
         """
     )
+
+    # spark_submit
+    # /opt/airflow/dags/scripts/forex_processing.py
+
+    # Conn Id: spark_conn
+    # Conn Type: Spark
+    # Host: spark://spark-master
+    # Port: 7077
+    forex_processing = SparkSubmitOperator(
+        task_id="forex_processing",
+        application="/opt/airflow/dags/scripts/forex_processing.py",
+        conn_id="spark_conn",
+        verbose=False,
+    )
+
+    # https://security.google.com/settings/security/apppasswords
+    send_email_notification = EmailOperator(
+        task_id="send_email_notification",
+        to="wllmszk@gmail.com",
+        subject="forex_data_pipeline",
+        html_content="<h3>forex_data_pipeline</h3>"
+    )
+
