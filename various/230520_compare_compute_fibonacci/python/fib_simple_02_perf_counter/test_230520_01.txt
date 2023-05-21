@@ -1,0 +1,16 @@
+For perf_counter measure
+running 1million times
+
+fib simple is running idx = 40
+expected answer = 165580141
+
+python3 main.py
+165580141; elapsed_time: 2.3856731410014618s
+165580141; elapsed_time: 2.4358989809989s
+
+When comparing with the results here we need to run 1_000_000 times the same function
+of fibonacci;
+
+Next:
+- Compare the fib that uses recursion.
+- Run the Rust fib_simple 1 million times, and compare it with this result.

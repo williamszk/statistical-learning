@@ -1,0 +1,25 @@
+fib simple is running idx = 40
+expected answer = 165580141
+
+-------------------------------------------------------------------------------
+# running for building in release mode
+cd fib_simple
+cargo build --release
+
+# with 1000 for warmup
+hyperfine "./target/release/fib_simple" --warmup 1000 -r 1000
+Benchmark 1: ./target/release/fib_simple
+  Time (mean ± σ):       0.4 ms ±   1.2 ms    [User: 0.7 ms, System: 0.2 ms]
+  Range (min … max):     0.0 ms …  20.0 ms    1000 runs
+ 
+  Warning: Command took less than 5 ms to complete. Results might be inaccurate.
+  Warning: The first benchmarking run for this command was significantly slower than the rest (0.8 ms). This could be caused by (filesystem) caches that were not filled until after the first run. You should consider using the '--warmup' option to fill those caches before the actual benchmark. Alternatively, use the '--prepare' option to clear the caches before each timing run.
+
+
+hyperfine "./target/release/fib_simple" --warmup 1000 -r 1000
+Benchmark 1: ./target/release/fib_simple
+  Time (mean ± σ):       0.3 ms ±   1.0 ms    [User: 0.5 ms, System: 0.3 ms]
+  Range (min … max):     0.0 ms …  20.3 ms    1000 runs
+ 
+  Warning: Command took less than 5 ms to complete. Results might be inaccurate.
+  Warning: The first benchmarking run for this command was significantly slower than the rest (0.6 ms). This could be caused by (filesystem) caches that were not filled until after the first run. You should consider using the '--warmup' option to fill those caches before the actual benchmark. Alternatively, use the '--prepare' option to clear the caches before each timing run.
