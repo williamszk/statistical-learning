@@ -1,7 +1,6 @@
 # https://www.udemy.com/course/learning-path-haskell-functional-programming-and-haskell/learn/lecture/6898588#overview
 
 # https://docs.haskellstack.org/en/stable/#how-to-install-stack
-# 
 curl -sSL https://get.haskellstack.org/ | sh
 
 which stack
