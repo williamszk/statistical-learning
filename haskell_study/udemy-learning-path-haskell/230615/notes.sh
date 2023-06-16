@@ -21,9 +21,11 @@ stack build
 
 stack exec hello-world
 
+# compile just one file
+stack ghc -- -o main src/Main.hs
+./main
 
-
-
+stack runghc src/Main.hs
 
 
 

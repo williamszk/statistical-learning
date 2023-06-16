@@ -29,11 +29,11 @@ version :: Version
 version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
-bindir     = "/home/ubuntu/statistical-learning/haskell_study/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/bin"
-libdir     = "/home/ubuntu/statistical-learning/haskell_study/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/lib/x86_64-linux-ghc-8.0.1/hello-world-0.1.0.0"
-datadir    = "/home/ubuntu/statistical-learning/haskell_study/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/share/x86_64-linux-ghc-8.0.1/hello-world-0.1.0.0"
-libexecdir = "/home/ubuntu/statistical-learning/haskell_study/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/libexec"
-sysconfdir = "/home/ubuntu/statistical-learning/haskell_study/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/etc"
+bindir     = "/home/ubuntu/statistical-learning/haskell_study/udemy-learning-path-haskell/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/bin"
+libdir     = "/home/ubuntu/statistical-learning/haskell_study/udemy-learning-path-haskell/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/lib/x86_64-linux-ghc-8.0.1/hello-world-0.1.0.0"
+datadir    = "/home/ubuntu/statistical-learning/haskell_study/udemy-learning-path-haskell/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/share/x86_64-linux-ghc-8.0.1/hello-world-0.1.0.0"
+libexecdir = "/home/ubuntu/statistical-learning/haskell_study/udemy-learning-path-haskell/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/libexec"
+sysconfdir = "/home/ubuntu/statistical-learning/haskell_study/udemy-learning-path-haskell/230615/01_install/hello-world/.stack-work/install/x86_64-linux-tinfo6/92557b043df16ead73345f6cd3700346efa0c932001dd940ad1f36a6c7cf2c2e/8.0.1/etc"
 
 getBinDir, getLibDir, getDataDir, getLibexecDir, getSysconfDir :: IO FilePath
 getBinDir = catchIO (getEnv "hello_world_bindir") (\_ -> return bindir)
