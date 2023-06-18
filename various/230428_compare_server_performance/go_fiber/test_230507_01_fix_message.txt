@@ -1,0 +1,50 @@
+
+I found one problem with the message from this endpoint
+It should be "Hi!" but I was using just "hi"
+This is a 1 char difference, let's see if this has any impact on the results
+
+[ ] I notice that the go net/http is sending "Hi!\n" instead of "Hi!" 
+It should be cause for a big difference but let's fix it later
+
+autocannon -c 100 -d 5 -p 10 http://127.0.0.1:5000/
+
+tp://127.0.0.1:5000/
+Running 5s test @ http://127.0.0.1:5000/
+100 connections with 10 pipelining factor
+
+
+┌─────────┬───────┬───────┬───────┬────────┬───────┬──────────┬────────┐
+│ Stat    │ 2.5%  │ 50%   │ 97.5% │ 99%    │ Avg   │ Stdev    │ Max    │
+├─────────┼───────┼───────┼───────┼────────┼───────┼──────────┼────────┤
+│ Latency │ 17 ms │ 24 ms │ 84 ms │ 112 ms │ 29 ms │ 17.08 ms │ 183 ms │
+└─────────┴───────┴───────┴───────┴────────┴───────┴──────────┴────────┘
+┌───────────┬─────────┬─────────┬─────────┬───────┬─────────┬─────────┬────────┐
+│ Stat      │ 1%      │ 2.5%    │ 50%     │ 97.5% │ Avg     │ Stdev   │ Min    │
+├───────────┼─────────┼─────────┼─────────┼───────┼─────────┼─────────┼────────┤
+│ Req/Sec   │ 26927   │ 26927   │ 34911   │ 42015 │ 34672   │ 6064.02 │ 26920  │
+├───────────┼─────────┼─────────┼─────────┼───────┼─────────┼─────────┼────────┤
+│ Bytes/Sec │ 3.21 MB │ 3.21 MB │ 4.15 MB │ 5 MB  │ 4.13 MB │ 721 kB  │ 3.2 MB │
+└───────────┴─────────┴─────────┴─────────┴───────┴─────────┴─────────┴────────┘
+
+Req/Bytes counts sampled once per second.
+# of samples: 5
+
+174k requests in 5.18s, 20.6 MB read
+
+================================================================================
+
+let's compare latency median:
+- go fiber before:        28ms
+- go fiber after:         24ms
+There is no difference
+
+let's compare req/s median:
+- go fiber before:        35007
+- go fiber after:         34911
+There is no difference
+
+let's compare throughput (bytes/s) median:
+- go fiber before:        4130kB
+- go fiber after:         4150kB
+There is no difference
+================================================================================

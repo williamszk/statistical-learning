@@ -51,7 +51,10 @@ Running 5s test @ http://127.0.0.1:5000/
 let's compare latency median:
 - go fiber:         28ms
 - flask gunicorn  2466ms
-go fiber is a lot faster, 88 times faster
+go fiber is a lot faster, 88 times faster. Flask is almost 2.5 seconds in latency
+that is very strange. We should try to run the flask test with a difference configuration
+of autocannon. Let's try with less number of clients trying to reach the endpoint
+at the same time.
 
 let's compare req/s median:
 - go fiber:       35007

@@ -1,0 +1,63 @@
+# Attention! 
+# Test running with a loop of 10million
+fib simple is running idx = 40
+expected answer = 165580141
+
+# -------------------------------------------------------------------------------
+# running for cargo run, without optimization
+cd fib_simple 
+hyperfine "cargo run" -r 10
+Benchmark 1: cargo run
+  Time (mean ± σ):      9.111 s ±  0.344 s    [User: 9.010 s, System: 0.021 s]
+  Range (min … max):    8.850 s … 10.004 s    10 runs
+
+-------------------------------------------------------------------------------
+# running for building in release mode
+cd fib_simple
+cargo build --release
+
+# no warmup
+hyperfine "./target/release/fib_simple" --warmup 0 -r 1000
+Benchmark 1: ./target/release/fib_simple
+  Time (mean ± σ):       0.5 ms ±   2.0 ms    [User: 0.6 ms, System: 0.3 ms]
+  Range (min … max):     0.0 ms …  38.8 ms    1000 runs
+ 
+  Warning: Command took less than 5 ms to complete. Results might be inaccurate.
+  Warning: The first benchmarking run for this command was significantly slower than the rest (1.8 ms). This could be caused by (filesystem) caches that were not filled until after the first run. You should consider using the '--warmup' option to fill those caches before the actual benchmark. Alternatively, use the '--prepare' option to clear the caches before each timing run.
+
+# with 1000 for warmup
+hyperfine "./target/release/fib_simple" --warmup 1000 -r 1000
+Benchmark 1: ./target/release/fib_simple
+  Time (mean ± σ):       0.4 ms ±   0.6 ms    [User: 0.7 ms, System: 0.2 ms]
+  Range (min … max):     0.0 ms …   3.2 ms    1000 runs
+
+  Warning: Command took less than 5 ms to complete. Results might be inaccurate.
+  Warning: The first benchmarking run for this command was significantly slower than the rest (1.9 ms). This could be caused by (filesystem) caches that were not filled until after the first run. You should consider using the '--warmup' option to fill those caches before the actual benchmark. Alternatively, use the '--prepare' option to clear the caches before each timing run.
+
+# with 5_000 for warmup
+hyperfine "./target/release/fib_simple" --warmup 5000 -r 1000
+Benchmark 1: ./target/release/fib_simple
+  Time (mean ± σ):       0.4 ms ±   2.3 ms    [User: 0.6 ms, System: 0.2 ms]
+  Range (min … max):     0.0 ms …  51.8 ms    1000 runs
+ 
+  Warning: Command took less than 5 ms to complete. Results might be inaccurate.
+  Warning: The first benchmarking run for this command was significantly slower than the rest (2.8 ms). This could be caused by (filesystem) caches that were not filled until after the first run. You should consider using the '--warmup' option to fill those caches before the actual benchmark. Alternatively, use the '--prepare' option to clear the caches before each timing run.
+  
+# with 10_000 for warmup
+hyperfine "./target/release/fib_simple" --warmup 10000 -r 1000
+Benchmark 1: ./target/release/fib_simple
+  Time (mean ± σ):       0.1 ms ±   0.7 ms    [User: 0.5 ms, System: 0.3 ms]
+  Range (min … max):     0.0 ms …  15.9 ms    1000 runs
+ 
+  Warning: Command took less than 5 ms to complete. Results might be inaccurate.
+  Warning: Statistical outliers were detected. Consider re-running this benchmark on a quiet PC without any interferences from other programs. It might help to use the '--warmup' or '--prepare' options.
+
+# The warmup runs substantially improve the speed of execution of code
+# warmup    mean
+#      0   0.5ms
+#   1000   0.4ms
+#  10000   0.1ms
+
+
+cargo build --release
+hyperfine "./target/release/fib_simple" --warmup 1000 -r 1000

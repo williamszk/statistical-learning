@@ -1,1 +1,0 @@
-Study airflow study notes
