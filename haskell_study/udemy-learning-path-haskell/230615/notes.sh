@@ -27,6 +27,12 @@ stack ghc -- -o main src/Main.hs
 
 stack runghc src/Main.hs
 
+# ------------------------------------------------------------
+mkdir 03
+cd 03
+
+
+
 
 
 
