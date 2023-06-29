@@ -8,8 +8,13 @@ stack runghc Nums.hs
 stack runghc Char.hs
 stack runghc String.hs
 stack runghc List.hs
+stack runghc Tuples.hs
+stack runghc Functions.hs
+stack runghc FormatList.hs
+stack runghc Polymorphism.hs
 
-
+python3 format_list.py
+python3 format_list_2.py
 
 
 
