@@ -1,0 +1,2 @@
+The difference here is that I'll try to build the image inside the docker-compose file
+instead of building it sending to dockerhub and then pulling from EB

@@ -24,3 +24,7 @@ docker login
 
 docker compose up
 cd -
+
+
+rm my-elastic-beanstalk-app-2.zip
+(cd my-elastic-beanstalk-app-2 && zip -r ../my-elastic-beanstalk-app-2.zip .)

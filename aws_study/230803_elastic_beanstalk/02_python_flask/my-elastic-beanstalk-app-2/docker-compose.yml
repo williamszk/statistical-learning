@@ -4,6 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: 'williamszk/getting-started:latest'
+    # image: 'williamszk/getting-started:latest'
     ports:
       - '80:5000'
