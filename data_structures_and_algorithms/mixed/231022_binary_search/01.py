@@ -73,6 +73,7 @@ my_list = [49, 9, 20, 1, 50, 11, 4, 13, 3, 42, 8]
 # first we need to sort the list
 print("---- non-recursive 01 --------------------------------------------------")
 my_list_2 = sorted(my_list)
+print("sorted list:", my_list_2)
 searched_value = 13
 ok, idx = find_position_of_element_in_sorted_list(my_list_2, searched_value)
 print(my_list_2)
@@ -109,3 +110,6 @@ print(ok, idx, "; it should be None")
 # Next episode:
 # - Build a binary tree data structure.
 # - Build a program that can find values in the binary tree.
+# - write the same algorithms in C
+# - write a function that can find the position of element in non sorted list
+#   show the index of the first occurrence of the element
