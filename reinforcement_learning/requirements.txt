@@ -8,7 +8,7 @@ entrypoints==0.3
 fonttools==4.28.5
 gym==0.21.0
 ipykernel==6.6.0
-ipython==7.31.1
+ipython==8.10.0
 jedi==0.18.1
 jupyter-client==7.1.0
 jupyter-core==4.9.1
