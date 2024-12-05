@@ -10,7 +10,7 @@ botocore==1.17.47
 bqplot==0.12.16
 branca==0.4.1
 cachetools==4.1.1
-certifi==2020.6.20
+certifi==2022.12.7
 cffi==1.14.0
 chardet==3.0.4
 cloudpickle==1.5.0
